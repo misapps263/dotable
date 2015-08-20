@@ -3,14 +3,13 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.vocalesconsonido(1)"
+        id        = "com.phonegap.dotable"
         version   = "1.0.0">
 
-    <name>Vocales</name>
+    <name>DoTable</name>
 
     <description>
-       Juego del abecedario(3).
-       Ahora con phonegap,fondo y sonido y la madre que o pario
+       dotable
     </description>
 
     <author href="http://phonegap.com" email="support@phonegap.com">
