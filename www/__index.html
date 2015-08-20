@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+<meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+<script src="js/jquery-2.1.4.min.js"></script>
+ 
+<style type="text/css">
+<!-- 
+body{}
+.dot{
+ whidth:100%;
+		height:100%;
+}
+#marcador {display:inline;float:right;}
+#main{width:80%;height:90%;float:left;}
+#marcador{width:15%;}
+.stage{width:100%;}
+.side{width:auto;}
+table{width:100%;height:100%;}
+td{background:#FCF6D6; height:75px;min-width:75px;}
+table {
+
+    border-collapse: separate;
+    border-spacing: 0;
+}
+table, td { 
+    border: 3px solid #fff;
+    border-radius: 15px;
+    -moz-border-radius: 5px;
+    padding: 3px; 
+		
+}
+td{margin:0px;padding:0px;}
+td > div{margin:0px;padding:0px;}
+-->
+</style>
+<script type="text/javascript">
+<!--
+var x;
+x=$(document);
+x.ready(inicializarEventos);
+
+ clevel=1;
+ 
+ rows=2;
+if(clevel>rows){rows=clevel;}
+if(rows<2){rows=2;}
+
+ colorarray=['red','green','blue','purple'];
+function inicializarEventos()
+{
+   
+	 timer();
+  dotable(rows);
+	
+	  
+}
+function timer(){
+$('#maintimer').animate({width: 0},10000);
+ if($('#maintimer').css('width')<='14px'){dotable(7)}
+}
+function countdown(){
+ var t=$('#timer');
+var time=t=$('#timer').text();
+console.log(' time= '.time);
+var i=0;
+ crono=setInterval(function(){ 
+time--;
+console.log(' time --= '.time);
+$('#timerbar').css('width',time+'%');
+$('#timer').text(time);
+console.log(' mytime >>> '+$('#timer').text());
+if($('#timer').text()==0){
+var dt=$('#level').text()-1;
+//alert(dt);
+	//$('#timer').remove();
+	//$('timercontainer').append('<div id="timer"></div>');
+	//$('#timer').text('100');
+//reset timer
+
+clearInterval(crono);
+
+
+
+dotable(dt);
+
+
+}}, 50);
+setTimeout(function(){ 
+
+$('td div').css('background','#FCF6D6');
+
+ }, 2000);
+if($('#level').text()>=7){$('#level').text('0');clevel++;rows=2 }
+
+ }
+  
+ function score(){
+ var level=rows;
+ var maxlevel=$('#maxlevel').text();
+ score;
+ //$('#level').text(maxlevel);
+ $('#level').text(level);
+ $('#maxlevel').text(maxlevel);
+ }	
+	
+ function check(){
+var target=$("div[data-check='true']" ).size();
+  //alert(target);
+ console.log('ANDA target-->'+target)
+ var x;
+ x=$("div[data-check='true']" );
+ 
+
+ x.click(
+ function(){target--; $('#target').text(target);$(this).remove();}
+
+ 
+ );
+ 
+ x.click(function(){if(target<=0){  
+ rows++;
+ $("#main").html('');
+ dotable(rows);
+ 
+ }});  
+ var y;
+ y=$("div[data-check='false']" );
+ y.click(
+ 
+ function(){ 
+ rows--;
+ $("#main").html('');
+ dotable(rows);
+// alert('-1');
+  }
+ 
+ );
+ 
+	  }
+ 
+ function checkable(e){
+
+ 
+ 
+ console.log(colorarray);
+  var totalarray=new Array();
+	var myarray=new Array();
+	var pickedcolor=false;
+for(cl=0;cl<=clevel-1;cl++){
+bg=colorarray[cl];
+console.log(bg);
+        /////////////////////
+         for(i=0;i<=e*e-1;i++){totalarray[i]=i+1};
+         //for(i=0;i<=e-1;i++){var misarray=new Array();misarray[i]=i+1;misarray.splice(i,e);alert(misarray)};
+         //alert(totalarray);
+        
+         for (i=0;i<=e;i++){
+        
+        		  var r=Math.floor(Math.random() * e) + 1   ;
+        		  //$('#array').append("("+i+(r-1)+")");
+        		   $("div[id^='row"+i+(r-1)+"']").css('color','red');
+							 //seleccionar color y dar valor  
+							  $("div[id^='row"+i+(r-1)+"']").attr('data-color',bg);
+								//$("div[id^='row"+i+(r-1)+"']").attr('data-check','true');
+							
+        		   $("div[id^='row"+i+(r-1)+"']").css('background',bg);
+							  $("div[id^='row"+i+(r-1)+"']").css('height',$('td').height());
+							  $('#array').append('('+bg+i+(r-1)+')');
+        		 
+         }
+				 target=e;
+				
+         ///////////////////////-
+			}//fin for clevel	 
+				var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
+				$("div[data-color='"+pickedcolor+"']").attr('data-check','true');
+				$("div[data-color='"+pickedcolor+"']").text('true');
+			
+				$('#timerbar').css('background',pickedcolor)
+				//alert(pickedcolor);  
+  // alert(totalarray+'/'+myarray);
+ }
+ 
+function dotable(e)
+{var truecount=0;
+$("#main").html('');
+  for(i=0;i<=e-1;i++){
+	 $("#main").append('<tr id="col'+i+'"> </tr>');
+	 truecount++;
+	 
+	  for(c=0;c<=e-1;c++){
+		//ramdom entre 1 y el valor "e"
+		
+		
+		$('#col'+i).append('<td><div id="row'+i+c+'" data-check="false" data-color="" class="dot">  </div></td>');
+		}
+	}
+	$('td').css('height',$('td').height());
+	checkable(rows);
+	    var x;
+ 			x=$("div[data-check='true']" );
+	    x.click(check());
+	score();
+	
+	countdown() ;
+	//resetemamos contador a 100
+	
+	$('#timer').text('100');
+	$('#timerbar').css('width','100%');
+	 
+	 alert('dotacccble')  
+	
+	
+}
+
+// -->
+</script>
+</head>
+
+<body><div id="array" style="display:none;">--- </div>
+
+
+
+<div class="stage" >
+<div id="maintimer" style="width:100%; background:blue;">bb</div>
+<div id="timer" style="display:none;">100</div>
+<div id="timerbar" style="width:100%; background:red;"> &nbsp </div>
+</div>
+<table id="main" >
+</table>
+
+<div id="marcador">
+<div id="score">puntuacion:2</div>
+<div id="level" >2</div>
+<div id="maxlevel">nivel maximo:2</div>
+<div id="target" style="display:none;"></div>
+<div id="timercontainer">
+
+</div>
+
+</div>
+
+
+
+</body>
+</html>
