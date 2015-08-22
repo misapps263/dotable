@@ -75,13 +75,13 @@ var x;
 x=$(document);
 x.ready(inicializarEventos);
  maxrows=6;
- clevel=2;
+ clevel=1; rows=1;
  gtime=6000;//tiempo del juego
  htime=2000;//tiempo de hide
  keepgoing=true;
- rows=1;
-if(clevel>rows){rows=clevel;}
-if(rows<2){rows=2;}
+
+//if(clevel>rows){rows=clevel;}
+//if(rows<2){rows=2;}
 
  colorarray=['#BE6FCF','#3497DB','#31D1B0','#F1C310','red','green','purple','dark','grey','orange','pink','silver','brown','yellow','black'];
 function inicializarEventos()
@@ -149,7 +149,11 @@ var i=0;
   },3000);*/
 	 
 	//if(clevel>maxrows){ rows=maxrows;} 
-	if($('#level').text()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()} }
+	console.log('divide:'+clevel+'x'+rows+'/'+clevel+'='+(clevel*rows/clevel))
+	if(rows<=1 & clevel>=2){alert('game over');}
+	if(((rows*clevel)/clevel)==maxrows){clevel++;rows=(clevel)}
+	if(rows>maxrows){alert('demasiado nivel')}
+	//if($('#level').text()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()} }
 	//if($('tr').size()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()-1} }
    //ESTO FUNCIONA 
  hide=setTimeout(function(){ 
@@ -256,7 +260,7 @@ console.log(bg);
 				//$("#menu").html('<div style="background:'+tablearray +';">'+tablearray +'</div>');
          ///////////////////////-
 		}//fin for clevel	
-				 if(rows<=1){alert('game over');restart();exit()}
+				 
 				 if(clevel>rows){
 				    alert('posible fallo ->clevel'+clevel+'rows:'+rows);
 				 rows=clevel;
@@ -267,7 +271,7 @@ console.log(bg);
 				
 				 
 				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
-				$("div[data-color='"+pickedcolor+"']").text(pickedcolor);
+			//	$("div[data-color='"+pickedcolor+"']").text(pickedcolor);
 			//alert($("div[data-check='true']").attr('data-color'));
 				//$('#timerbar').css('background',pickedcolor)
 				$('#timerbar').css('background',$("div[data-check='true']").attr('data-color'))
@@ -280,8 +284,7 @@ console.log(bg);
 function dotable(e)
 {
 
-
-
+ 
 var truecount=0;
 $("#main").html('');
   for(i=0;i<=e-1;i++){
