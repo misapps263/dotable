@@ -9,6 +9,7 @@
 <style type="text/css">
 <!-- 
 #contenedor {
+width: 100%;
 }
 #cabecera {
 }
@@ -16,15 +17,19 @@
   float: left;
   width: 15%;
 }
-#contenido {
+#secundario {
   float: left;
+  width: 15%;
+}
+#contenido {
+ // float: left;
   width: 85%;
 }
 #contenido #principal {
   float: left;
   width: 80%;
 }
-#contenido #secundario {
+ #contenido #secundario {
   float: left;
   width: 20%;
 }
@@ -39,7 +44,7 @@
 		height:100%;
 }
 #marcador {display:inline;position:relative;top:30px;}
-#main{width:80%;height:90%;}
+#main{width:100%;height:90%;}
 
 #marcador{width:15%;height:15%;}
 .stage{width:100%;}
@@ -74,14 +79,20 @@ td > div{margin:0px;padding:0px;}
 var x;
 x=$(document);
 x.ready(inicializarEventos);
- maxrows=6;
- clevel=1;
+ var truetarget=0;
+ maxstage=2;
+ levelstage=0;
+ maxrows=10;
+ clevel=1; 
+ 
+ rows=2;
+ playerlevel=clevel;
  gtime=6000;//tiempo del juego
  htime=2000;//tiempo de hide
- keepgoing=false;
- rows=2;
-if(clevel>rows){rows=clevel;}
-if(rows<2){rows=2;}
+ keepgoing=true;
+
+//if(clevel>rows){rows=clevel;}
+//if(rows<2){rows=2;}
 
  colorarray=['#BE6FCF','#3497DB','#31D1B0','#F1C310','red','green','purple','dark','grey','orange','pink','silver','brown','yellow','black'];
 function inicializarEventos()
@@ -94,18 +105,32 @@ function inicializarEventos()
 
 function start(){
   $('#btnstart').css('display','none');
-	//timer(gtime); 
+	if(keepgoing){
+	 timer(gtime); 
+	 }
 	countdown(htime);
+		 //$("#main").animate({opacity:0.3},700,function(){ $("#main").html(''); dotable(rows);});
+//$("#main").animate({opacity:1},300)
   dotable(rows);
 }
+
+function restart(){
+if(keepgoing){
+	 keepgoing=false;
+	 timer(0); 
+	 }
+clearInterval(set);
+$('#main').html('comenzar')
+}
+
 function timer(e){
 
 set=setInterval(function(){dotable(rows-1);console.log('timer='+e)},e); 
 $('#timerbar').animate({
     width:0
-  }, e,function(){$('#timerbar').css('width','100%');if(rows<2){rows=2;};if(rows<=1){t=2;$('#maintimerbar').text(t);rows=2}});
+  }, e,function(){$('#timerbar').css('width','100%');if(rows<2){alert('pocas rows')};if(rows<=1){t=2;$('#maintimerbar').text(t);rows=clevel}});
 
-	
+
 	
 }
 
@@ -137,7 +162,26 @@ var i=0;
   },3000);*/
 	 
 	if(clevel>maxrows){ rows=maxrows;} 
-	if($('#level').text()>=3){$('#level').text('0');clevel++;rows=2 }
+	console.log('divide:'+clevel+'x'+rows+'/'+clevel+'='+(clevel*rows/clevel))
+	if(rows<=1 & clevel>=2){alert('game over');}
+	//if(((rows*clevel)/clevel)==maxrows){playerlevel++;clevel++;rows=(clevel)}
+	// if(((rows*clevel)/clevel)>=maxrows){playerlevel++;levelstage++;}
+	//if((rows>=maxrows)){levelstage++;console.log(levelstage+'-'+maxstage);}
+	
+	 if(levelstage==maxstage){
+	 clevel++;
+	 playerlevel++;
+	 rows=clevel;
+	// alert('sube nivel -levelstage='+levelstage+' maxstage= '+maxstage);
+	 $('#level').text('sube de nivel!!!!!!!!');
+	 levelstage=0; 
+	 //$('#mylevel').css('width',(100*levelstage)/maxstage+'%');
+	 $('#mylevel').animate({width:'100%'},1000);
+	 $('#mylevel').addClass('pulse');
+	 }
+	//if(rows>maxrows){alert('demasiado nivel')}
+	//if($('#level').text()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()} }
+	//if($('tr').size()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()-1} }
    //ESTO FUNCIONA 
  hide=setTimeout(function(){ 
 
@@ -164,27 +208,31 @@ $('#level').text('0');
  var maxlevel=$('#maxlevel').text();
  score;
  //$('#level').text(maxlevel);
- $('#level').text(level);
+ //$('#level').text(level);
  $('#maxlevel').text(maxlevel);
  }	
 	
  function check(){
-var target=$("div[data-check='true']" ).size();
+  target=$("div[data-check='true']" ).size();
   //alert(target);
  console.log('target-->'+target)
  var x;
  x=$("div[data-check='true']" );
  
-
- x.click(
- function(){target--; $('#target').text(target);$(this).remove();}
-
  
+ x.click(
+ function(){ target--; truetarget++; $('#shottarget').text(truetarget);$('#target').text(target);$('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); $('this').parents((':eq(1)')).text('x')}
+
+
  );
  
- x.click(function(){if(target<=0){  
+ x.click(function(){
+ if( x.size()==truetarget ){levelstage++;/*alert(x.size()+'-'+truetarget)*/};
+ 
+ if(target<=0){  
  rows++;
  $("#main").html('');
+
  if(keepgoing){
  clearInterval(set);
  }
@@ -197,9 +245,12 @@ var target=$("div[data-check='true']" ).size();
  
  function(){ 
  rows--;
+ 
+ if(clevel>rows){clevel--};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
- $("#main").html('');
- dotable(rows);
+ $("#main").animate({opacity:0.3},700,function(){ $("#main").html(''); dotable(rows);})
+$("#main").animate({opacity:1},300)
+
 // alert('-1');
   }
  
@@ -214,7 +265,7 @@ var target=$("div[data-check='true']" ).size();
  console.log(colorarray);
   var totalarray=new Array();
 	var myarray=new Array();
-	tablearray=new Array();
+	 tablearray=new Array();
 	var pickedcolor=false;
 for(cl=0;cl<=clevel-1;cl++){
 bg=colorarray[cl];
@@ -239,16 +290,21 @@ console.log(bg);
         		  tablearray[i]=bg;
          }
 				 target=e;
-				$("#menu").html('<div style="background:'+tablearray[0]+';">'+tablearray[0]+'</div>');
+				//$("#menu").html('<div style="background:'+tablearray +';">'+tablearray +'</div>');
          ///////////////////////-
 		}//fin for clevel	
+				 
+				 if(clevel>rows){
+				    alert('posible fallo ->clevel'+clevel+'rows:'+rows);
+				 rows=clevel;
+				 restart();
+				 }
 				 var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
-				//alert(totalarray.lenght);
  				
 				
 				 
 				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
-				$("div[data-color='"+pickedcolor+"']").text('x');
+			//	$("div[data-color='"+pickedcolor+"']").text(pickedcolor);
 			//alert($("div[data-check='true']").attr('data-color'));
 				//$('#timerbar').css('background',pickedcolor)
 				$('#timerbar').css('background',$("div[data-check='true']").attr('data-color'))
@@ -259,7 +315,10 @@ console.log(bg);
  }
  
 function dotable(e)
-{var truecount=0;
+{
+
+ 
+var truecount=0;
 $("#main").html('');
   for(i=0;i<=e-1;i++){
 	 $("#main").append('<tr id="col'+i+'"> </tr>');
@@ -269,7 +328,7 @@ $("#main").html('');
 		//ramdom entre 1 y el valor "e"
 		
 		
-		$('#col'+i).append('<td><div id="row'+i+c+'" data-check="false" data-color="" class="dot">  </div></td>');
+		$('#col'+i).append('<td id="tdrow'+i+c+'" ><div id="row'+i+c+'" data-check="false" data-color="" class="dot">  </div></td>');
 		}
 	}
 	$('td').css('height',$('td').height());
@@ -302,10 +361,24 @@ $("#main").html('');
 	//resetemamos contador a 100
 	//$('#timer').text('100');
 	//$('#timerbar').css('width','100%');
-	countdown() ;
-
+	///countdown()
+//$('#level').text(clevel);
+	 //$('#mylevel').css('width',clevel*10+'%');
+	//$('#mylevel').css('width',(100*rows)/maxrows+'%');
 	
+	//$('#mylevel').text(Math.floor((100*rows)/maxrows)+'%');
+	$('#level').text(levelstage+'/'+maxstage);
+	 $('#myrows').css('width',rows*10+'%');
+	 $('#playerlevel').text(playerlevel);
 	 
+	 if(rows<2){alert('mi abuela juega mejor')}
+	  //$('#mylevel').css('width',(100*levelstage)/maxstage+'%');
+		$('#mylevel').animate({width:(100*levelstage)/maxstage+'%'},1000);
+		$('#mylevel').removeClass('pulse');
+	 countdown() ;
+	 truetarget=0
+	   $('#targetlevel').text('target '+target);
+		 $('#shottarget').text('aciertos '+truetarget);
 }
 
 
@@ -316,33 +389,42 @@ $("#main").html('');
 
 <body>
 <div id="contenedor">
-  <div id="cabecera">
-	DoTable
-  </div>
+  
  
   <div id="menu">
-	ssss
+	 <div id="cabecera">
+	DoTable
+  </div>
+	<div id="mylevel" style="background:red;"> &nbsp </div>
+		<div id="mmyrows" style="background:green;"> &nbsp </div>
+		level<div id="level" > 0</div>
+		playerlevel<div id="playerlevel" > 0</div>
+		targetlevel<div id="targetlevel" > </div>
+		aciertos<div id="shottarget" > </div>
   </div>
  
   <div id="contenido">
     <div id="principal">
+		
 		  <table id="main" >
 			<div>
 			<p id="btnstart">comenzar</p>
 			</div>
 			</table>
-			<div class="stage" >
+			<div class="ssstage" >
+			 
 <div id="timer" style="display:none;">100</div>
 <div id="timerbar" style="width:100%; background:red; "> &nbsp </div>
-<div id="maintimerbar" style="width:100%; background:blue;" > &nbsp </div>
+
 </div>
   </div>
 			
     </div>
- 
+ 	
     <div id="secundario">
-		<div id="level" style="display:none;"> 1</div>
-	<!--	<div id="marcador">
+		aaa
+	<!--	
+	<div id="marcador">
 <div id="score">puntuacion:2</div>
 
 <div id="maxlevel">nivel maximo:2</div>
