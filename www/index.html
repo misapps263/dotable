@@ -300,11 +300,12 @@ $('#level').text('0');
  
  x.click(
  function(){ target--; truetarget++; $('#shottarget').text(truetarget);$('#target').text(target);$('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); $('this').parents((':eq(1)')).text('x')}
-playAudio("/android_asset/www/click.mp3");
+
 
  );
  
  x.click(function(){
+ playAudio("/android_asset/www/click.mp3");
  if( x.size()==truetarget ){levelstage++;playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/};
  
  if(target<=0){  
