@@ -74,82 +74,7 @@ td{margin:0px;padding:0px;}
 td > div{margin:0px;padding:0px;}
 -->
 </style>
-<!-- phonegap audio----> 
-		
-		<script type="text/javascript" charset="utf-8">
-// Wait for device API libraries to load
-//
-document.addEventListener("deviceready", onDeviceReady, false);
-// device APIs are available
-//
-function onDeviceReady() {
-playAudio("/android_asset/www/levelup.mp3");// local con PHONEGP 4.2.0-0.23.0
-//playAudio("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3?); //remoto
-}
-// Audio player
-//
-var my_media = null;
-var mediaTimer = null;
-// Play audio
-//
-function playAudio(src) {
-// Create Media object from src
-my_media = new Media(src, onSuccess, onError);
-// Play audio
-my_media.play();
-// Update my_media position every second
-if (mediaTimer == null) {
-mediaTimer = setInterval(function() {
-// get my_media position
-my_media.getCurrentPosition(
-// success callback
-function(position) {
-if (position > -1) {
-setAudioPosition((position) + " sec");
-}
-},
-// error callback
-function(e) {
-console.log("Error getting pos=" + e);
-setAudioPosition("Error: " + e);
-}
-);
-}, 1000);
-}
-}
-// Pause audio
-//
-function pauseAudio() {
-if (my_media) {
-my_media.pause();
-}
-}
-// Stop audio
-//
-function stopAudio() {
-if (my_media) {
-my_media.stop();
-}
-clearInterval(mediaTimer);
-mediaTimer = null;
-}
-// onSuccess Callback
-//
-function onSuccess() {
-console.log("playAudio():Audio Success");
-}
-// onError Callback
-//
-function onError(error) {
-alert("code: " + error.code + "\n" +
-"message: " + error.message + "\n");
-}
-// Set audio position
-//
-function setAudioPosition(position) {
-document.getElementById("audio_position").innerHTML = position;
-}
-</script>
+ 
 <script type="text/javascript">
 <!--
 var x;
@@ -245,7 +170,6 @@ var i=0;
 	//if((rows>=maxrows)){levelstage++;console.log(levelstage+'-'+maxstage);}
 	
 	 if(levelstage==maxstage){
-	 playAudio("/android_asset/www/levelup.mp3");
 	 clevel++;
 	 playerlevel++;
 	 rows=clevel;
@@ -304,7 +228,7 @@ $('#level').text('0');
  );
  
  x.click(function(){
- if( x.size()==truetarget ){levelstage++;playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/};
+ if( x.size()==truetarget ){levelstage++;/*alert(x.size()+'-'+truetarget)*/};
  
  if(target<=0){  
  rows++;
@@ -323,7 +247,7 @@ $('#level').text('0');
  function(){ 
  rows--;
  
- if(clevel>rows){clevel-- ;playAudio("/android_asset/www/leveldown.mp3");};
+ if(clevel>rows){clevel--};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
  $("#main").animate({opacity:0.3},700,function(){ $("#main").html(''); dotable(rows);})
 $("#main").animate({opacity:1},300)
