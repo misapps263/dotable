@@ -1,6 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
-<html>
+ 
+<!DOCTYPE html>
+<html><meta charset="UTF-8">
 <head>
 <title>Untitled</title>
 
@@ -501,7 +501,18 @@ $("#main").html('');
     </div>
  	
     <div id="secundario">
-		aaa
+		<div>
+<button onclick="document.getElementById('audio5').play()">Play audio5</button>
+<button onclick="document.getElementById('audio5').pause()">Pause audio5</button>
+<button onclick="document.getElementById('audio5').volume += 0.1">Vol+  audio5</button>
+<button onclick="document.getElementById('audio5').volume -= 0.1">Vol-  audio5</button>
+</div>
+	<div>
+<button onclick="document.getElementById('audiosrc').play()">Play audiosrc</button>
+<button onclick="document.getElementById('audiosrc').pause()">Pause audiosrc</button>
+<button onclick="document.getElementById('audiosrc').volume += 0.1">Vol+  audiosrc</button>
+<button onclick="document.getElementById('audiosrc').volume -= 0.1">Vol-  audiosrc</button>
+</div>
 	<!--	
 	<div id="marcador">
 <div id="score">puntuacion:2</div>
@@ -515,7 +526,10 @@ $("#main").html('');
   </div>
  
   <div id="pie">
-	
+	   <audio controls="controls" id="audio5">
+          <source src="/android_asset/www/click.mp3" id="audiosrc"type="audio/mp3"/>
+        Your browser does not support the audio element.
+    </audio> 
 </div>
 
 <div id="array" style="display:none;">--- </div>
