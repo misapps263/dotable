@@ -307,9 +307,10 @@ $('#level').text('0');
 
  );
  
- x.click(function(){
- playAudio("/android_asset/www/click.mp3");
+ x.click(function(){ 
  my_media.release();
+ playAudio("/android_asset/www/click.mp3");
+
  if( x.size()==truetarget ){levelstage++;playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/};
  
  if(target<=0){  
