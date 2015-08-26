@@ -89,6 +89,7 @@ playAudio("/android_asset/www/levelup.mp3");// local con PHONEGP 4.2.0-0.23.0
 //
 var my_media = null;
 var mediaTimer = null;
+my_media.release();
 // Play audio
 //
 function playAudio(src) {
@@ -116,7 +117,7 @@ setAudioPosition("Error: " + e);
 );
 }, 1000);
 }
-my_media.release();
+
 }
 // Pause audio
 //
