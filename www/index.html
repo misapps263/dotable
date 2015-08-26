@@ -82,6 +82,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // device APIs are available
 //
 function onDeviceReady() {
+
 playAudio("/android_asset/www/levelup.mp3");// local con PHONEGP 4.2.0-0.23.0
 //playAudio("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3?); //remoto
 }
@@ -249,7 +250,7 @@ var i=0;
 	//if((rows>=maxrows)){levelstage++;console.log(levelstage+'-'+maxstage);}
 	
 	 if(levelstage==maxstage){
-	 playAudio("/android_asset/www/levelup.mp3");
+	 my_media.release(); playAudio("/android_asset/www/levelup.mp3");
 	 clevel++;
 	 playerlevel++;
 	 rows=clevel;
@@ -311,7 +312,7 @@ $('#level').text('0');
  my_media.release();
  playAudio("/android_asset/www/click.mp3");
 
- if( x.size()==truetarget ){levelstage++;playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/};
+ if( x.size()==truetarget ){levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/};
  
  if(target<=0){  
  rows++;
@@ -330,7 +331,7 @@ $('#level').text('0');
  function(){ 
  rows--;
  
- if(clevel>rows){clevel-- ;playAudio("/android_asset/www/leveldown.mp3");};
+ if(clevel>rows){clevel-- ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
  $("#main").animate({opacity:0.3},700,function(){ $("#main").html(''); dotable(rows);})
 $("#main").animate({opacity:1},300)
