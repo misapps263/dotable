@@ -87,13 +87,15 @@ playAudio("/android_asset/www/levelup.mp3");// local con PHONEGP 4.2.0-0.23.0
 }
 // Audio player
 //
+var totaudio=0;
 var my_media = null;
 var mediaTimer = null;
 my_media.release();
 // Play audio
 //
 function playAudio(src) {
-$('#secundario').append('--'+src+'<hr>')
+totaudio++;
+$('#secundario').text('--'+totaudio+'<hr>')
 // Create Media object from src
 my_media = new Media(src, onSuccess, onError);
 // Play audio
@@ -505,9 +507,9 @@ $("#main").html('');
     </div>
  	
     <div id="secundario">
-		 <a href="javascript:void();" onclick="click2.playclip()">Efecto hover 2</a>
+		 <a href="javascript:void();" onclick="mouseoversound.playclip()">Efecto hover 2</a>
 
-<div class="demo" onmouseover="hover2.playclip()">Hover 2</div></div>
+<div class="demo" onmouseover="clicksound.playclip()">Hover 2</div></div>
 	<!--	
 	<div id="marcador">
 <div id="score">puntuacion:2</div>
@@ -571,8 +573,11 @@ function createsoundbite(sound){
 
 //Initialize two sound clips with 1 fallback file each:
 
-var mouseoversound=createsoundbite("click.ogg", "click.mp3")
-var clicksound=createsoundbite("click.ogg", "click.mp3")
+var mouseoversound=createsoundbite("click.ogg", "click.mp3");
+var clicksound=createsoundbite("click.ogg", "click.mp3");
+
+var and1=createsoundbite("/android_asset/www/levelup.mp3", "/android_asset/www/levelup.mp3")
+var and2=createsoundbite("/android_asset/www/levelup.mp3", "/android_asset/www/levelup.mp3")
 
 </script>
 
