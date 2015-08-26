@@ -92,6 +92,7 @@ var mediaTimer = null;
 // Play audio
 //
 function playAudio(src) {
+$('secundario').append('--'+src+'<hr>')
 // Create Media object from src
 my_media = new Media(src, onSuccess, onError);
 // Play audio
@@ -115,6 +116,7 @@ setAudioPosition("Error: " + e);
 );
 }, 1000);
 }
+my_media.release();
 }
 // Pause audio
 //
@@ -457,7 +459,7 @@ $("#main").html('');
 	   $('#targetlevel').text('target '+target);
 		 $('#shottarget').text('aciertos '+truetarget);
 		 
-		 media.release();
+		 
 }
 
 
