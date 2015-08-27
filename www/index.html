@@ -162,7 +162,7 @@ var x;
 x=$(document);
 x.ready(inicializarEventos);
  var truetarget=0;
- maxstage=8;
+ maxstage=6;
  levelstage=0;
  maxrows=10;
  clevel=1; 
@@ -252,8 +252,10 @@ var i=0;
 	
 	 if(levelstage==maxstage){
 	 my_media.release(); playAudio("/android_asset/www/levelup.mp3");
-	 $('#colors').append('<div class="bigEntrance" style="background:'+colorarray[clevel]+';"> &nbsp </div>');
-	 clevel++;
+	  clevel++;
+	 $('#colors'+clevel).css(' background',colorarray[clevel]);
+	 $('#colors'+clevel).addClass('bigEntrance');
+	
 	 playerlevel++;
 	 rows=clevel;
 	// alert('sube nivel -levelstage='+levelstage+' maxstage= '+maxstage);
@@ -487,10 +489,26 @@ $("#main").html('');
 	<div id="mylevel" style="background:red;"> &nbsp </div>
 		<div id="mmyrows" style="background:green;"> &nbsp </div>
 		level<div id="level" > 0</div>
-		playerlevel<div id="playerlevel" > 0</div>
+		<!--playerlevel<div id="playerlevel" > 0</div>
 		targetlevel<div id="targetlevel" >jjjjj</div>
-		aciertos<div id="shottarget" > </div>
+		aciertos<div id="shottarget" > </div>-->
 		<div id="colors">
+		<div id="colors1" style="background:#BE6FCF;"class=""> &nbsp </div>
+		<div id="colors2" style="background:#111111;"class=""> &nbsp </div>
+		<div id="colors3" style="background:#222222;"class=""> &nbsp </div>
+		<div id="colors4" style="background:#333333;"class=""> &nbsp </div>
+		<div id="colors5" style="background:#444444;"class=""> &nbsp </div>
+		<div id="colors6" style="background:#555555;"class=""> &nbsp </div>
+		<div id="colors7" style="background:#666666;"class=""> &nbsp </div>
+		<div id="colors8" style="background:#777777;"class=""> &nbsp </div>
+		<div id="colors9" style="background:#888888;"class=""> &nbsp </div>
+		<div id="colors10" style="background:#999999;"class=""> &nbsp </div>
+		<div id="colors11" style="background:#aaaaaa;"class=""> &nbsp </div>
+		<div id="colors12" style="background:#bbbbbb"class=""> &nbsp </div>
+		<div id="colors13" style="background:#cccccc;"class=""> &nbsp </div>
+		<div id="colors14" style="background:#dddddd;"class=""> &nbsp </div>
+		<div id="colors15" style="background:#eeeeee;"class=""> &nbsp </div>
+		<div id="colors16" style="background:#ffffff;"class=""> &nbsp </div>
 		</div>
   </div>
  
@@ -532,7 +550,7 @@ $("#main").html('');
 
 <div id="array" style="display:none;">--- </div>
 
- 
+ <div class="pie" id="pie">AQUI LOS ANUNCIOS</div>
 
 
 </div>
