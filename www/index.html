@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Untitled</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
@@ -21,7 +21,7 @@ width: 100%;
   width: 15%;
 }
 #contenido {
- // float: left;
+ 
   width: 85%;
 }
 #contenido #principal {
@@ -161,7 +161,7 @@ var x;
 x=$(document);
 x.ready(inicializarEventos);
  var truetarget=0;
- maxstage=2;
+ maxstage=6;
  levelstage=0;
  maxrows=10;
  clevel=1; 
@@ -510,12 +510,7 @@ $("#main").html('');
     </div>
  	
     <div id="secundario">
-		 <a href="javascript:void();" onclick="mouseoversound.playclip()">Efecto hover 2</a>
-
-<div class="demo" onmouseover="clicksound.playclip()">Hover 2</div>
-<a href="javascript:void();" onclick="and1.playclip()">android 1</a>
-
-<div class="demo" onmouseover="and2.playclip()">android 2</div>
+		  
 
 </div>
 	<!--	
@@ -538,55 +533,9 @@ $("#main").html('');
 
 </div>
 
-
+ 
 
 </body>
-<script>
-
-// Mouseover/ Click sound effect- by JavaScript Kit (www.javascriptkit.com)
-// Visit JavaScript Kit at http://www.javascriptkit.com/ for full source code
-
-//** Usage: Instantiate script by calling: var uniquevar=createsoundbite("soundfile1", "fallbackfile2", "fallebacksound3", etc)
-//** Call: uniquevar.playclip() to play sound
-
-var html5_audiotypes={ //define list of audio file extensions and their associated audio types. Add to it if your specified audio file isn't on this list:
-	"mp3": "audio/mpeg",
-	"mp4": "audio/mp4",
-	"ogg": "audio/ogg",
-	"wav": "audio/wav"
-}
-
-function createsoundbite(sound){
-	var html5audio=document.createElement('audio')
-	if (html5audio.canPlayType){ //check support for HTML5 audio
-		for (var i=0; i<arguments.length; i++){
-			var sourceel=document.createElement('source')
-			sourceel.setAttribute('src', arguments[i])
-			if (arguments[i].match(/\.(\w+)$/i))
-				sourceel.setAttribute('type', html5_audiotypes[RegExp.$1])
-			html5audio.appendChild(sourceel)
-		}
-		html5audio.load()
-		html5audio.playclip=function(){
-			html5audio.pause()
-			html5audio.currentTime=0
-			html5audio.play()
-		}
-		return html5audio
-	}
-	else{
-		return {playclip:function(){throw new Error("Your browser doesn't support HTML5 audio unfortunately")}}
-	}
-}
-
-//Initialize two sound clips with 1 fallback file each:
-
-var mouseoversound=createsoundbite("click.ogg", "click.mp3");
-var clicksound=createsoundbite("click.ogg", "click.mp3");
-
-var and1=createsoundbite("/android_asset/www/levelup.mp3", "/android_asset/www/levelup.mp3")
-var and2=createsoundbite("/android_asset/www/levelup.mp3", "/android_asset/www/levelup.mp3")
-
-</script>
+ 
 
 </html>
