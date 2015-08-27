@@ -5,6 +5,7 @@
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<link rel="stylesheet" type="text/css" href="css/animations.css" />
 <style type="text/css">
 <!-- 
 #contenedor {
@@ -161,7 +162,7 @@ var x;
 x=$(document);
 x.ready(inicializarEventos);
  var truetarget=0;
- maxstage=6;
+ maxstage=8;
  levelstage=0;
  maxrows=10;
  clevel=1; 
@@ -251,6 +252,7 @@ var i=0;
 	
 	 if(levelstage==maxstage){
 	 my_media.release(); playAudio("/android_asset/www/levelup.mp3");
+	 $('#colors').append('<div class="bigEntrance" style="background:'+colorarray[clevel]+';"> &nbsp </div>');
 	 clevel++;
 	 playerlevel++;
 	 rows=clevel;
@@ -329,9 +331,9 @@ $('#level').text('0');
  y.click(
  
  function(){ 
- rows--;
+ //rows--;
  
- if(clevel>rows){clevel-- ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
+ if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
  $("#main").animate({opacity:0.3},700,function(){ $("#main").html(''); dotable(rows);})
 $("#main").animate({opacity:1},300)
@@ -486,8 +488,10 @@ $("#main").html('');
 		<div id="mmyrows" style="background:green;"> &nbsp </div>
 		level<div id="level" > 0</div>
 		playerlevel<div id="playerlevel" > 0</div>
-		targetlevel<div id="targetlevel" > </div>
+		targetlevel<div id="targetlevel" >jjjjj</div>
 		aciertos<div id="shottarget" > </div>
+		<div id="colors">
+		</div>
   </div>
  
   <div id="contenido">
