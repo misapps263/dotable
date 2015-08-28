@@ -179,7 +179,7 @@ x.ready(inicializarEventos
  var truetarget=0;
  maxstage=6;
  levelstage=0;
- maxrows=10;
+ maxrows=9;
  clevel=1; 
  
  rows=2;
@@ -424,8 +424,8 @@ console.log(bg);
  
 function dotable(e)
 {
-
- 
+//comprobamos que no se hagan mas rows del permitido
+ if(e>maxrows){e=maxrows}
 var truecount=0;
 $("#main").html('');
   for(i=0;i<=e-1;i++){
