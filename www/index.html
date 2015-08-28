@@ -325,13 +325,13 @@ $('#level').text('0');
  x=$("div[data-check='true']" );
  
  
- x.touchstart(
+ x.mousedown(
  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();  }
 
 
  );
  
- x.touchstart(function(){ 
+ x.mousedown(function(){ 
  my_media.release();
  playAudio("/android_asset/www/click.mp3");
 
