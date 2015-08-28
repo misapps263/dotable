@@ -8,6 +8,8 @@
 <link rel="stylesheet" type="text/css" href="css/animations.css" />
 <style type="text/css">
 <!-- 
+/* Disable certain interactions on touch devices */
+	body { -webkit-touch-callout: none; -webkit-text-size-adjust: none; -webkit-user-select: none; -webkit-highlight: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
 #contenedor {
 width: 100%;
 }
@@ -238,10 +240,10 @@ document.getElementById("audio_position").innerHTML = position;
 <!--
 var x;
 x=$(document);
-x.ready(inicializarEventos;
+x.ready(inicializarEventos,
 
 //When using jQuery call init on domReady-Event
-initFastButtons();
+initFastButtons()
  
 );
  var truetarget=0;
@@ -394,7 +396,7 @@ $('#level').text('0');
  
  
  x.touchstart(
- function(){ target--; truetarget++; $('#shottarget').text(truetarget);$('#target').text(target);$('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); $('this').parents((':eq(1)')).text('x')}
+ function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();  }
 
 
  );
