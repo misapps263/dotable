@@ -274,8 +274,8 @@ var i=0;
 	
 	 playerlevel++;
 	
-	// rows=clevel;
-	
+	  rows=clevel;
+	  
 	
 	// alert('sube nivel -levelstage='+levelstage+' maxstage= '+maxstage);
 	 $('#level').text('sube de nivel!!!!!!!!');
@@ -284,7 +284,7 @@ var i=0;
 	 $('#mylevel').animate({width:'100%'},1000);
 	 $('#mylevel').addClass('pulse');
 	 }
-	//if(rows>maxrows){alert('demasiado nivel')}
+	if(rows>maxrows){rows=maxrows}
 	//if($('#level').text()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()} }
 	//if($('tr').size()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()-1} }
    //ESTO FUNCIONA 
