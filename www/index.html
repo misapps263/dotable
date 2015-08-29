@@ -177,7 +177,7 @@ x.ready(inicializarEventos
  
 );
  var truetarget=0;
- maxstage=6;
+ maxstage=10;
  levelstage=0;
  maxrows=9;
  clevel=1; 
@@ -223,7 +223,8 @@ $('#main').html('comenzar')
 function timer(e){
 
 //set=setInterval(function(){dotable(rows-1);console.log('timer='+e)},e); 
-set=setInterval(function(){dotable(4);console.log('timer='+e)},e); 
+rows=4;
+set=setInterval(function(){dotable(rows);console.log('timer='+e)},e); 
 $('#timerbar').animate({
     width:0
   }, e,function(){$('#timerbar').css('width','100%');if(rows<2){alert('pocas rows')};if(rows<=1){t=2;$('#maintimerbar').text(t);rows=clevel}});
@@ -353,7 +354,7 @@ $('#level').text('0');
  
  function(){ 
  //rows--;
- 
+ levelstage=rows;
  if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
  $("#main").animate({opacity:0.3},700,function(){ $("#main").html(''); dotable(rows);})
