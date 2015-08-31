@@ -174,7 +174,7 @@ x=$(document);
 x.ready(inicializarEventos
 );
  var truetarget=0;
- maxstage=10; 
+
  /* keepgoing=true;
    levelstage=0;
  maxrows=$('#changemaxrows').val()
@@ -188,6 +188,7 @@ x.ready(inicializarEventos
 */
 
  levelstage=0;
+ maxstage=10; 
  maxrows=9;
  clevel=1; 
  rows=2;
@@ -210,10 +211,10 @@ function inicializarEventos()
 
 
 
-  // $('#btnstart').click(function(){start()});
+   $('#btnstart').click(function(){start()});
 	
 	//start();
-	  dotable(rows);
+	  
 }
 
 function start(){
@@ -374,7 +375,8 @@ $('#level').text('0');
  
  function(){ 
  //rows--;
- levelstage=rows;
+ //levelstage=rows;
+ levelstage=0;
  if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
  $("#main").animate({opacity:0.0},700)
@@ -449,8 +451,7 @@ function dotable(e)
 {
 
 
-alert('dotable');
-
+ 
 
 //comprobamos que no se hagan mas rows del permitido
  if(e>maxrows){e=maxrows}
