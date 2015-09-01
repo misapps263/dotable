@@ -192,7 +192,8 @@ x.ready(inicializarEventos
  maxrows=9;
  clevel=1; 
  rows=2;
- playerlevel=clevel;
+ //playerlevel=clevel;
+ playerlevel=0;
  gtime=6000;//tiempo del juego
  htime=2000;//tiempo de hide
  keepgoing=true;
@@ -358,7 +359,8 @@ $('#level').text('0');
  my_media.release();
  playAudio("/android_asset/www/click.mp3");
 
- if( x.size()==truetarget ){alert('subes nivel?'+truetarget+' - '+x.size());levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/};
+ if( x.size()==truetarget ){
+/* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/};
  
  if(target<=0){  
  rows++;
@@ -505,7 +507,7 @@ $("#main").html('');
 	//$('#mylevel').css('width',(100*rows)/maxrows+'%');
 	
 	//$('#mylevel').text(Math.floor((100*rows)/maxrows)+'%');
-	$('#level').text(levelstage+'/'+maxstage);
+	$('#level').text(levelstage+'/'+maxstage+'<br> clevel '+clevel);
 	 $('#myrows').css('width',rows*10+'%');
 	 $('#playerlevel').text(playerlevel);
 	 
@@ -548,8 +550,8 @@ $("#main").html('');
 		tiempo de hide <input type="text" value="6000" id="changehtime"/>
 		<div onclick="start()">dotable</div>
 		--->
-		<!--playerlevel<div id="playerlevel" > 0</div>
-		targetlevel<div id="targetlevel" >jjjjj</div>
+		playerlevel<div id="playerlevel" > 0</div>
+	<!--	targetlevel<div id="targetlevel" >jjjjj</div>
 		aciertos<div id="shottarget" > </div>-->
 		<div id="colors">
 		<!--<div id="colors1" style="background:#BE6FCF;"class=""> &nbsp </div>
