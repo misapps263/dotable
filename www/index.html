@@ -467,7 +467,7 @@ function doscore(){
  
 function dotable(e)
 {
-
+alert()
 if(e=='score'){
 $("#main").html('');
 $('#main').append('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><div id="continue" style="color:red;"class="ui-state-default ui-corner-all">Continuar</div></div>');
@@ -478,7 +478,7 @@ if(keepgoing){
 		}
 		
 		rows=clevel;
-		$('#continue').click(function(){dotable(rows)});
+		$('#continue').click(function(){dotable(2)});
 }
 else{
 
