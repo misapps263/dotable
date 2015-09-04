@@ -227,7 +227,7 @@ function start(){
 		 //$("#main").animate({opacity:0.3},700,function(){ $("#main").html(''); dotable(rows);});
 //$("#main").animate({opacity:1},300)
 
-
+if(clevel<2){rows=2};
 
 
   dotable(rows);
@@ -460,12 +460,14 @@ console.log(bg);
  
  
 function doscore(){
-$('#main').html('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><button onclick="alert(rows);dotable(rows)">Continuar</button></div>');
+
+$('#main').html('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><div id="continue">Continuar</div></div>');
 if(keepgoing){
 	  clearInterval(set);
 		$('#timerbar').stop(true,true);
 		 
 		}
+		$('#continue').click(function(){start()});
 } 
  
  
@@ -476,7 +478,7 @@ function dotable(e)
  
  //comprobamos que no se hagan manos de 2 rows
  
-if(clevel<2 & clevel!=1){rows=2};
+
 //comprobamos que no se hagan mas rows del permitido
  if(e>maxrows){e=maxrows}
 var truecount=0;
