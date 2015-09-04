@@ -249,7 +249,7 @@ function timer(e){
 set=setInterval(function(){dotable(rows);console.log('timer='+e)},e); 
 $('#timerbar').animate({
     width:0
-  }, e,function(){$('#timerbar').css('width','100%');doscore();/*if(rows<2){alert('pocas rows')};*/if(rows<=1){t=2;$('#maintimerbar').text(t);rows=clevel;}});
+  }, e,function(){$('#timerbar').css('width','100%');if(rows<=1){t=2;$('#maintimerbar').text(t);rows=clevel;}});
 
 
 	
@@ -470,8 +470,9 @@ function dotable(e)
 {
 
 
- 
-
+ //comprobamos que no se hagan manos de 2 rows
+if(e<2){rows=clevel};
+if(clevel<2){rows=2};
 //comprobamos que no se hagan mas rows del permitido
  if(e>maxrows){e=maxrows}
 var truecount=0;
