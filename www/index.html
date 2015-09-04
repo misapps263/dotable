@@ -461,14 +461,15 @@ console.log(bg);
  
 function doscore(){
 $("#main").html('');
-$('#main').append('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><div id="continue" class="ui-state-default ui-corner-all">Continuar</div></div>');
+$('#main').append('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><div id="continue" style="color:red;"class="ui-state-default ui-corner-all">Continuar</div></div>');
 if(keepgoing){
 	  clearInterval(set);
 		$('#timerbar').stop(true,true);
 		 
 		}
+		
 		rows=clevel;
-		$('#continue').click(function(){start()});
+		$('#continue').click(function(){dotable(rows)});
 } 
  
  
@@ -478,7 +479,8 @@ function dotable(e)
 
  
  //comprobamos que no se hagan manos de 2 rows
- 
+ if(e<2){e=2}
+ if(e<clevel){e=clevel}
 
 //comprobamos que no se hagan mas rows del permitido
  if(e>maxrows){e=maxrows}
