@@ -248,8 +248,8 @@ function timer(e){
 //rows=4;
 set=setInterval(function(){
 
-//dotable(rows);
-doscore()
+ dotable('score');
+ 
 console.log('timer='+e)},e); 
 $('#timerbar').animate({
     width:0
@@ -389,8 +389,8 @@ $('#level').text('0');
  $("#main").animate({opacity:0.0},700)
 $("#main").animate({opacity:1},300,function(){ $("#main").html(''); 
 rows=clevel;
-//dotable(rows);
-doscore();
+ dotable('score');
+ 
 })
 
 // alert('-1');
@@ -460,6 +460,15 @@ console.log(bg);
  
  
 function doscore(){
+
+} 
+ 
+ 
+ 
+function dotable(e)
+{
+
+if(e=='score'){
 $("#main").html('');
 $('#main').append('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><div id="continue" style="color:red;"class="ui-state-default ui-corner-all">Continuar</div></div>');
 if(keepgoing){
@@ -470,13 +479,8 @@ if(keepgoing){
 		
 		rows=clevel;
 		$('#continue').click(function(){dotable(rows)});
-} 
- 
- 
- 
-function dotable(e)
-{
-
+}
+else{
 
  //comprobamos que no se hagan manos de 2 rows
  if(e<2){e=2}
@@ -485,7 +489,7 @@ function dotable(e)
 //comprobamos que no se hagan mas rows del permitido
  if(e>maxrows){e=maxrows}
 var truecount=0;
-$("#main").html('***');
+$("#main").html('');
   for(i=0;i<=e-1;i++){
 	 $("#main").append('<tr id="col'+i+'"> </tr>');
 	 truecount++;
@@ -545,7 +549,7 @@ $("#main").html('***');
 	 truetarget=0
 	   $('#targetlevel').text('target '+target);
 		 $('#shottarget').text('aciertos '+truetarget);
-		 
+		 }//fin else score
 		  
 }
 
