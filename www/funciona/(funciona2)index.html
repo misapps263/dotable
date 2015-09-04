@@ -1,0 +1,400 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+<title>Untitled</title>
+
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+<style type="text/css">
+<!-- 
+#contenedor {
+}
+#cabecera {
+}
+#menu {
+  float: left;
+  width: 15%;
+}
+#contenido {
+  float: left;
+  width: 85%;
+}
+#contenido #principal {
+  float: left;
+  width: 80%;
+}
+#contenido #secundario {
+  float: left;
+  width: 20%;
+}
+ 
+#pie {
+  clear: both;
+}
+
+/*********************************************************/
+.dot{
+ whidth:100%;
+		height:100%;
+}
+#marcador {display:inline;position:relative;top:30px;}
+#main{width:80%;height:90%;}
+
+#marcador{width:15%;height:15%;}
+.stage{width:100%;}
+.side{width:auto;}
+table{width:100%;height:100%;}
+td{background:#F2F2F2;min-width:55px;}
+table {
+ 
+			background:#d0d0d0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+table, td   { 
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+   - moz-border-radius: 5px;
+      
+		
+}
+ td div { 
+    
+    border-radius: 15px;
+    -moz-border-radius: 5px;
+   
+}
+td{margin:0px;padding:0px;}
+td > div{margin:0px;padding:0px;}
+-->
+</style>
+<script type="text/javascript">
+<!--
+var x;
+x=$(document);
+x.ready(inicializarEventos);
+ maxrows=6;
+ clevel=1; rows=1;
+ gtime=6000;//tiempo del juego
+ htime=2000;//tiempo de hide
+ keepgoing=true;
+
+//if(clevel>rows){rows=clevel;}
+//if(rows<2){rows=2;}
+
+ colorarray=['#BE6FCF','#3497DB','#31D1B0','#F1C310','red','green','purple','dark','grey','orange','pink','silver','brown','yellow','black'];
+function inicializarEventos()
+{
+   $('#btnstart').click(function(){start()});
+	
+	
+	  
+}
+
+function start(){
+  $('#btnstart').css('display','none');
+	if(keepgoing){
+	 timer(gtime); 
+	 }
+	countdown(htime);
+  dotable(rows);
+}
+
+function restart(){
+if(keepgoing){
+	 keepgoing=false;
+	 timer(0); 
+	 }
+clearInterval(set);
+$('#main').html('comenzar')
+}
+
+function timer(e){
+
+set=setInterval(function(){dotable(rows-1);console.log('timer='+e)},e); 
+$('#timerbar').animate({
+    width:0
+  }, e,function(){$('#timerbar').css('width','100%');if(rows<2){rows=2;};if(rows<=1){t=2;$('#maintimerbar').text(t);rows=2}});
+
+	
+	
+}
+
+/*
+function cron(){
+
+setTimeout(function(){ 
+
+rows--;
+dt=rows;
+//alert(dt);
+dotable(dt);
+
+
+}, 10000);
+  
+alert('crono');
+
+}*/
+function countdown(){
+var t=$('#timer');
+var time=t=$('#timer').text();
+console.log(' time= '.time);
+var i=0;
+ if(rows<=4){t=rows;$('#maintimerbar').text(t)}else{t=rows/2;}
+ /*
+  $('td div').animate({
+    opacity:0
+  },3000);*/
+	 
+	//if(clevel>maxrows){ rows=maxrows;} 
+	console.log('divide:'+clevel+'x'+rows+'/'+clevel+'='+(clevel*rows/clevel))
+	if(rows<=1 & clevel>=2){alert('game over');}
+	if(((rows*clevel)/clevel)==maxrows){clevel++;rows=(clevel)}
+	if(rows>maxrows){alert('demasiado nivel')}
+	//if($('#level').text()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()} }
+	//if($('tr').size()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()-1} }
+   //ESTO FUNCIONA 
+ hide=setTimeout(function(){ 
+
+ $('td div').css('background','#F2F2F2');
+
+
+ }, htime); 
+ 
+ /*
+ //subimos de nivel
+if($('#level').text()>=6){
+$('#level').text('0');
+ clevel++;  ///por ahora no subimos de nivel
+ rows=2 
+//rows=5;
+			 }
+*/
+ }
+  
+ function score(){
+ 
+   
+	 level=rows; 
+ var maxlevel=$('#maxlevel').text();
+ score;
+ //$('#level').text(maxlevel);
+ $('#level').text(level);
+ $('#maxlevel').text(maxlevel);
+ }	
+	
+ function check(){
+var target=$("div[data-check='true']" ).size();
+  //alert(target);
+ console.log('target-->'+target)
+ var x;
+ x=$("div[data-check='true']" );
+ 
+
+ x.click(
+ function(){target--; $('#target').text(target);$(this).remove();}
+
+ 
+ );
+ 
+ x.click(function(){if(target<=0){  
+ rows++;
+ $("#main").html('');
+ if(keepgoing){
+ clearInterval(set);
+ }
+ dotable(rows);
+ 
+ }});  
+ var y;
+ y=$("div[data-check='false']" );
+ y.click(
+ 
+ function(){ 
+ rows--;
+ if(clevel>rows){clevel--};
+ if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
+ $("#main").html('');
+ dotable(rows);
+// alert('-1');
+  }
+ 
+ );
+ 
+	  }
+ 
+ function checkable(e){
+
+ 
+ 
+ console.log(colorarray);
+  var totalarray=new Array();
+	var myarray=new Array();
+	 tablearray=new Array();
+	var pickedcolor=false;
+for(cl=0;cl<=clevel-1;cl++){
+bg=colorarray[cl];
+console.log(bg);
+        /////////////////////
+         for(i=0;i<=e*e-1;i++){totalarray[i]=i+1};
+         //for(i=0;i<=e-1;i++){var misarray=new Array();misarray[i]=i+1;misarray.splice(i,e);alert(misarray)};
+         //alert(totalarray);
+        
+         for (i=0;i<=e;i++){
+        
+        		  var r=Math.floor(Math.random() * e) + 1   ;
+        		  //$('#array').append("("+i+(r-1)+")");
+        		   $("div[id^='row"+i+(r-1)+"']").css('color','red');
+							 //seleccionar color y dar valor  
+							  $("div[id^='row"+i+(r-1)+"']").attr('data-color',bg);
+								//$("div[id^='row"+i+(r-1)+"']").attr('data-check','true');
+							
+        		   $("div[id^='row"+i+(r-1)+"']").css('background',bg);
+							  $("div[id^='row"+i+(r-1)+"']").css('height',$('td').height());
+							  $('#array').append('('+bg+i+(r-1)+')');
+        		  tablearray[i]=bg;
+         }
+				 target=e;
+				//$("#menu").html('<div style="background:'+tablearray +';">'+tablearray +'</div>');
+         ///////////////////////-
+		}//fin for clevel	
+				 
+				 if(clevel>rows){
+				    alert('posible fallo ->clevel'+clevel+'rows:'+rows);
+				 rows=clevel;
+				 restart();
+				 }
+				 var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
+ 				
+				
+				 
+				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
+			//	$("div[data-color='"+pickedcolor+"']").text(pickedcolor);
+			//alert($("div[data-check='true']").attr('data-color'));
+				//$('#timerbar').css('background',pickedcolor)
+				$('#timerbar').css('background',$("div[data-check='true']").attr('data-color'))
+				//alert(pickedcolor);  
+  // alert(totalarray+'/'+myarray);
+		 
+	
+ }
+ 
+function dotable(e)
+{
+
+ 
+var truecount=0;
+$("#main").html('');
+  for(i=0;i<=e-1;i++){
+	 $("#main").append('<tr id="col'+i+'"> </tr>');
+	 truecount++;
+	 
+	  for(c=0;c<=e-1;c++){
+		//ramdom entre 1 y el valor "e"
+		
+		
+		$('#col'+i).append('<td><div id="row'+i+c+'" data-check="false" data-color="" class="dot">  </div></td>');
+		}
+	}
+	$('td').css('height',$('td').height());
+	checkable(rows);
+	
+	/****************cambiar por funcion
+      setTimeout(function(){ 
+      
+      //$('td div').css('background','#FCF6D6');#F2F2F2
+      $('td div').css('background','#F2F2F2');
+       }, 2000*rows);
+       
+  */
+	 check();
+	 score(); 
+	  //descomentar si se active settimeout en timer()
+   clearTimeout(hide);
+     
+ 
+	if(keepgoing){
+	  clearInterval(set);
+		$('#timerbar').stop(true,true);
+		timer(gtime);
+		}
+		/*
+		 if(rows<=4){t=rows;$('#maintimerbar').text(t)}else{t=rows/2;}
+		 timer(2000*t);*/
+	  // timer(2000*rows*clevel);
+		
+	//resetemamos contador a 100
+	//$('#timer').text('100');
+	//$('#timerbar').css('width','100%');
+	countdown() ;
+
+	$('#mylevel').css('width',clevel*10+'%');
+	 $('#myrows').css('width',rows*10+'%')
+}
+
+
+	
+// -->
+</script>
+</head>
+
+<body>
+<div id="contenedor">
+  <div id="cabecera">
+	DoTable
+  </div>
+ 
+  <div id="menu">
+	klll
+	<div id="mylevel" style="background:red;"> &nbsp </div>
+		<div id="myrows" style="background:green;"> &nbsp </div>
+  </div>
+ 
+  <div id="contenido">
+    <div id="principal">
+		level<div id="level" > 1</div>
+		  <table id="main" >
+			<div>
+			<p id="btnstart">comenzar</p>
+			</div>
+			</table>
+			<div class="stage" >
+			 
+<div id="timer" style="display:none;">100</div>
+<div id="timerbar" style="width:100%; background:red; "> &nbsp </div>
+<div id="maintimerbar" style="width:100%; background:blue;" > &nbsp </div>
+</div>
+  </div>
+			
+    </div>
+ 	
+    <div id="secundario">
+	<!--	
+	<div id="marcador">
+<div id="score">puntuacion:2</div>
+
+<div id="maxlevel">nivel maximo:2</div>
+<div id="target" style="display:none;"></div>
+<div id="timercontainer">
+
+</div>
+    </div>-->
+  </div>
+ 
+  <div id="pie">
+	
+</div>
+
+<div id="array" style="display:none;">--- </div>
+
+ 
+
+
+</div>
+
+
+
+</body>
+</html>

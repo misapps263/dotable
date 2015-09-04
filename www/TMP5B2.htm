@@ -352,7 +352,7 @@ $('#level').text('0');
  x.click(
  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();  }
 
-puntuacion+=10;
+
  );
  
  x.click(function(){ 
@@ -384,7 +384,7 @@ puntuacion+=10;
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
  $("#main").animate({opacity:0.0},700)
 $("#main").animate({opacity:1},300,function(){ $("#main").html(''); 
-rows=clevel;
+
 //dotable(rows);
 doscore();
 })
