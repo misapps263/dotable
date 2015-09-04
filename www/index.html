@@ -249,7 +249,7 @@ function timer(e){
 set=setInterval(function(){dotable(rows);console.log('timer='+e)},e); 
 $('#timerbar').animate({
     width:0
-  }, e,function(){$('#timerbar').css('width','100%');if(rows<2){alert('pocas rows')};if(rows<=1){t=2;$('#maintimerbar').text(t);rows=clevel;doscore()}});
+  }, e,function(){$('#timerbar').css('width','100%');doscore();/*if(rows<2){alert('pocas rows')};*/if(rows<=1){t=2;$('#maintimerbar').text(t);rows=clevel;}});
 
 
 	
@@ -290,7 +290,7 @@ var i=0;
 	//if((rows>=maxrows)){levelstage++;console.log(levelstage+'-'+maxstage);}
 	
 	 if(levelstage==maxstage){
-	  alert('level '+levelstage+' de '+maxstage);
+	 // alert('level '+levelstage+' de '+maxstage);
 	 my_media.release(); playAudio("/android_asset/www/levelup.mp3");
 	  clevel++;
 	 $('#colors').prepend('<div style="background:'+colorarray[clevel-1]+';" class="bigEntrance"> &nbsp </div>');
