@@ -461,13 +461,13 @@ console.log(bg);
  
 function doscore(){
 $("#main").html('');
-$('#main').append('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><div id="continue">Continuar</div></div>');
+$('#main').append('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><div id="continue" class="ui-state-default ui-corner-all">Continuar</div></div>');
 if(keepgoing){
 	  clearInterval(set);
 		$('#timerbar').stop(true,true);
 		 
 		}
-		rows=clevel();
+		rows=clevel;
 		$('#continue').click(function(){start()});
 } 
  
