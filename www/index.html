@@ -387,7 +387,7 @@ $('#level').text('0');
  if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
  $("#main").animate({opacity:0.0},700)
-$("#main").animate({opacity:1},300,function(){ $("#main").html(''); 
+$("#main").animate({opacity:1},300,function(){ /*$("#main").html(''); */
 rows=clevel;
  dotable('score');
  
@@ -467,7 +467,7 @@ function doscore(){
  
 function dotable(e)
 {
-alert()
+
 if(e=='score'){
 $("#main").html('');
 $('#main').append('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><div id="continue" style="color:red;"class="ui-state-default ui-corner-all">Continuar</div></div>');
@@ -478,7 +478,7 @@ if(keepgoing){
 		}
 		
 		rows=clevel;
-		$('#continue').click(function(){alert('dotable');dotable(2)});
+		$('#continue').click(function(){dotable(2)});
 }
 else{
 
@@ -550,7 +550,7 @@ $("#main").html('');
 	   $('#targetlevel').text('target '+target);
 		 $('#shottarget').text('aciertos '+truetarget);
 		 }//fin else score
-		  alert('html'+$('#main').html());
+		  alert('html'+$('#principal').html());
 }
 
 
