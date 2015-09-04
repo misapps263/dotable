@@ -248,8 +248,8 @@ function timer(e){
 //rows=4;
 set=setInterval(function(){
 
-dotable(rows);
-
+//dotable(rows);
+doscore()
 console.log('timer='+e)},e); 
 $('#timerbar').animate({
     width:0
@@ -460,7 +460,7 @@ console.log(bg);
  
  
 function doscore(){
-$('#main').html('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><button onclick="start()">Continuar</button></div>');
+$('#main').html('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><button onclick="dotable(rows)">Continuar</button></div>');
 if(keepgoing){
 	  clearInterval(set);
 		$('#timerbar').stop(true,true);
@@ -473,7 +473,7 @@ if(keepgoing){
 function dotable(e)
 {
 
-rows=clevel
+ 
  //comprobamos que no se hagan manos de 2 rows
  
 if(clevel<2){rows=2};
