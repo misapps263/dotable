@@ -389,7 +389,7 @@ $('#level').text('0');
  $("#main").animate({opacity:0.0},700)
 $("#main").animate({opacity:1},300,function(){ /*$("#main").html(''); */
 rows=clevel;
- dotable(2);
+ dotable('score');
  
 })
 
@@ -469,16 +469,76 @@ function dotable(e)
 {
 
 if(e=='score'){
+ ////////////////////////
+ e=5;
+ //comprobamos que no se hagan manos de 2 rows
+ if(e<2){e=2}
+ if(e<clevel){e=clevel}
+ alert('doTable OK:row='+e);
+//comprobamos que no se hagan mas rows del permitido
+ if(e>maxrows){e=maxrows}
+var truecount=0;
 $("#main").html('');
-$('#main').append('<div class="score"><div>Puntuación</div><div>Nivel'+clevel+'</div><div>pantalla'+levelstage+'</div><div>Puntos :'+puntuacion+'</div><div id="continue" style="color:red;"class="ui-state-default ui-corner-all">Continuar</div></div>');
-if(keepgoing){
+  for(i=0;i<=e-1;i++){
+	 $("#main").append('<tr id="col'+i+'"> </tr>');
+	 truecount++;
+	 
+	  for(c=0;c<=e-1;c++){
+		//ramdom entre 1 y el valor "e"
+		
+		
+		$('#col'+i).append('<td id="tdrow'+i+c+'" ><div id="row'+i+c+'" data-check="false" data-color="" class="dot">  </div></td>');
+		}
+	}
+	$('td').css('height',$('td').height());
+	checkable(rows);
+	
+	/****************cambiar por funcion
+      setTimeout(function(){ 
+      
+      //$('td div').css('background','#FCF6D6');#F2F2F2
+      $('td div').css('background','#F2F2F2');
+       }, 2000*rows);
+       
+  */
+	 check();
+	 score(); 
+	  //descomentar si se active settimeout en timer()
+   clearTimeout(hide);
+     
+ 
+	if(keepgoing){
 	  clearInterval(set);
 		$('#timerbar').stop(true,true);
-		 
+		timer(gtime);
 		}
+		/*
+		 if(rows<=4){t=rows;$('#maintimerbar').text(t)}else{t=rows/2;}
+		 timer(2000*t);*/
+	  // timer(2000*rows*clevel);
 		
-		rows=clevel;
-		$('#continue').click(function(){dotable(2)});
+	//resetemamos contador a 100
+	//$('#timer').text('100');
+	//$('#timerbar').css('width','100%');
+	///countdown()
+//$('#level').text(clevel);
+	 //$('#mylevel').css('width',clevel*10+'%');
+	//$('#mylevel').css('width',(100*rows)/maxrows+'%');
+	
+	//$('#mylevel').text(Math.floor((100*rows)/maxrows)+'%');
+	$('#level').text(levelstage+'/'+maxstage+'<br> clevel '+clevel);
+	 $('#myrows').css('width',rows*10+'%');
+	 $('#playerlevel').text(playerlevel);
+	 
+	 if(rows<2){/*alert('mi abuela juega mejor')*/}
+	  //$('#mylevel').css('width',(100*levelstage)/maxstage+'%');
+		$('#mylevel').animate({width:(100*levelstage)/maxstage+'%'},1000);
+		$('#mylevel').removeClass('pulse');
+	 countdown() ;
+	 truetarget=0
+	   $('#targetlevel').text('target '+target);
+		 $('#shottarget').text('aciertos '+truetarget);
+ ////////////////////////
 }
 else{
 
@@ -550,7 +610,7 @@ $("#main").html('');
 	   $('#targetlevel').text('target '+target);
 		 $('#shottarget').text('aciertos '+truetarget);
 		 }//fin else score
-		  alert('html'+$('#principal').html());
+		  //alert('html'+$('#principal').html());
 }
 
 
