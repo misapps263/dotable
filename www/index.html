@@ -470,7 +470,8 @@ function dotable(e)
 
 if(e=='score'){
  ////////////////////////
- <div onclick="start()">dotable</div>
+ $('#main').html('');
+ $('#main').append('<div onclick="start()">start</div><br><div onclick="dotable(5)">dotable</div>');
  ////////////////////////
 }
 else{
