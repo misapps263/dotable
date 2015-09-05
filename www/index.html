@@ -248,7 +248,7 @@ function timer(e){
 //rows=4;
 set=setInterval(function(){
 
- dotable('score');
+ doscore();
  
 console.log('timer='+e)},e); 
 $('#timerbar').animate({
@@ -460,7 +460,11 @@ console.log(bg);
  
  
 function doscore(){
-
+////////////////////////
+ $('#main').html('');
+ $('#main').append('<div onclick="start()">start</div><br><div onclick="dotable(5)">dotable</div>');
+ $('#myrows').css('width',rows*10+'%');
+ ////////////////////////
 } 
  
  
@@ -472,6 +476,7 @@ if(e=='score'){
  ////////////////////////
  $('#main').html('');
  $('#main').append('<div onclick="start()">start</div><br><div onclick="dotable(5)">dotable</div>');
+ $('#myrows').css('width',rows*10+'%');
  ////////////////////////
 }
 else{
