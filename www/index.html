@@ -383,7 +383,7 @@ $('#level').text('0');
  dotable(rows);
  
  }});  
-  x.bind("touchstart", function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; });
+  x.bind("touchend", function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; });
 
  
  
