@@ -474,9 +474,10 @@ function dotable(e)
 
 if(e=='score'){
  ////////////////////////
- $("#main").html('');
- $("#main").append('<div onclick="start()">start</div><br><div onclick="dotable(5)">dotable</div>');
- $("#myrows").css('width',rows*10+'%');
+ $("#main").animate({opacity:0.0},700)
+$("#main").animate({opacity:1},300,function(){ /*$("#main").html(''); */
+rows=clevel;
+ dotable(5);
  ////////////////////////
 }
 else{
