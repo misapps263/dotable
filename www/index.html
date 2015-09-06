@@ -398,8 +398,8 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
  if(target<=0){rows++;$("#main").html('');
 
  if(keepgoing){ clearInterval(set);}
- setTimeout( dotable(rows), 1000);
- //dotable(rows);
+ dotable(rows) 
+  
  
  } //fin if target
  
@@ -533,6 +533,7 @@ $("#main").html('');
 		}
 	}
 	$('td').css('height',$('td').height());
+	setTimeout(
 	checkable(rows);
 	
 	/****************cambiar por funcion
@@ -580,6 +581,8 @@ $("#main").html('');
 	 truetarget=0
 	   $('#targetlevel').text('target '+target);
 		 $('#shottarget').text('aciertos '+truetarget);
+		 , 1000);//fin setimeout
+		 
 		 }//fin else score
 		  //alert('html'+$('#principal').html());
 }
