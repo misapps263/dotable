@@ -352,10 +352,10 @@ $('#level').text('0');
  console.log('target-->'+target)
  var x;
  x=$("div[data-check='true']" );
- x.bind("touchstart", function(){alert('empieza tocado')});
-  x.bind("touchend", function(){alert('acaba tocado')});
-	 x.bind("touchmove", function(){alert('se mueve tocado')});
-	  x.bind("touchleave", function(){alert('se va tocado')});
+ x.bind("touchstart", function(){$('#menu').append('tocado')});
+  x.bind("touchend", function(){$('#menu').append('fin touch')});
+	 x.bind("touchmove", function(){$('#menu').append(' move ')});
+	  x.bind("touchleave",function(){$('#menu').append('leave')});
  x.bind('click',  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; }
 );
 
