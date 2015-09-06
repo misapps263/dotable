@@ -386,7 +386,7 @@ $('#level').text('0');
  ///////////////////
   x.bind("touchstart", function(){ my_media.release();
  playAudio("/android_asset/www/click.mp3");
-target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; }
+target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; 
  if( x.size()==truetarget ){
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/};
  
@@ -400,7 +400,7 @@ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0')
  dotable(rows);
  
  } 
- 
+ }
  
  );
 
