@@ -23,13 +23,16 @@ $(function() {
    // Load input value from localStorage
    $('#load').on('click', function() {
       var username = localStorage.getItem('username') || '<empty>';
-      $('#username').val(username);
+     alert(username);
+		  $('#username').val(username);
    });
    // Clear localStorage
    $('#clear').on('click', function() {
       localStorage.clear();
    });
+	 $('#verstorage').html(localStorage);
 });
 </script>
+<div id="verstorage"></div>
 </body>
 </html>
