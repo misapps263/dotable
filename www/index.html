@@ -352,12 +352,16 @@ $('#level').text('0');
  var x;
  x=$("div[data-check='true']" );
  
- 
- x.mouseup(
+ x.bind('touchend',  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; }
+, false);
+
+/*
+ x.click(
  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; }
 
 
  );
+ */
  
  x.click(function(){ 
  my_media.release();
