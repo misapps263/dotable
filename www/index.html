@@ -534,7 +534,7 @@ $("#main").html('');
 	}
 	$('td').css('height',$('td').height());
 	setTimeout(
-	checkable(rows);
+	checkable(rows),
 	
 	/****************cambiar por funcion
       setTimeout(function(){ 
@@ -544,17 +544,19 @@ $("#main").html('');
        }, 2000*rows);
        
   */
-	 check();
-	 score(); 
+	 check(),
+	 score(), 
 	  //descomentar si se active settimeout en timer()
-   clearTimeout(hide);
+   clearTimeout(hide),
      
- 
+ function(){
 	if(keepgoing){
 	  clearInterval(set);
 		$('#timerbar').stop(true,true);
 		timer(gtime);
 		}
+		}
+		,
 		/*
 		 if(rows<=4){t=rows;$('#maintimerbar').text(t)}else{t=rows/2;}
 		 timer(2000*t);*/
@@ -569,18 +571,18 @@ $("#main").html('');
 	//$('#mylevel').css('width',(100*rows)/maxrows+'%');
 	
 	//$('#mylevel').text(Math.floor((100*rows)/maxrows)+'%');
-	$('#level').text(levelstage+'/'+maxstage+'<br> clevel '+clevel);
-	 $('#myrows').css('width',rows*10+'%');
-	 $('#playerlevel').text(playerlevel);
+	$('#level').text(levelstage+'/'+maxstage+'<br> clevel '+clevel),
+	 $('#myrows').css('width',rows*10+'%'),
+	 $('#playerlevel').text(playerlevel),
 	 
-	 if(rows<2){/*alert('mi abuela juega mejor')*/}
+	// if(rows<2){/*alert('mi abuela juega mejor')*/}
 	  //$('#mylevel').css('width',(100*levelstage)/maxstage+'%');
-		$('#mylevel').animate({width:(100*levelstage)/maxstage+'%'},1000);
-		$('#mylevel').removeClass('pulse');
-	 countdown() ;
-	 truetarget=0
-	   $('#targetlevel').text('target '+target);
-		 $('#shottarget').text('aciertos '+truetarget);
+		$('#mylevel').animate({width:(100*levelstage)/maxstage+'%'},1000),
+		$('#mylevel').removeClass('pulse'),
+	 countdown() ,
+	 truetarget=0,
+	   $('#targetlevel').text('target '+target),
+		 $('#shottarget').text('aciertos '+truetarget)
 		 , 1000);//fin setimeout
 		 
 		 }//fin else score
