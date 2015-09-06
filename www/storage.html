@@ -8,7 +8,7 @@
 
 </head>
 <body>
-<input type="text" name="username" id="username"/>
+<input type="text" name="username[]" id="username"/>
 <button id="save">Save</button>
 <button id="load">Load</button>
 <button id="clear">Clear</button>
@@ -18,11 +18,11 @@ $(function() {
    // Save input value to localStorage
    $('#save').on('click', function() {
       var username = $('#username').val();
-      localStorage.setItem("username", username);
+      localStorage.setItem("username[]", username);
    });
    // Load input value from localStorage
    $('#load').on('click', function() {
-      var username = localStorage.getItem('username') || '<empty>';
+      var username = localStorage.getItem("username[]") || "<empty>";
      alert(username);
 		  $('#username').val(username);
    });
@@ -30,7 +30,9 @@ $(function() {
    $('#clear').on('click', function() {
       localStorage.clear();
    });
-	 $('#verstorage').html(localStorage);
+	 $('#verstorage').html();
+	 console.log(localStorage);
+	 console.dir(localStorage);
 });
 </script>
 <div id="verstorage"></div>
