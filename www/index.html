@@ -353,7 +353,7 @@ $('#level').text('0');
  x=$("div[data-check='true']" );
  
  
- x.click(
+ x.mouseup(
  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; }
 
 
