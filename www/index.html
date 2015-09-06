@@ -352,7 +352,6 @@ $('#level').text('0');
  console.log('target-->'+target)
  var x;
  x=$("div[data-check='true']" );
- x.bind("touchstart", function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; });
   //x.bind("touchend", function(){$('#menu').append('fin touch')});
 	 //x.bind("touchmove", function(){$('#menu').append(' move ')});
 	 // x.bind("touchleave",function(){$('#menu').append('leave')});
@@ -384,6 +383,11 @@ $('#level').text('0');
  dotable(rows);
  
  }});  
+  x.bind("touchstart", function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; });
+
+ 
+ 
+ 
  var y;
  y=$("div[data-check='false']" );
  y.click(
