@@ -365,13 +365,16 @@ $('#level').text('0');
 
  );
  
- */
+
  x.click(function(){ 
  my_media.release();
  playAudio("/android_asset/www/click.mp3");
 
  if( x.size()==truetarget ){
-/* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/};
+// alert('subes nivel?'+truetarget+' - '+x.size());
+levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
+//alert(x.size()+'-'+truetarget)
+};
  
  if(target<=0){  
  rows++;
@@ -382,9 +385,9 @@ $('#level').text('0');
  }
  dotable(rows);
  
- }});  
+ }});   */
  ///////////////////
- x.bind("click",function(){alert('x.click')});
+ x.bind("touchstart",function(){$('#menu').appen('touchstart')});
   x.bind("touchend", function(){ my_media.release();
  playAudio("/android_asset/www/click.mp3");
  target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; 
@@ -407,7 +410,7 @@ $('#level').text('0');
  ///////////////////////////////
  var y;
  y=$("div[data-check='false']" );
- y.click(
+y.bind("touchstart",
  
  function(){ 
  //rows--;
