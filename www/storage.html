@@ -62,8 +62,10 @@
     function onDeviceReady() {
         var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
         db.transaction(populateDB, errorCB, successCB); 
+				
+				$('#save').click(function(){alert('db');db.transaction(queryDB, errorCB);}) 
     }
-	  $('#save').click(function(){db.transaction(queryDB, errorCB);}) 
+	  
     </script>
   </head>
   <body>
@@ -72,7 +74,8 @@
 		<p id="showrow">
 		-
 		nombre<input type="text" id="user"/>puntuacion<input type="text" id="score"/>
-		<div id="save">Guardar</div>
+		<div id="save" >Guardar</div>
+		<br><br>
 		<div id="save" onclick="window.location='index.html';">Atras</div>
 		</p>
   </body>
