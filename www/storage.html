@@ -18,8 +18,8 @@
     // Populate the database 
     //
     function populateDB(tx) {
-		user=$('#usuario').val();
-			score=$('#score').val();
+						 user=$('#usuario').val();
+						 score=$('#score').val();
         //tx.executeSql('DROP TABLE IF EXISTS DEMO');
         tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
         tx.executeSql('INSERT INTO DEMO (id, data) VALUES ("'+user+'"," '+score+'")');
@@ -53,16 +53,17 @@
     //
     function successCB() {
         var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
-        db.transaction(queryDB, errorCB);
+        
+				   db.transaction(queryDB, errorCB); 
     }
 
     // Cordova is ready
     //
     function onDeviceReady() {
         var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
-       $('#save').click(function(){db.transaction(populateDB, errorCB, successCB);}) 
+        db.transaction(populateDB, errorCB, successCB); 
     }
-
+	  $('#save').click(function(){db.transaction(queryDB, errorCB);}) 
     </script>
   </head>
   <body>
