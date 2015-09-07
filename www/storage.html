@@ -18,10 +18,12 @@
     // Populate the database 
     //
     function populateDB(tx) {
+		user=$('#usuario').val();
+			score=$('#score').val();
         //tx.executeSql('DROP TABLE IF EXISTS DEMO');
         tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
-        tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
-        tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+        tx.executeSql('INSERT INTO DEMO (id, data) VALUES ("'+user+'"," '+score+'")');
+      //  tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
     }
 
     // Query the database
@@ -36,7 +38,7 @@
         var len = results.rows.length;
         console.log("DEMO table: " + len + " rows found.");
         for (var i=0; i<len; i++){
-				 $('#showrow').append("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+				 $('#showrow').append("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data+'<br>');
             console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
         }
     }
@@ -58,7 +60,7 @@
     //
     function onDeviceReady() {
         var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
-        db.transaction(populateDB, errorCB, successCB);
+       $('#save').click(function(){db.transaction(populateDB, errorCB, successCB);}) 
     }
 
     </script>
@@ -68,6 +70,9 @@
     <p>Database</p>
 		<p id="showrow">
 		-
+		nombre<input type="text" id="user"/>puntuacion<input type="text" id="score"/>
+		<div id="save">Guardar</div>
+		<div id="save" onclick="window.location='index.html';">Atras</div>
 		</p>
   </body>
 </html>
