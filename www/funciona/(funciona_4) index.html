@@ -1,0 +1,691 @@
+<html>
+<head>
+<title>Untitled</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="fastclick.js" type="application/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/animations.css" />
+<style type="text/css">
+<!-- 
+/* Disable certain interactions on touch devices */
+	body { -webkit-touch-callout: none; -webkit-text-size-adjust: none; -webkit-user-select: none; -webkit-highlight: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+#contenedor {
+width: 100%;
+}
+#cabecera {
+}
+#menu {
+  float: left;
+  width: 15%;
+}
+#secundario {
+  float: left;
+  width: 15%;
+}
+#contenido {
+ 
+  width: 85%;
+}
+#contenido #principal {
+  float: left;
+  width: 80%;
+}
+ #contenido #secundario {
+  float: left;
+  width: 20%;
+}
+ 
+#pie {
+  clear: both;
+}
+
+/*********************************************************/
+.dot{
+ whidth:100%;
+		height:100%;
+}
+#marcador {display:inline;position:relative;top:30px;}
+#main{width:100%;height:90%;}
+
+#marcador{width:15%;height:15%;}
+.stage{width:100%;}
+.side{width:auto;}
+table{width:100%;height:100%;}
+td{background:#F2F2F2;min-width:55px;}
+table {
+ 
+			background:#d0d0d0;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+table, td   { 
+    border: 1px solid #e0e0e0;
+    border-radius: 15px;
+   - moz-border-radius: 5px;
+      
+		
+}
+ td div { 
+    
+    border-radius: 15px;
+    -moz-border-radius: 5px;
+   
+}
+td{margin:0px;padding:0px;}
+td > div{margin:0px;padding:0px;}
+-->
+</style>
+<!---------->
+ 
+<!---------->
+<!-- phonegap audio----> 
+		
+		<script type="text/javascript" charset="utf-8">
+// Wait for device API libraries to load
+//
+document.addEventListener("deviceready", onDeviceReady, false);
+// device APIs are available
+//
+ 
+ 
+   
+ 
+function onDeviceReady() {
+ // Fast-click to elliminate the delay of 300ms
+    FastClick.attach(document.body);
+playAudio("/android_asset/www/levelup.mp3");// local con PHONEGP 4.2.0-0.23.0
+//playAudio("http://audio.ibeat.org/content/p1rj1s/p1rj1s_-_rockGuitar.mp3?); //remoto
+}
+// Audio player
+//
+var totaudio=0;
+var my_media = null;
+var mediaTimer = null;
+
+// Play audio
+//
+function playAudio(src) {
+totaudio++;
+//$('#secundario').text('--'+totaudio+'<hr>')
+// Create Media object from src
+my_media = new Media(src, onSuccess, onError);
+// Play audio
+my_media.play();
+// Update my_media position every second
+if (mediaTimer == null) {
+mediaTimer = setInterval(function() {
+// get my_media position
+my_media.getCurrentPosition(
+// success callback
+function(position) {
+if (position > -1) {
+setAudioPosition((position) + " sec");
+}
+},
+// error callback
+function(e) {
+console.log("Error getting pos=" + e);
+setAudioPosition("Error: " + e);
+}
+);
+}, 1000);
+}
+
+}
+// Pause audio
+//
+function pauseAudio() {
+if (my_media) {
+my_media.pause();
+}
+}
+// Stop audio
+//
+function stopAudio() {
+if (my_media) {
+my_media.stop();
+}
+clearInterval(mediaTimer);
+mediaTimer = null;
+}
+// onSuccess Callback
+//
+function onSuccess() {
+console.log("playAudio():Audio Success");
+}
+// onError Callback
+//
+function onError(error) {
+alert("code: " + error.code + "\n" +
+"message: " + error.message + "\n");
+}
+// Set audio position
+//
+function setAudioPosition(position) {
+document.getElementById("audio_position").innerHTML = position;
+}
+</script>
+<script type="text/javascript">
+<!--
+var x;
+x=$(document);
+x.ready(inicializarEventos
+);
+ var truetarget=0;
+
+ /* keepgoing=true;
+   levelstage=0;
+ maxrows=$('#changemaxrows').val()
+ clevel=$('#changeclevel').val();;
+ rows=$('#changerows').val();
+ playerlevel=clevel;
+ gtime=$('#changegtime').val();//tiempo del juego
+ htime=$('#changehtime').val();//tiempo de hide
+ $('#timerON').click(function(){keepgoing=true});
+  $('#timerOFF').click(function(){keepgoing=false});
+*/
+
+ levelstage=0;
+ maxstage=6; 
+ maxrows=9;
+ clevel=1; 
+ rows=2;
+ //playerlevel=clevel;
+ playerlevel=0;
+ gtime=6000;//tiempo del juego
+ htime=2000;//tiempo de hide
+ keepgoing=true;
+ puntuacion=0;
+ 
+  
+
+
+
+//if(clevel>rows){rows=clevel;}
+//if(rows<2){rows=2;}
+
+ colorarray=['#BE6FCF','#3497DB','#31D1B0','#F1C310','red','green','purple','gold','grey','orange','pink','silver','brown','yellow','black'];
+function inicializarEventos()
+{
+
+
+
+   $('#btnstart').click(function(){start()});
+	
+	//start();
+	  
+}
+
+function start(){
+  $('#btnstart').css('display','none');
+	if(keepgoing){
+	 timer(gtime); 
+	 }
+	countdown(htime);
+		 //$("#main").animate({opacity:0.3},700,function(){ $("#main").html(''); dotable(rows);});
+//$("#main").animate({opacity:1},300)
+
+if(clevel<2){rows=2};
+
+//alert('start');
+setTimeout( function(){dotable(rows)} , 10);  
+}
+
+function restart(){
+if(keepgoing){
+	 keepgoing=false;
+	 timer(0); 
+	 }
+clearInterval(set);
+$('#main').html('comenzar')
+ window.location="index.html";
+}
+
+function timer(e){
+
+//set=setInterval(function(){dotable(rows-1);console.log('timer='+e)},e); 
+//rows=4;
+set=setInterval(function(){
+
+//doscore();
+restart();
+ 
+console.log('timer='+e)},e); 
+$('#timerbar').animate({
+    width:0
+  }, e,function(){$('#timerbar').css('width','100%');if(rows<=1){t=2;$('#maintimerbar').text(t);rows=clevel;}});
+
+
+	
+}
+
+/*
+function cron(){
+
+setTimeout(function(){ 
+
+rows--;
+dt=rows;
+//alert(dt);
+dotable(dt);
+
+
+}, 10000);
+  
+alert('crono');
+
+}*/
+function countdown(){
+var t=$('#timer');
+var time=t=$('#timer').text();
+console.log(' time= '.time);
+var i=0;
+ if(rows<=4){t=rows;$('#maintimerbar').text(t)}else{t=rows/2;}
+ /*
+  $('td div').animate({
+    opacity:0
+  },3000);*/
+	 
+	//if(clevel>maxrows){ rows=maxrows;} 
+	console.log('divide:'+clevel+'x'+rows+'/'+clevel+'='+(clevel*rows/clevel))
+	if(rows<=1 & clevel>=2){alert('game over');}
+	//if(((rows*clevel)/clevel)==maxrows){playerlevel++;clevel++;rows=(clevel)}
+	// if(((rows*clevel)/clevel)>=maxrows){playerlevel++;levelstage++;}
+	//if((rows>=maxrows)){levelstage++;console.log(levelstage+'-'+maxstage);}
+	
+	 if(levelstage==maxstage){
+	 // alert('level '+levelstage+' de '+maxstage);
+	 my_media.release(); playAudio("/android_asset/www/levelup.mp3");
+	  clevel++;
+	 $('#colors').prepend('<div style="background:'+colorarray[clevel-1]+';" class="bigEntrance"> &nbsp </div>');
+	  
+	
+	 playerlevel++;
+	
+	  rows=clevel;
+	  
+	
+	// alert('sube nivel -levelstage='+levelstage+' maxstage= '+maxstage);
+	 $('#level').text('sube de nivel!!!!!!!!');
+	 levelstage=0; 
+	 //$('#mylevel').css('width',(100*levelstage)/maxstage+'%');
+	 $('#mylevel').animate({width:'100%'},1000);
+	 $('#mylevel').addClass('pulse');
+	 }
+	if(rows>maxrows){rows=maxrows}
+	//if($('#level').text()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()} }
+	//if($('tr').size()>=5){clevel++;if(clevel>maxrows){clevel=maxrows;rows=$('tr').size()-1} }
+   //ESTO FUNCIONA 
+ hide=setTimeout(function(){ 
+
+ $('td div').css('background','#F2F2F2');
+
+
+ }, htime); 
+ 
+ /*
+ //subimos de nivel
+if($('#level').text()>=6){
+$('#level').text('0');
+ clevel++;  ///por ahora no subimos de nivel
+ rows=2 
+//rows=5;
+			 }
+*/
+ }
+  
+ function score(){
+ 
+   
+	 level=rows; 
+ var maxlevel=$('#maxlevel').text();
+ score;
+ //$('#level').text(maxlevel);
+ //$('#level').text(level);
+ $('#maxlevel').text(maxlevel);
+ }	
+	
+ function check(){
+  target=$("div[data-check='true']" ).size();
+  //alert(target);
+ console.log('target-->'+target)
+ var x;
+ x=$("div[data-check='true']" );
+  //x.bind("touchend", function(){$('#menu').append('fin touch')});
+	 //x.bind("touchmove", function(){$('#menu').append(' move ')});
+	 // x.bind("touchleave",function(){$('#menu').append('leave')});
+ x.bind('click',  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; }
+);
+
+/*
+ x.click(
+ function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; }
+
+
+ );
+ 
+
+ x.click(function(){ 
+ my_media.release();
+ playAudio("/android_asset/www/click.mp3");
+
+ if( x.size()==truetarget ){
+// alert('subes nivel?'+truetarget+' - '+x.size());
+levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
+//alert(x.size()+'-'+truetarget)
+};
+ 
+ if(target<=0){  
+ rows++;
+ $("#main").html('');
+
+ if(keepgoing){
+ clearInterval(set);
+ }
+ dotable(rows);
+ 
+ }});   */
+ ///////////////////
+ x.bind("touchstart",function(){$('#menu').appen('touchstart')});
+  x.bind("touchend", function(){ my_media.release();
+ playAudio("/android_asset/www/click.mp3");
+ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; 
+ if( x.size()==truetarget ){
+/* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
+}; //fin if x.size
+ 
+ if(target<=0){rows++;$("#main").html('');
+
+ if(keepgoing){ clearInterval(set);}
+ 
+  setTimeout( function(){dotable(rows)} , 500); 
+ 
+ } //fin if target
+ 
+ }//fin function anonima
+ );
+
+ 
+ 
+ ///////////////////////////////
+ var y;
+ y=$("div[data-check='false']" );
+y.bind("touchstart",
+ 
+ function(){ 
+ //rows--;
+ //levelstage=rows;
+ levelstage=0;
+ if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
+ if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
+ $("#main").animate({opacity:0.0},700)
+$("#main").animate({opacity:1},300,function(){ /*$("#main").html(''); */
+rows=clevel;
+ dotable('score');
+ 
+})
+
+// alert('-1');
+  }
+ 
+ );
+ 
+	  }
+ 
+ function checkable(e){
+
+ 
+ 
+ console.log(colorarray);
+  var totalarray=new Array();
+	var myarray=new Array();
+	 tablearray=new Array();
+	var pickedcolor=false;
+	//aqui he cambiado "clevel" por "rows"
+for(cl=0;cl<=clevel-1;cl++){
+bg=colorarray[cl];
+console.log(bg);
+        /////////////////////
+         for(i=0;i<=e*e-1;i++){totalarray[i]=i+1};
+         //for(i=0;i<=e-1;i++){var misarray=new Array();misarray[i]=i+1;misarray.splice(i,e);alert(misarray)};
+         //alert(totalarray);
+        
+         for (i=0;i<=e;i++){
+        
+        		  var r=Math.floor(Math.random() * e) + 1   ;
+        		  //$('#array').append("("+i+(r-1)+")");
+        		   $("div[id^='row"+i+(r-1)+"']").css('color','red');
+							 //seleccionar color y dar valor  
+							  $("div[id^='row"+i+(r-1)+"']").attr('data-color',bg);
+								console.log(i+r-1+'->'+bg);
+								//$("div[id^='row"+i+(r-1)+"']").attr('data-check','true');
+							
+        		   $("div[id^='row"+i+(r-1)+"']").css('background',bg);
+							  $("div[id^='row"+i+(r-1)+"']").css('height',$('td').height());
+							  $('#array').append('('+bg+i+(r-1)+')');
+        		  tablearray[i]=bg;
+         }
+				 target=e;
+				//$("#menu").append('<div style="background:'+tablearray +';">'+tablearray +'</div>');
+         ///////////////////////-
+		}//fin for clevel	
+				 
+				 if(clevel>rows){
+				 //   alert('posible fallo ->clevel'+clevel+'rows:'+rows);
+				// rows=clevel;
+				 //restart();
+				 }
+				  var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
+ 				 
+				
+				 
+				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
+			//	$("div[data-color='"+pickedcolor+"']").text(pickedcolor);
+			//alert($("div[data-check='true']").attr('data-color'));
+				//$('#timerbar').css('background',pickedcolor)
+				$('#timerbar').css('background',$("div[data-check='true']").attr('data-color'))
+				//alert(pickedcolor);  
+  // alert(totalarray+'/'+myarray);
+		 
+	
+ }
+ 
+ 
+function doscore(){
+////////////////////////
+ $("#main").html('');
+ $("#main").append('<div onclick="start()">start</div><br><div onclick="dotable(5)">dotable</div>');
+ $("#myrows").css('width',rows*10+'%');
+ window.location="index(hardcore).html";
+ ////////////////////////
+} 
+ 
+ 
+ 
+function dotable(e)
+{
+
+if(e=='score'){
+ ////////////////////////
+ restart();
+ 
+ ////////////////////////
+}
+else{
+
+ //comprobamos que no se hagan manos de 2 rows
+ if(e<2){e=2}
+ if(e<clevel){e=clevel}
+ //alert('doTable OK:row='+e);
+//comprobamos que no se hagan mas rows del permitido
+ if(e>maxrows){e=maxrows}
+var truecount=0;
+$("#main").html('');
+  for(i=0;i<=e-1;i++){
+	 $("#main").append('<tr id="col'+i+'"> </tr>');
+	 truecount++;
+	 
+	  for(c=0;c<=e-1;c++){
+		//ramdom entre 1 y el valor "e"
+		
+		
+		$('#col'+i).append('<td id="tdrow'+i+c+'" ><div id="row'+i+c+'" data-check="false" data-color="" class="dot">  </div></td>');
+		}
+	}
+	$('td').css('height',$('td').height());
+	 
+	checkable(rows);
+	
+	/****************cambiar por funcion
+      setTimeout(function(){ 
+      
+      //$('td div').css('background','#FCF6D6');#F2F2F2
+      $('td div').css('background','#F2F2F2');
+       }, 2000*rows);
+       
+  */
+	 check();
+	 score(); 
+	  //descomentar si se active settimeout en timer()
+   clearTimeout(hide);
+     
+ 
+	if(keepgoing){
+	  clearInterval(set);
+		$('#timerbar').stop(true,true);
+		timer(gtime);
+		}
+		/*
+		 if(rows<=4){t=rows;$('#maintimerbar').text(t)}else{t=rows/2;}
+		 timer(2000*t);*/
+	  // timer(2000*rows*clevel);
+		
+	//resetemamos contador a 100
+	//$('#timer').text('100');
+	//$('#timerbar').css('width','100%');
+	///countdown()
+//$('#level').text(clevel);
+	 //$('#mylevel').css('width',clevel*10+'%');
+	//$('#mylevel').css('width',(100*rows)/maxrows+'%');
+	
+	//$('#mylevel').text(Math.floor((100*rows)/maxrows)+'%');
+	$('#level').text(levelstage+'/'+maxstage+'<br> clevel '+clevel);
+	 $('#myrows').css('width',rows*10+'%');
+	 $('#playerlevel').text(playerlevel);
+	 
+	// if(rows<2){/*alert('mi abuela juega mejor')*/}
+	  //$('#mylevel').css('width',(100*levelstage)/maxstage+'%');
+		$('#mylevel').animate({width:(100*levelstage)/maxstage+'%'},1000);
+		$('#mylevel').removeClass('pulse');
+	 countdown() ;
+	 truetarget=0;
+	   $('#targetlevel').text('target '+target);
+		 $('#shottarget').text('aciertos '+truetarget)
+		 
+		 
+		 }//fin else score
+		  //alert('html'+$('#principal').html());
+}
+
+
+	
+// -->
+</script>
+</head>
+
+<body>
+<div id="contenedor">
+  
+ 
+  <div id="menu">
+	 <div id="cabecera">
+	DoTable
+  </div>
+	<div id="mylevel" style="background:red;"> &nbsp </div>
+		<div id="mmyrows" style="background:green;"> &nbsp </div>
+		
+		level<div id="level" > 0</div>
+		<!---clevel<div > <input type="text" value="2" id="changeclevel"/></div>
+		rows<div   ><input type="text" value="2" id="changerows"/></div>
+		maxrows<div   ><input type="text" value="2" id="changemaxrows"/></div>
+		maxstage<div   ><input type="text" value="2" id="changemaxstage"/></div>
+		timer<div  > <div id="timerON"> ON</div><div id="timerOFF">OFF</div></div>
+		tiempo de juego <input type="text" value="6000" id="changegtime"/>
+		tiempo de hide <input type="text" value="6000" id="changehtime"/>
+		
+		---><div onclick="start()">dotable</div>
+		playerlevel<div id="playerlevel" > 0</div>
+	<!--	targetlevel<div id="targetlevel" >jjjjj</div>
+		aciertos<div id="shottarget" > </div>-->
+		<div id="colors">
+		<!--<div id="colors1" style="background:#BE6FCF;"class=""> &nbsp </div>
+		<div id="colors2" style="background:#111111;"class=""> &nbsp </div>
+		<div id="colors3" style="background:#222222;"class=""> &nbsp </div>
+		<div id="colors4" style="background:#333333;"class=""> &nbsp </div>
+		<div id="colors5" style="background:#444444;"class=""> &nbsp </div>
+		<div id="colors6" style="background:#555555;"class=""> &nbsp </div>
+		<div id="colors7" style="background:#666666;"class=""> &nbsp </div>
+		<div id="colors8" style="background:#777777;"class=""> &nbsp </div>
+		<div id="colors9" style="background:#888888;"class=""> &nbsp </div>
+		<div id="colors10" style="background:#999999;"class=""> &nbsp </div>
+		<div id="colors11" style="background:#aaaaaa;"class=""> &nbsp </div>
+		<div id="colors12" style="background:#bbbbbb"class=""> &nbsp </div>
+		<div id="colors13" style="background:#cccccc;"class=""> &nbsp </div>
+		<div id="colors14" style="background:#dddddd;"class=""> &nbsp </div>
+		<div id="colors15" style="background:#eeeeee;"class=""> &nbsp </div>
+		<div id="colors16" style="background:#ffffff;"class=""> &nbsp </div>-->
+		</div>
+  </div>
+ 
+  <div id="contenido">
+    <div id="principal">
+		
+		  <table id="main" >
+			<p id="btnstart">comenzar</p>
+			
+			</table>
+			<div class="ssstage" >
+			 
+<div id="timer" style="display:none;">100</div>
+<div id="timerbar" style="width:100%; background:red; "> &nbsp </div>
+
+</div>
+  </div>
+			
+    </div>
+ 	
+    <div id="secundario">
+		  
+
+</div>
+	<!--	
+	<div id="marcador">
+<div id="score">puntuacion:2</div>
+
+<div id="maxlevel">nivel maximo:2</div>
+<div id="target" style="display:none;"></div>
+<div id="timercontainer">
+
+</div>
+    </div>-->
+  </div>
+  
+
+<div id="array" style="display:none;">--- </div>
+
+ <div class="pie" id="pie"><div>
+			
+			</div>AQUI LOS ANUNCIOS</div>
+
+
+</div>
+
+ 
+
+</body>
+ 
+
+</html>

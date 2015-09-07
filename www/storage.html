@@ -1,40 +1,73 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-
+<!DOCTYPE html>
 <html>
-<head>
-<title>Untitled</title>
-<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+  <head>
+    <title>Storage Example</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="fastclick.js" type="application/javascript"></script>
+<link rel="stylesheet" type="text/css" href="css/animations.css" />
+    <script type="text/javascript" charset="utf-8">
 
-</head>
-<body>
-<input type="text" name="username[]" id="username"/>
-<button id="save">Save</button>
-<button id="load">Load</button>
-<button id="clear">Clear</button>
- 
-<script type="text/javascript">
-$(function() {
-   // Save input value to localStorage
-   $('#save').on('click', function() {
-      var username = $('#username').val();
-      localStorage.setItem("username[]", username);
-   });
-   // Load input value from localStorage
-   $('#load').on('click', function() {
-      var username = localStorage.getItem("username[]") || "<empty>";
-     alert(username);
-		  $('#username').val(username);
-   });
-   // Clear localStorage
-   $('#clear').on('click', function() {
-      localStorage.clear();
-   });
-	 $('#verstorage').html();
-	 console.log(localStorage);
-	 console.dir(localStorage);
-});
-</script>
-<div id="verstorage"></div>
-</body>
+    // Wait for Cordova to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // Populate the database 
+    //
+    function populateDB(tx) {
+        //tx.executeSql('DROP TABLE IF EXISTS DEMO');
+        tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
+        tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
+        tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
+    }
+
+    // Query the database
+    //
+    function queryDB(tx) {
+        tx.executeSql('SELECT * FROM DEMO', [], querySuccess, errorCB);
+    }
+
+    // Query the success callback
+    //
+    function querySuccess(tx, results) {
+        var len = results.rows.length;
+        console.log("DEMO table: " + len + " rows found.");
+        for (var i=0; i<len; i++){
+				 $('#showrow').append("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+            console.log("Row = " + i + " ID = " + results.rows.item(i).id + " Data =  " + results.rows.item(i).data);
+        }
+    }
+
+    // Transaction error callback
+    //
+    function errorCB(err) {
+        console.log("Error processing SQL: "+err.code);
+    }
+
+    // Transaction success callback
+    //
+    function successCB() {
+        var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+        db.transaction(queryDB, errorCB);
+    }
+
+    // Cordova is ready
+    //
+    function onDeviceReady() {
+        var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
+        db.transaction(populateDB, errorCB, successCB);
+    }
+
+    </script>
+  </head>
+  <body>
+    <h1>Example</h1>
+    <p>Database</p>
+		<p id="showrow">
+		-
+		</p>
+  </body>
 </html>
