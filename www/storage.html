@@ -17,10 +17,12 @@
 
     // Populate the database 
     //
+		function cleardatabase(tx){alert('borrar'); tx.executeSql('DROP TABLE IF EXISTS DEMO');}
+		function insertrow(tx){ tx.executeSql('INSERT INTO DEMO (id, data) VALUES ("'+user+'"," '+score+'")');}
     function populateDB(tx) {
 						 user=$('#usuario').val();
 						 score=$('#score').val();
-        //tx.executeSql('DROP TABLE IF EXISTS DEMO');
+       // tx.executeSql('DROP TABLE IF EXISTS DEMO');
         tx.executeSql('CREATE TABLE IF NOT EXISTS DEMO (id unique, data)');
         tx.executeSql('INSERT INTO DEMO (id, data) VALUES ("'+user+'"," '+score+'")');
       //  tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');
@@ -63,7 +65,7 @@
         var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
         db.transaction(populateDB, errorCB, successCB); 
 				
-				$('#save').click(function(){alert('db');db.transaction(queryDB, errorCB);}) 
+				$('#save').click(function(){alert('db');demo.executeSql('INSERT INTO DEMO (id, data) VALUES ("'+user+'"," '+score+'")');db.transaction(queryDB, errorCB);}) 
     }
 	  
     </script>
@@ -77,6 +79,8 @@
 		<div id="save" >Guardar</div>
 		<br><br>
 		<div id="save" onclick="window.location='index.html';">Atras</div>
+		<br><br>
+		<div id="save" onclick="cleardatabase('database');">borrar</div>
 		</p>
   </body>
 </html>
