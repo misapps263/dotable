@@ -403,7 +403,7 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
 }; //fin if x.size
  
- if(target<=0){rows++;$("#main").html('');
+ if(target<=0){rows++;//$("#main").html('');
 
  if(keepgoing){ clearInterval(set);}
  
@@ -503,7 +503,7 @@ console.log(bg);
  
 function doscore(){
 ////////////////////////
- $("#main").html('');
+ //$("#main").html('');
  $("#main").append('<div onclick="start()">start</div><br><div onclick="dotable(5)">dotable</div>');
  $("#myrows").css('width',rows*10+'%');
  window.location="storage.html";
@@ -530,7 +530,7 @@ else{
 //comprobamos que no se hagan mas rows del permitido
  if(e>maxrows){e=maxrows}
 var truecount=0;
-//$("#main").html('');
+$("#main").html('');
   for(i=0;i<=e-1;i++){
 	 $("#main").append('<tr id="col'+i+'"> </tr>');
 	 truecount++;
