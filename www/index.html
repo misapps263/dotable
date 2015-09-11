@@ -235,7 +235,7 @@ if(clevel<2){rows=2};
 setTimeout( function(){dotable(rows)} , 10);  
 }
 
-function restart(){
+function restart(e){
 if(keepgoing){
 	 keepgoing=false;
 	 timer(0); 
@@ -244,7 +244,7 @@ clearInterval(set);
 $('#main').html('comenzar');
 if(vidas<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
  window.location="storage.html";
- }else(dotable(rows))
+ }else(dotable(e))
 }
 
 function timer(e){
@@ -254,8 +254,9 @@ function timer(e){
 set=setInterval(function(){
 
 //doscore();
+alert(rows);
 vidas--;
-restart();
+restart(rows);
  
 console.log('timer='+e)},e); 
 $('#timerbar').animate({
@@ -515,7 +516,7 @@ function dotable(e)
 
 if(e=='score'){
  ////////////////////////
- restart();
+ restart(rows);
  
  ////////////////////////
 }
