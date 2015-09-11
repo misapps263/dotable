@@ -242,6 +242,7 @@ function restart(e){
 if(e<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
  window.location="storage.html";
  }else(
+ rows=clevel;
  clearInterval(set),
  vidas--,
  start())
@@ -249,7 +250,7 @@ if(e<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
 
 function timer(e){
  
-alert(vidas);
+//alert(vidas);
 
 //set=setInterval(function(){dotable(rows-1);console.log('timer='+e)},e); 
 //rows=4;
