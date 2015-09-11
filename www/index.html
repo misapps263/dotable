@@ -236,29 +236,27 @@ setTimeout( function(){dotable(rows)} , 10);
 }
 
 function restart(e){
-if(keepgoing){
-	 keepgoing=false;
-	 timer(0); 
-	 }
-clearInterval(set);
+ 
 //$('#main').html('comenzar');
  
-if(vidas<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
+if(e<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
  window.location="storage.html";
- }else(dotable(e))
+ }else(
+ clearInterval(set),
+ vidas--,
+ start())
 }
 
 function timer(e){
+ 
+alert(vidas);
 
 //set=setInterval(function(){dotable(rows-1);console.log('timer='+e)},e); 
 //rows=4;
 set=setInterval(function(){
-
+restart(vidas);
 //doscore();
-alert(rows);
-vidas--;
-restart(rows);
- 
+
 console.log('timer='+e)},e); 
 $('#timerbar').animate({
     width:0
@@ -517,8 +515,8 @@ function dotable(e)
 
 if(e=='score'){
  ////////////////////////
- restart(rows);
- 
+ //restart(rows);
+ start();
  ////////////////////////
 }
 else{
