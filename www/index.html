@@ -188,7 +188,7 @@ x.ready(inicializarEventos
   $('#timerOFF').click(function(){keepgoing=false});
 */
 
- levelstage=0;
+ levelstage=1;
  maxstage=6; 
  maxrows=9;
  clevel=1; 
@@ -238,28 +238,29 @@ setTimeout( function(){dotable(rows)} , 10);
 function restart(e){
  
 //$('#main').html('comenzar');
- 
-if(e<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
+  console.log('vidas '+vidas);
+if(vidas<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
  window.location="storage.html";
  }else(
  
  rows=clevel,
  clearInterval(set),
- levelstage=0,
+
  vidas--,
- setTimeout( function(){restart(clevel)} , 10))
+ setTimeout( function(){start(levelstage)} , 500)),
+  levelstage=0
 }
 
+
 function timer(e){
- 
-//alert(vidas);
 
 //set=setInterval(function(){dotable(rows-1);console.log('timer='+e)},e); 
 //rows=4;
 set=setInterval(function(){
-restart(vidas);
-//doscore();
 
+//doscore();
+restart(clevel);
+ 
 console.log('timer='+e)},e); 
 $('#timerbar').animate({
     width:0
@@ -268,6 +269,7 @@ $('#timerbar').animate({
 
 	
 }
+
 
 /*
 function cron(){
