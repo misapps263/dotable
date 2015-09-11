@@ -411,7 +411,7 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
 
  if(keepgoing){ clearInterval(set);}
  
-  setTimeout( function(){dotable(rows)} , 500); 
+  setTimeout( function(){alert('dotable');dotable(rows)} , 500); 
  
  } //fin if target
  
@@ -428,7 +428,7 @@ y.bind("touchstart",
  function(){ 
  //rows--;
  //levelstage=rows;
- vidas--;
+ 
  $('#vidas').text(vidas);
  levelstage=0;
  if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
