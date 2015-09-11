@@ -199,7 +199,7 @@ x.ready(inicializarEventos
  htime=2000;//tiempo de hide
  keepgoing=true;
  puntuacion=0;
- 
+ vidas=3;
   
 
 
@@ -220,6 +220,7 @@ function inicializarEventos()
 }
 
 function start(){
+ 
   $('#btnstart').css('display','none');
 	if(keepgoing){
 	 timer(gtime); 
@@ -240,8 +241,10 @@ if(keepgoing){
 	 timer(0); 
 	 }
 clearInterval(set);
-$('#main').html('comenzar')
+$('#main').html('comenzar');
+if(vidas<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
  window.location="storage.html";
+ }else(dotable(rows))
 }
 
 function timer(e){
@@ -251,6 +254,7 @@ function timer(e){
 set=setInterval(function(){
 
 //doscore();
+vidas--;
 restart();
  
 console.log('timer='+e)},e); 
@@ -418,6 +422,7 @@ y.bind("touchstart",
  function(){ 
  //rows--;
  //levelstage=rows;
+ vidas--;
  levelstage=0;
  if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
