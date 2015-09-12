@@ -247,10 +247,8 @@ if(vidas<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
  clearInterval(set),
 
  vidas--,
-  $('#vidas').text(('restatr')+vidas),
-	//$("#main").html(''),
-	setTimeout( function(){$("#main").html('<div>level'+levelstage+'/'+maxstage+'</div><div>vidas :'+vidas+'</div>')} , 1500)),
- setTimeout( function(){$("#main").html('');start(levelstage)} , 500)),
+  $('#vidas').text(('restatr')+vidas),$("#main").html(''),
+ setTimeout( function(){start(levelstage)} , 500)),
   levelstage=0
 }
 
@@ -435,11 +433,11 @@ y.bind("touchstart",
  levelstage=0;
  if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
-  $("#main").animate({opacity:0.0},700)
- $("#main").animate({opacity:1},300,function(){ /*$("#main").html(''); */
+ $("#main").animate({opacity:0.0},700)
+$("#main").animate({opacity:1},300,function(){ /*$("#main").html(''); */
 rows=clevel;
- // dotable('score');
-  setTimeout( function(){start(levelstage)} , 500)
+ dotable('score');
+ 
 })
 
 // alert('-1');
@@ -621,12 +619,11 @@ $("#main").html('');
 	 <div id="cabecera">
 	DoTable
   </div>
-	<!--<div id="mylevel" style="background:red;"> &nbsp </div>
+	<div id="mylevel" style="background:red;"> &nbsp </div>
 		<div id="mmyrows" style="background:green;"> &nbsp </div>
 		
 		level<div id="level" > 0</div>
 		vidas<div id="vidas" > 0</div>
-		-->
 		<!---clevel<div > <input type="text" value="2" id="changeclevel"/></div>
 		rows<div   ><input type="text" value="2" id="changerows"/></div>
 		maxrows<div   ><input type="text" value="2" id="changemaxrows"/></div>
