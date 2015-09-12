@@ -249,9 +249,9 @@ if(vidas<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
  vidas--,
   $('#vidas').text(('restatr')+vidas),
 	//$("#main").html(''),
-	  
-    setTimeout( function(){$("#main").html('<div>level'+levelstage+'/'+maxstage+'</div><div>vidas :'+vidas+'</div>');start(levelstage)} , 500)),
- 
+	  $("#main").html('<div>level'+levelstage+'/'+maxstage+'</div><div>vidas :'+vidas+'</div>'),
+      a=setTimeout( function(){$("#main").html('');start(levelstage)} , 500)),
+ clearTimeout(a),
   levelstage=0
 }
 
