@@ -89,18 +89,20 @@ body {
   width: 600px;
   margin: 0 auto;
 }
-
+#menu{ font-size:200%;font-weight:bolder;margin:auto;text-align: center ;margin-left: auto;
+    margin-right: auto;} 
+#vidas{font-size:200%;font-weight:bolder;}
 /* -------------------------------------
  * Bar container
  * ------------------------------------- */
 .progress-radial {
-  float: left;
+  /*float: left;*/
   margin-right: 30px;
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  min-height: 80px;
   border-radius: 50%;
-  border: 2px solid #2f3439;
+  bborder: 2px solid #2f3439;
   background-color: tomato;
 }
 
@@ -113,8 +115,8 @@ body {
   height: 60px;
   background-color: #fffde8;
   border-radius: 50%;
-  margin-left: 20px;
-  margin-top: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
   text-align: center;
   line-height: 60px;
   font-size: 16px;
@@ -385,7 +387,7 @@ if(vidas<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
  //clearInterval(set),clearInterval(starttimer),
 //alert('restart');
  vidas--,
-  $('#vidas').text(('restatr')+vidas),
+ // $('#vidas').text(('restatr')+vidas),
 	//$("#main").html(''),
 	 // $("#main").html('<div>level'+levelstage+'/'+maxstage+'</div><div>vidas :'+vidas+'</div>'),
 		
@@ -559,8 +561,9 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
  
  if(target<=0){rows++;$("#main").html('');
  n+=15;
- if(n>90){n=0;$( "div[class^='progress-']" ).removeClass('progress-90') }
- $( "div[class^='progress-']" ).addClass('progress-'+n) ;
+ if(n>90){n=0;$( "#stageprogress" ).removeClass() }
+ $( "#stageprogress" ).addClass('progress-radial') ;
+ $( "#stageprogress" ).addClass('progress-'+n) ;
  $('#grados').text(n);
  if(keepgoing){ clearInterval(set);}
  
@@ -743,16 +746,17 @@ $("#main").html('');
 	//$('#mylevel').css('width',(100*rows)/maxrows+'%');
 	
 	//$('#mylevel').text(Math.floor((100*rows)/maxrows)+'%');
-	$('#level').text(levelstage+'/'+maxstage+'<br> clevel '+clevel);
+	$('#level').html(levelstage+'/'+maxstage+'<div>Pantalla</div>');
 	 $('#myrows').css('width',rows*10+'%');
-	 $('#playerlevel').text(playerlevel);
+	 $('#playerlevel').html('Nivel'+playerlevel);
 	 
 	// if(rows<2){/*alert('mi abuela juega mejor')*/}
 	  //$('#mylevel').css('width',(100*levelstage)/maxstage+'%');
-		$('#mylevel').animate({width:(100*levelstage)/maxstage+'%'},1000);
-		$('#mylevel').removeClass('pulse');
+		//$('#mylevel').animate({width:(100*levelstage)/maxstage+'%'},1000);
+		//$('#mylevel').removeClass('pulse');
 	 countdown() ;
 	 truetarget=0;
+	 $('#target').html('<div>'+truetarget+'/'+target+' <br>Objetivos</div>');
 	   $('#targetlevel').text('target '+target);
 		 $('#shottarget').text('aciertos '+truetarget);
 		 $('#vidas').text(vidas)
@@ -772,10 +776,10 @@ $("#main").html('');
   
  
   <div id="menu">
-	 <div id="cabecera">
+	 <!--<div id="cabecera">
 	DoTable
   </div>
-	<!--<div id="mylevel" style="background:red;"> &nbsp </div>
+	<div id="mylevel" style="background:red;"> &nbsp </div>
 		<div id="mmyrows" style="background:green;"> &nbsp </div>
 		
 		level<div id="level" > 0</div>
@@ -788,12 +792,18 @@ $("#main").html('');
 		timer<div  > <div id="timerON"> ON</div><div id="timerOFF">OFF</div></div>
 		tiempo de juego <input type="text" value="6000" id="changegtime"/>
 		tiempo de hide <input type="text" value="6000" id="changehtime"/>
-		
-		---><div onclick="start()">dotable</div>
-		playerlevel<div id="playerlevel" > 0</div>
-		grados<div id="grados"></div>
-		<div class="progress-radial progress-0"  >
-  <div class="overlay" id="vidas"> </div>
+		<div onclick="start()">dotable</div>
+		--->
+		<div id="playerlevel" style="color:#333;"></div><hr>
+		 <div id="level" >	</div> <hr>
+	   <div id="target" > </div><hr>
+		 <div class="progress-radial " style="margin:auto;text-align:center;" >
+  <div id="stageprogress"  class="progress-radial progress-0"  >  
+  <div  class="overlay" > 
+	<div id="vidas"></div><div>vidas</div>
+	</div>
+	</div>
+	
 </div>
 	<!--	targetlevel<div id="targetlevel" >jjjjj</div>
 		aciertos<div id="shottarget" > </div>-->
