@@ -89,7 +89,7 @@ body {
   width: 600px;
   margin: 0 auto;
 }
-#menu{ font-size:70%;font-weight:bolder;margin:auto;text-align: center ;margin-left: auto;
+#menu{font-weight:bolder;margin:auto;text-align: center ;margin-left: auto;
     margin-right: auto;} 
 #vidas{font-size:200%;font-weight:bolder;}
 /* -------------------------------------
@@ -359,7 +359,7 @@ function inicializarEventos()
 }
 
 function start(){
- 
+ $('#menu').css('display','block'); $('#timerbar').css('display','block');
   $('#btnstart').css('display','none');
 	if(keepgoing){
 	 timer(gtime); 
@@ -590,7 +590,7 @@ y.bind("touchstart",
  if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
   $("#main").animate({opacity:0.0},700)
- $("#main").animate({opacity:1},300,function(){ /*$("#main").html(''); */
+ $("#main").animate({opacity:1},300,function(){ $("#main").html(''); 
 rows=clevel;
  // dotable('score');
   setTimeout( function(){start(levelstage)} , 500)
@@ -775,7 +775,7 @@ $("#main").html('');
 <div id="contenedor">
   
  
-  <div id="menu">
+  <div id="menu" style="display:none;">
 	 <!--<div id="cabecera">
 	DoTable
   </div>
@@ -837,7 +837,7 @@ $("#main").html('');
 			<div class="ssstage" >
 			 
 <div id="timer" style="display:none;">100</div>
-<div id="timerbar" style="width:100%; background:red; "> &nbsp </div>
+<div id="timerbar" style="width:100%; background:red; display:none;"> &nbsp </div>
 
 </div>
   </div>
