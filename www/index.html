@@ -579,6 +579,11 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
  ///////////////////////////////
  var y;
  y=$("div[data-check='false']" );
+ y.click(function(){$("#main").html('');if(keepgoing){
+	  clearInterval(set);
+		$('#timerbar').stop(true,true);
+		 
+		}setTimeout( function(){restart(levelstage)} , 500)});
 y.bind("touchstart",
  
  function(){ 
@@ -594,7 +599,7 @@ y.bind("touchstart",
 	  
 rows=clevel;
  // dotable('score');
-  setTimeout( function(){restart(levelstage)} , 500)
+  
 })
 
 // alert('-1');
