@@ -589,11 +589,12 @@ y.bind("touchstart",
  levelstage=0;
  if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
-  $("#main").animate({opacity:0.0},700)
- $("#main").animate({opacity:1},300,function(){ $("#main").html(''); 
+   $("#main").animate({display:none},700)
+	 $("#main").animate({opacity:1},1000,function(){ $("#main").html(''); 
+	  
 rows=clevel;
  // dotable('score');
-  setTimeout( function(){start(levelstage)} , 500)
+  setTimeout( function(){restart(levelstage)} , 500)
 })
 
 // alert('-1');
