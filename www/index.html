@@ -558,7 +558,9 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
 }; //fin if x.size
  
  if(target<=0){rows++;$("#main").html('');
- n+=15;$( "div[class^='progress-']" ).addClass('progress-'+n) ;
+ n+=15;
+ if(n>90){n=0}
+ $( "div[class^='progress-']" ).addClass('progress-'+n) ;
  $('#grados').text(n);
  if(keepgoing){ clearInterval(set);}
  
