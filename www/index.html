@@ -588,6 +588,7 @@ y.bind("touchstart",
  
  $('#vidas').text(vidas);
  levelstage=0;
+  my_media.release();playAudio("/android_asset/www/leveldown.mp3");
  if(clevel>rows){/*clevel--*/ ; my_media.release();playAudio("/android_asset/www/leveldown.mp3");};
  if(rows<=0){t=2;$('#maintimerbar').text(t);rows=2}
    //$("#main").animate({opacity:0},700)
