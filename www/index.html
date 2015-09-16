@@ -254,7 +254,7 @@ my_media = new Media(src, onSuccess, onError);
 my_media.play();
 
 //volumen
-localStorage.setItem("sound",true);
+localStorage.setItem("sound",false);
 sound=localStorage.getItem('sound');
  if(sound){ my_media.setVolume('1.0');}else{my_media.setVolume('0.0');}
        
