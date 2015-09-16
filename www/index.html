@@ -348,14 +348,7 @@ sound=false;
  vidas=3;
   a=false;
  n=0;//grados en class ->progress
-///////setting
-////theme
-theme=localStorage.getItem('theme');
 
-  if(theme=='light'){  $('body').removeClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b');}
- 
- else{$('body').removeClass('ui-mobile-viewport ui-overlay-b');$('body').addClass('ui-mobile-viewport ui-overlay-a'); }
-   
 
 //if(clevel>rows){rows=clevel;}
 //if(rows<2){rows=2;}
@@ -366,7 +359,14 @@ function exist(variable) {
 }
 function inicializarEventos()
 {
+///////setting
+////theme
+theme=localStorage.getItem('theme');
 
+  if(theme=='light'){  $('body').removeClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b');}
+ 
+ else{$('body').removeClass('ui-mobile-viewport ui-overlay-b');$('body').addClass('ui-mobile-viewport ui-overlay-a'); }
+   
 
 
    $('#btnstart').click(function(){start()});
