@@ -348,7 +348,12 @@ sound=false;
  vidas=3;
   a=false;
  n=0;//grados en class ->progress
-
+///////setting
+////theme
+theme=localStorage.getItem('theme');
+ if(theme=='light'){ $('body').addClass('ui-mobile-viewport ui-overlay-b');$('body').addClass('ui-mobile-viewport ui-overlay-a')}
+ else{$('body').addClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b')}
+   
 
 //if(clevel>rows){rows=clevel;}
 //if(rows<2){rows=2;}
@@ -787,7 +792,7 @@ $("#main").html('');
 </script>
 </head>
 
-<body class="ui-mobile-viewport ui-overlay-b">
+<body class="">
 <div id="contenedor">
   
  

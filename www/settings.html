@@ -20,6 +20,9 @@ $(function() {
 	 
 	  $('#soundON').click( function(){	 localStorage.setItem("sound",'true'); alert('sound=true') });
 	  $('#soundOFF').click( function(){	 localStorage.setItem("sound",'false'); alert('sound=false') });
+		
+	  $('#themelight').click( function(){	 localStorage.setItem("theme",'light');   });
+	  $('#themedark').click( function(){	 localStorage.setItem("theme",'dark');   });
     	 
     	 })									
     										
@@ -35,7 +38,9 @@ $(function() {
 <body>
 <div>
 Sonido:<div id="soundON">ON </div><div id="soundOFF"> OFF</div>
-
+<hr>
+Tema :
+<div id="themelight">Light</div><div id="themeDark"> Dark</div>
 </div>
 </body>
 </html>
