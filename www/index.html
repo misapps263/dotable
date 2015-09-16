@@ -5,6 +5,7 @@
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
   <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="fastclick.js" type="application/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/animations.css" />
@@ -247,7 +248,9 @@ function playAudio(src) {
 totaudio++;
 //$('#secundario').text('--'+totaudio+'<hr>')
 // Create Media object from src
+if(sound){
 my_media = new Media(src, onSuccess, onError);
+}
 // Play audio
 my_media.play();
 // Update my_media position every second
@@ -323,7 +326,7 @@ x.ready(inicializarEventos
  $('#timerON').click(function(){keepgoing=true});
   $('#timerOFF').click(function(){keepgoing=false});
 */
-
+sound=false;
  levelstage=1;
  maxstage=6; 
  maxrows=9;
@@ -333,7 +336,7 @@ x.ready(inicializarEventos
  playerlevel=0;
  gtime=6000;//tiempo del juego
  htime=2000;//tiempo de hide
- keepgoing=true;
+ keepgoing=false;
  puntuacion=0;
  vidas=3;
   a=false;
@@ -517,7 +520,9 @@ $('#level').text('0');
   //x.bind("touchend", function(){$('#menu').append('fin touch')});
 	 //x.bind("touchmove", function(){$('#menu').append(' move ')});
 	 // x.bind("touchleave",function(){$('#menu').append('leave')});
- x.bind('click',  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove(); puntuacion+=10; }
+ x.bind('click',  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');
+ 
+ $(this).remove(); puntuacion+=10; }
 );
 
 /*
@@ -775,7 +780,7 @@ $("#main").html('');
 </script>
 </head>
 
-<body>
+<body class="ui-mobile-viewport ui-overlay-b">
 <div id="contenedor">
   
  
