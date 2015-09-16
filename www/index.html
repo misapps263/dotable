@@ -351,8 +351,10 @@ sound=false;
 ///////setting
 ////theme
 theme=localStorage.getItem('theme');
- if(theme=='light'){ $('body').addClass('ui-mobile-viewport ui-overlay-b');$('body').addClass('ui-mobile-viewport ui-overlay-a')}
- else{$('body').addClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b')}
+
+  if(theme=='light'){  $('body').removeClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b');}
+ 
+ else{$('body').removeClass('ui-mobile-viewport ui-overlay-b');$('body').addClass('ui-mobile-viewport ui-overlay-a'); }
    
 
 //if(clevel>rows){rows=clevel;}
@@ -792,7 +794,7 @@ $("#main").html('');
 </script>
 </head>
 
-<body class="">
+<body class="" id="body">
 <div id="contenedor">
   
  
