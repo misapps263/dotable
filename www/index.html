@@ -254,7 +254,7 @@ my_media = new Media(src, onSuccess, onError);
 my_media.play();
 
 //volumen
-localStorage.setItem("sound",false);
+
 sound=localStorage.getItem('sound');
  if(sound==true){ my_media.setVolume('1.0');}else{my_media.setVolume('0.0');}
        
@@ -847,8 +847,8 @@ $("#main").html('');
     <div id="principal">
 		
 		  <table id="main" >
-			<p id="btnstart">comenzar</p>
-			<p  > <a href="settings.html">configuración</a> </p>
+			<p id="btnstart">comenzar<p  > <a href="settings.html">configuración</a> </p></p>
+			
 			</table>
 			<div class="ssstage" >
 			 
