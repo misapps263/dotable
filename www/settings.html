@@ -16,21 +16,25 @@ $(function() {
    // Save input value to localStorage
   
    // Load input value from localStorage
-   $('document').ready(function  () {
-	 $('#soundON').click(function(){localStorage.setItem("sound",'true');alert('sound=true')})
-	  $('#soundOFF').click(function(){localStorage.setItem("sound",'false');})
-	 }
+   $('document').ready();
+	 
+	  $('#soundON').click( function(){	 localStorage.setItem("sound",'true'); alert('sound=true') });
+	 
+    	 
+    	 })									
+    										
+    											
+    	 
+	   
 	 
 	 
 	 
-	 
-	 }
 // -->
 </script>
 </head>
 <body>
 <div>
-Sonido:<span id="soundON">ON </span><span id="soundOFF"> OFF</span>
+Sonido:<div id="soundON">ON </div><div id="soundOFF"> OFF</div>
 
 </div>
 </body>
