@@ -213,7 +213,7 @@ body {
 }
 
 
-.container {height: 150px; width:450px;text-align:center;  margin: 33px ;}
+.container {height: 20px; width:250px;text-align:center;  	font-size:150%;}
 .flotante {
 	float: left;
 	height: 50%;
@@ -223,10 +223,11 @@ body {
 .content {
  
 	clear: both;
-	height: 100px;
-	font-size:200%;color:#eee;
+	hheight: 20px;
+	color:#eee;
+
 }
-.button{ border-radius:9px;  font-weight:bolder;color:#555;  padding:10px 33px;margin:15px;text-align:center;vertical-align:middle;} 
+.button{ border-radius:9px;  font-weight:bolder;color:#555;  padding:33px 13px;margin:15px;text-align:center;vertical-align:middle;} 
 a{text-decoration:none;}
 -->
 </style>
@@ -586,9 +587,10 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
  ///////////////////
 
  
- x.bind("touchstart",function(){$(this).append('<div>+</div>');} );
+ x.bind("touchstart",function(){$(this).append('<div class="button">'+puntos+'</div>');} );
   x.bind("touchend", function(){ my_media.release();
  playAudio("/android_asset/www/click.mp3");
+ $('#target').html('<div>'+truetarget+'/'+target+' <br>Objetivos</div>');
  target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=puntos;  $('#puntuacion').text(puntuacion);
  if( x.size()==truetarget ){
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
@@ -837,13 +839,13 @@ $("#main").html('');
 		tiempo de hide <input type="text" value="6000" id="changehtime"/>
 		<div onclick="start()">dotable</div>
 		--->
-		<div id="playerlevel" style="color:#333;"></div><hr>
+		<div id="playerlevel"  ></div><hr>
 		 <div id="level" >	</div> <hr>
 	   <div id="target" > </div><hr>
 		 <div class="progress-radial " style="margin:auto;text-align:center;" >
   <div id="stageprogress"  class="progress-radial progress-0"  >  
   <div  class="overlay" > 
-	<div id="vidas"></div><div><div id="puntuacion">-</div>Puntos</div>
+	<div id="vidas"></div><div><span id="puntuacion">-</span>Puntos</div>
 	</div>
 	</div>
 	
@@ -875,13 +877,16 @@ $("#main").html('');
 		
 		  <table id="main" >
 			<center id="index">
-			<div class="container button" style="background:#BE6FCF;">
-			<div class="flotante"> &nbsp </div>
-			<div class=" content"><p id="btnstart" > Comenzar </p></div>
-			</div><a href="settings.html" style=" ">
+			 
+			<div class="container button" style="background:#BE6FCF;"id="btnstart">
+			
+			<div class=" content">  Comenzar  </div><div class="flotante"> &nbsp </div>
+			</div>
+			 
+			<a href="settings.html" style=" ">
 			<div class="container  button " style="background:#78C4D4;">
 			<div class="flotante"> &nbsp </div>
-			<div class=" content"> configuración  </div>
+			<div class=" content"> Configuración  </div>
 			</div></a>
 			<center>
 			</table>
