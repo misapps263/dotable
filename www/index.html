@@ -2,9 +2,11 @@
 <head>
 <title>Untitled</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
-  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ 
+		
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="fastclick.js" type="application/javascript"></script>
@@ -92,7 +94,7 @@ body {
 }
 #menu{font-weight:bolder;margin:auto;text-align: center ;margin-left: auto;
     margin-right: auto;} 
-#vidas{font-size:200%;font-weight:bolder;}
+#vidas{font-size:200%;font-weight:bolder;color:#000;}
 /* -------------------------------------
  * Bar container
  * ------------------------------------- */
@@ -211,8 +213,21 @@ body {
 }
 
 
-
-
+.container {height: 150px; width:450px;text-align:center;  margin: 33px ;}
+.flotante {
+	float: left;
+	height: 50%;
+	width: 100%;
+	margin-bottom: -50px;
+}
+.content {
+ 
+	clear: both;
+	height: 100px;
+	font-size:200%;color:#eee;
+}
+.button{ border-radius:9px;  font-weight:bolder;color:#555;  padding:10px 33px;margin:15px;text-align:center;vertical-align:middle;} 
+a{text-decoration:none;}
 -->
 </style>
 <!---------->
@@ -343,8 +358,9 @@ sound=false;
  playerlevel=0;
  gtime=6000;//tiempo del juego
  htime=2000;//tiempo de hide
- keepgoing=false;
+ keepgoing=true;
  puntuacion=0;
+ puntos=10;
  vidas=3;
   a=false;
  n=0;//grados en class ->progress
@@ -353,7 +369,7 @@ sound=false;
 //if(clevel>rows){rows=clevel;}
 //if(rows<2){rows=2;}
 
- colorarray=['#BE6FCF','#3497DB','#31D1B0','#F1C310','red','green','purple','gold','grey','orange','pink','silver','brown','yellow','black'];
+ colorarray=['#BE6FCF','#3497DB','#31D1B0','#F1C310','red','green','purple','tomato','grey','orange','pink','silver','brown','yellow','black'];
 function exist(variable) {
     return (typeof(window[variable]) != "undefined")? true: false;
 }
@@ -363,9 +379,9 @@ function inicializarEventos()
 ////theme
 theme=localStorage.getItem('theme');
 
-  if(theme=='light'){  $('body').removeClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b');}
+  if(theme=='light'){  $('body,table').removeClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b');}
  
- else{$('body').removeClass('ui-mobile-viewport ui-overlay-b');$('body').addClass('ui-mobile-viewport ui-overlay-a'); }
+ else{$('body,table').removeClass('ui-mobile-viewport ui-overlay-b');$('body,table').addClass('ui-mobile-viewport ui-overlay-a'); }
    
 
 
@@ -377,7 +393,7 @@ theme=localStorage.getItem('theme');
 
 function start(){
  $('#menu').css('display','block'); $('#timerbar').css('display','block');
-  $('#btnstart').css('display','none');
+  $('#index').css('display','none');
 	if(keepgoing){
 	 timer(gtime); 
 	 }
@@ -573,12 +589,13 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
  x.bind("touchstart",function(){$(this).append('<div>+</div>');} );
   x.bind("touchend", function(){ my_media.release();
  playAudio("/android_asset/www/click.mp3");
- target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=10;  $('#puntuacion').text(puntuacion);
+ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=puntos;  $('#puntuacion').text(puntuacion);
  if( x.size()==truetarget ){
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
 }; //fin if x.size
  
  if(target<=0){rows++;$("#main").html('');
+ puntos=10;
  n+=15;
  if(n>90){n=0;$( "#stageprogress" ).removeClass() }
  $( "#stageprogress" ).addClass('progress-radial') ;
@@ -600,11 +617,11 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
  y=$("div[data-check='false']" );
  
 y.bind("touchstart",
- 
+
  function(){ 
  //rows--;
  //levelstage=rows;
- 
+  puntos=1;
  $('#vidas').text(vidas);
  levelstage=0;
   my_media.release();playAudio("/android_asset/www/leveldown.mp3");
@@ -777,6 +794,8 @@ $("#main").html('');
 		//$('#mylevel').animate({width:(100*levelstage)/maxstage+'%'},1000);
 		//$('#mylevel').removeClass('pulse');
 	 countdown() ;
+	 //alert('e time '+$("div[data-check='true']" ).size());
+	 if($("div[data-check='true']" ).size()<=0){vidas++;}
 	 truetarget=0;
 	 $('#target').html('<div>'+truetarget+'/'+target+' <br>Objetivos</div>');
 	   $('#targetlevel').text('target '+target);
@@ -786,6 +805,7 @@ $("#main").html('');
 		 $('#puntuacion').text(puntuacion)
 		 }//fin else score
 		  //alert('html'+$('#principal').html());
+			
 }
 
 
@@ -854,8 +874,16 @@ $("#main").html('');
     <div id="principal">
 		
 		  <table id="main" >
-			<p id="btnstart">comenzar<p  > <a href="settings.html">configuración</a> </p></p>
-			
+			<center id="index">
+			<div class="container button" style="background:#BE6FCF;">
+			<div class="flotante"> &nbsp </div>
+			<div class=" content"><p id="btnstart" > Comenzar </p></div>
+			</div><a href="settings.html" style=" ">
+			<div class="container  button " style="background:#78C4D4;">
+			<div class="flotante"> &nbsp </div>
+			<div class=" content"> configuración  </div>
+			</div></a>
+			<center>
 			</table>
 			<div class="ssstage" >
 			 
@@ -886,14 +914,11 @@ $("#main").html('');
 
 <div id="array" style="display:none;">--- </div>
 
- <div class="pie" id="pie"><div>
-			
-			</div>AQUI LOS ANUNCIOS</div>
-
-
-</div>
-
+ <div class="pie" id="pie"  > Aqui lo anuncios<div>
+	 
  
+
+ </div>
 
 </body>
  

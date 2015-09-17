@@ -2,13 +2,31 @@
 <html>
   <head>
     <title>Storage Example</title>
+		<!--
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
-  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="fastclick.js" type="application/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/animations.css" />
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+ 
+	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+<script src="fastclick.js" type="application/javascript"></script>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+
+<link rel="stylesheet" type="text/css" href="css/animations.css" />
+
+
+
+
+
+
 <style type="text/css">
 <!-- 
 body{margin:auto;text-align:center;}
@@ -187,25 +205,29 @@ $(function() {
 	 
 	 
    });
-   // Clear localStorage
-   $('#clear').on('click', function() {
-      localStorage.clear();
-   });
+  $('#volver').click(function(){window.location="index.html"})
 }
-  
+ 
 );
 
 </script>
 <style type="text/css">
 <!-- 
 input{border:none;color:purple;}
-input:disabled{background:transparent;color:#000;font-size:200%;font-weight:bolder;} 
+input:disabled{background:transparent;color:#000;!importantfont-size:200%;font-weight:bolder;} 
 -->
 </style>
   </head>
   <body>
-    <h1>Marcador</h1>
-     
+ 
+  <div data-role="page">
+
+	<div data-role="header">
+		<h1>Marcador</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>
 		<p id="showrow">
  
  
@@ -239,7 +261,13 @@ input:disabled{background:transparent;color:#000;font-size:200%;font-weight:bold
       </table>
  
 			  <button class="save" >Guardar</button> 
-		</div>
-		<button id="clear">Borrar puntuación</button>
+ </p>		
+	</div><!-- /content -->
+<div data-role="footer" data-position="fixed"> 
+	<h4 id="volver"> Volver </h4> 
+</div>
+</div><!-- /page -->
+		 
+ 
   </body>
 </html>

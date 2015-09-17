@@ -6,41 +6,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
-  <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+ 
+	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="fastclick.js" type="application/javascript"></script>
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+
 <link rel="stylesheet" type="text/css" href="css/animations.css" />
 <script type="text/javascript">
 <!--
-$(function() {
-   // Save input value to localStorage
+var x;
+x=$(document);
+x.ready(inicializarEventos);
+
+function inicializarEventos()
+{
+    // Save input value to localStorage
   
    // Load input value from localStorage
    $('document').ready();
 	 
-	  $('#soundON').click( function(){	 localStorage.setItem("sound",'true'); alert('sound=true') });
-	  $('#soundOFF').click( function(){	 localStorage.setItem("sound",'false'); alert('sound=false') });
+	  $('#soundON').click( function(){	  localStorage.setItem("sound",'true'); $(this).addClass('on');$('#soundOFF').removeClass('on'); });
+	 	  $('#soundOFF').click( function(){	  localStorage.setItem("sound",'false'); $(this).addClass('on');$('#soundON').removeClass('on');});
+ 
+		if(localStorage.getItem("sound" )=='true'){$('#soundON').addClass('on');$('#soundOFF').removeClass('on');}	else{$('#soundOFF').addClass('on');$('#soundON').removeClass('on');}
+			
+	 // $('#soundOFF').click( function(){	 localStorage.setItem("sound",'false');$(this).toggleClass('on'); $(this).attr('id','soundON')  });
 		
-	  $('#themeLight').click( function(){	 localStorage.setItem("theme",'light')   });
-	  $('#themeDark').click( function(){	 localStorage.setItem("theme",'dark')   });
-    	 
-    	 })									
+	  $('#themeLight').click( function(){	 localStorage.setItem("theme",'light') ;$(this).addClass('on');$('#themeDark').removeClass('on');   });
+	  $('#themeDark').click( function(){	 localStorage.setItem("theme",'dark') ;$(this).addClass('on');$('#themeLight').removeClass('on');   });
+    	 		if(localStorage.getItem("theme" )=='light'){$('#themeLight').addClass('on');$('#themeDark').removeClass('on');}	else{$('#themeDark').addClass('on');$('#themeLight').removeClass('on');}
+
+    	//$('.button').click(function(){$('this').addClass('on')});							
     										
-    											
+    		  // Clear localStorage
+   $('#clear').on('click', function() {
+      localStorage.clear();
+   });									
     	 
-	   
+	   $('#volver').click(function(){window.location="index.html"})
 	 
-	 
+}
+ 		
 	 
 // -->
 </script>
+<style type="text/css">
+<!-- 
+.setting{padding:33px;}
+.button{background:#eee;border-radius:9px;height:33px;border:none;font-weight:bolder;color:#555;display: inline-block;width: auto;line-height: 1.33333;padding:10px 15px;margin:5px;text-align:center;vertical-align:middle;} 
+.on{color:#fff;background:#3388CC;}
+
+-->
+</style>
 </head>
 <body>
-<div>
-Sonido:<div id="soundON">ON </div><div id="soundOFF"> OFF</div>
+<div data-role="page">
+<div data-role="header" data-position="fixed"> 
+	<h4>Configuración</h4> 
+</div> 
+<div class="setting">
+
+Sonido:<div id="soundON" class="button">ON </div>
+ <div id="soundOFF" class="button"> OFF </div> 
 <hr>
 Tema :
-<div id="themeLight">Light</div><div id="themeDark"> Dark</div>
+<div id="themeLight" class="button">Light</div><div id="themeDark" class="button"> Dark </div>
+<hr>
+Puntuación:
+<div>
+<div id="clear" class="button on">Borrar puntuación</div>
+<div data-role="footer" data-position="fixed"> 
+	<h4 id="volver"> Volver </h4> 
+</div> 
+</div>
+</div>
 </div>
 </body>
 </html>
