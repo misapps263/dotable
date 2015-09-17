@@ -588,10 +588,10 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
  ///////////////////
 
  
- x.bind("touchstart",function(){ );
+// x.bind("touchstart",function(){} );
   x.bind("touchend", function(){ my_media.release();
  playAudio("/android_asset/www/click.mp3");
-$(this).append('<div class="puntos">'+puntos+'</div>');}
+$(this).append('<div class="puntos">'+puntos+'</div>');
  target--; truetarget++; $('#ctarget').text( truetarget );  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=puntos;  $('#puntuacion').text(puntuacion);
  if( x.size()==truetarget ){
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
