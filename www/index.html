@@ -352,7 +352,7 @@ x.ready(inicializarEventos
 */
 sound=false;
  levelstage=1;
- maxstage=1; 
+ maxstage=6; 
  maxrows=9;
  clevel=1; 
  rows=3;
@@ -388,19 +388,21 @@ theme=localStorage.getItem('theme');
  
 
    $('#btnstart').click(function(){start()});
-	
+	  $('#btnexpresstart').click(function(){levelstage=1;
+ maxstage=1; 
+  start()});
 	
 	//start();
 	  
 }
 
 function start(){
- $('#menu').css('display','block'); $('#timerbar').css('display','block');
+ $('#menu').css('visibility', 'visible'); $('#timerbar').css('display','block');
   $('#index').css('display','none');
 	if(keepgoing){
 	 timer(gtime); 
-	 }
-	countdown(htime);
+	
+	countdown(htime); }
 		 //$("#main").animate({opacity:0.3},700,function(){ $("#main").html(''); dotable(rows);});
 //$("#main").animate({opacity:1},300)
 
@@ -707,6 +709,9 @@ console.log(bg);
 				 //contrastamos el color del timerbar
 				 if($('#timerbar').attr('data-bar-color')!=pickedcolor){ 
 				 //alert('wtf');
+				 if($("div[data-color='"+$('#timerbar').attr('data-bar-color')+"']").attr('data-check')!='true'){
+				 alert('trampa');
+				 }
 				 if($("div[data-color='"+pickedcolor+"']").size()>0){
 			
       				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
@@ -838,7 +843,7 @@ $("#main").html('');
 	 countdown() ;
 	 //alert('e time '+$("div[data-check='true']" ).size());
 	$('#vidas').text(vidas);
-		  if($("div[data-check='true']" ).size()<=0){/*alert('1up');*/vidas++;}
+		  if($("div[data-check='true']" ).size()<=0){/*alert('1up');*/vidas++;$('#vidas').text('Bonus');}
 	 truetarget=0;
 	 $('#target').html('<div><span id="ctarget">'+truetarget+'<span>/'+target+' <br>Objetivos</div>');
 	   $('#targetlevel').text('target '+target);
@@ -867,7 +872,7 @@ $("#main").html('');
 <div id="contenedor">
   
  
-  <div id="menu" style="display:none;">
+  <div id="menu" style="	visibility: hidden;">
 	 <!--<div id="cabecera">
 	DoTable
   </div>
@@ -927,8 +932,14 @@ $("#main").html('');
 			 
 			<div class="container button" style="background:#BE6FCF;"id="btnstart">
 			
-			<div class=" content">  Comenzar  </div><div class="flotante"> &nbsp </div>
+			<div class=" content">  Normal  </div><div class="flotante"> &nbsp </div>
 			</div>
+			 
+			<div class="container button" style="background:#BE6FCF;"id="btnexpresstart">
+			
+			<div class=" content">  Express  </div><div class="flotante"> &nbsp </div>
+			</div>
+			 
 			 
 			<a href="settings.html" style=" ">
 			<div class="container  button " style="background:#78C4D4;">
