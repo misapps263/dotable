@@ -366,13 +366,12 @@ sound=false;
  vidas=3;
   a=false;
  n=0;//grados en class ->progress
-dificultad='normal';
+
 
 //if(clevel>rows){rows=clevel;}
 //if(rows<2){rows=2;}
 
- colorarray=['#BE6FCF','#3497DB','#31D1B0','#F13c99','red','green','purple','DarkGoldenrod','grey','orange','pink','silver','brown','yellow','black'];
- coloarray2=['DarkKhaki','Indigo','SlateBlue','SpringGreen','SeaGreen','Aqua','Maroon','NavajoWhite','YellowGreen'];
+ colorarray=['#BE6FCF','#3497DB','#31D1B0','#F13c99','red','green','purple','tomato','grey','orange','pink','silver','brown','yellow','black','DarkKhaki','Indigo','SlateBlue','SpringGreen','SeaGreen','Aqua','Maroon','NavajoWhite','YellowGreen'];
 function exist(variable) {
     return (typeof(window[variable]) != "undefined")? true: false;
 }
@@ -381,16 +380,6 @@ function inicializarEventos()
 ///////setting
 ////theme
 theme=localStorage.getItem('theme');
-dificultad=localStorage.getItem('dificultad') || 'normal';
-
-switch('dificultad'){
-
-case 'baby':  maxrows=5; colorarray=colorarray.splice(5,10); break;
-case 'easy':  maxrows=5;break;
-case 'hard':  maxrows=9; colorarray=colorarray.concat(colorarray2); break;
-case 'extreme':  maxrows=15; colorarray=colorarray.concat(colorarray2); break;
-default: maxrows=9;
-}
 
   if(theme=='light'){  $('body,table').removeClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b');}
  
@@ -399,7 +388,7 @@ default: maxrows=9;
  
 
    $('#btnstart').click(function(){start()});
-	  $('#btnexpresstart').click(function(){levelstage=1;puntos*=10;
+	  $('#btnexpresstart').click(function(){levelstage=1;
  maxstage=1; 
   start()});
 	

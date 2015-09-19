@@ -35,8 +35,16 @@ function inicializarEventos()
 		
 	  $('#themeLight').click( function(){	 localStorage.setItem("theme",'light') ;$(this).addClass('on');$('#themeDark').removeClass('on');   });
 	  $('#themeDark').click( function(){	 localStorage.setItem("theme",'dark') ;$(this).addClass('on');$('#themeLight').removeClass('on');   });
-    	 		if(localStorage.getItem("theme" )=='light'){$('#themeLight').addClass('on');$('#themeDark').removeClass('on');}	else{$('#themeDark').addClass('on');$('#themeLight').removeClass('on');}
+    if(localStorage.getItem("theme" )=='light'){$('#themeLight').addClass('on');$('#themeDark').removeClass('on');}	else{$('#themeDark').addClass('on');$('#themeLight').removeClass('on');}
 
+		//nivel de dificultaddif
+		 
+	  dificultad=['baby','easy','normal','hard','extreme'];
+		for (i=0;i<=dificultad.length;i++){
+		$('#'+dificultad[i]).click(function(){$('#dificultad > div').removeClass('on');$(this).addClass('on'); localStorage.setItem("dificultad",$(this).attr('id'))})
+		
+		}
+		$('#'+localStorage.getItem("dificultad")).addClass('on')
     	//$('.button').click(function(){$('this').addClass('on')});							
     										
     		  // Clear localStorage
@@ -73,9 +81,19 @@ Sonido:<div id="soundON" class="button">ON </div>
 Tema :
 <div id="themeLight" class="button">Light</div><div id="themeDark" class="button"> Dark </div>
 <hr>
+Dificultad :
+<div id="dificultad">
+<div id="baby" class="button">Baby</div>
+<div id="easy" class="button"> Easy </div>
+<div id="normal" class="button">Normal</div>
+<div id="hard" class="button"> Hard </div>
+<div id="extreme" class="button"> Extreme </div>
+</div>
+<hr>
 Puntuación:
 <div>
 <div id="clear" class="button on">Borrar puntuación</div>
+
 <div data-role="footer" data-position="fixed"> 
 	<h4 id="volver"> Volver </h4> 
 </div> 
