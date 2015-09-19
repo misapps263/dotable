@@ -359,11 +359,11 @@ sound=false;
  //playerlevel=clevel;
  playerlevel=0;
  gtime=6000;//tiempo del juego
- htime=2000;//tiempo de hide
+ htime=22000;//tiempo de hide
  keepgoing=true;
  puntuacion=0;
  puntos=10;
- vidas=3;
+ vidas=30;
   a=false;
  n=0;//grados en class ->progress
 dificultad='normal';
@@ -704,14 +704,26 @@ console.log(bg);
 				 }
 				 
 				 ///linea original
-				 // var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
+				  //var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
+					 
+				  var colorusedarray=new Array();
+  				 $('td>div').each(function(){
+					 if($(this).attr('data-color')!=''){
+					
+             
+							colorusedarray.push($(this).attr('data-color')); 
+                  
+					
+					
+					 }
+					 });
+					//colorusedarray = $.unique( colorusedarray );
+				//	alert(colorusedarray)
+					 var pickedcolor=colorusedarray[Math.floor((Math.random() * colorusedarray.length) + 0)];
 				 
-				 if(rows<clevel){var pickedcolor=colorarray[Math.floor((Math.random() * rows) + 0)];}else{var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];}
- 				 
-				
 				 
 				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
-				 
+				// alert(pickedcolor);
 				 /*
 				  if($("div[data-color='"+$('#timerbar').attr('data-bar-color')+"']").attr('data-check')!='true'){
 					//$("div[data-color='"+$('#timerbar').attr('data-bar-color')+"']").attr('data-check')='true';
