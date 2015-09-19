@@ -717,8 +717,9 @@ console.log(bg);
 				
 				
 				 if($("div[data-color='"+pickedcolor+"']").size()>0){
-			
-      				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
+				 	$('#vidas').text('Bonus');vidas++;
+					// alert('no true')
+      				// $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
       				 }
       				 else{
       				
@@ -729,13 +730,13 @@ console.log(bg);
 				 
 				 //si no hay casillas true
 				 if($("div[data-check='true']" ).size()<=0){
-				 	 
-					$("td>div").attr('data-check','true');
-					$("td>div").css('background','gold');
-					$('#timerbar').css('background','gold');
-					vidas++;
-					$('#vidas').text('Bonus');
+				 	 $('#vidas').text('Bonus');vidas++;
 					// alert('no true')
+					$("td>div").attr('data-check','true');
+					$("td>div").css('background','orange');
+					$('#timerbar').css('background','orange');
+					
+					
 				 }
 				 
 				 
