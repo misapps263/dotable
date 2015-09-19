@@ -702,7 +702,11 @@ console.log(bg);
 				// rows=clevel;
 				 //restart();
 				 }
-				  var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
+				 
+				 ///linea original
+				 // var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
+				 
+				 if(rows<clevel){var pickedcolor=colorarray[Math.floor((Math.random() * rows) + 0)];}else{var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];}
  				 
 				
 				 
