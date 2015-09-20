@@ -815,10 +815,11 @@ function doscore(){
 }  
  function bonus(){
 
-if(vidas==1){ 
-if(playerlevel %7== 0){ 
+  
+if(playerlevel % maxstage+1 == 0){ 
 $("div[data-check='true']").attr('data-check','false');
- $("div[data-check='true']").css('background','red');}
+ $("div[data-check='true']").css('background','red');
+  
 isbonus=false;
 return isbonus;
 	}
@@ -826,7 +827,7 @@ return isbonus;
 	 
  }
  function power(){
- if(puntos>1000 & vidas<2){
+ if(puntos>1000){
  // $('#stageprogress').addClass('pulse');
  $('#pista').html('<div class="pulse">Pista</div>');
  puntos-=1000
