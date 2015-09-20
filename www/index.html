@@ -351,19 +351,19 @@ x.ready(inicializarEventos
   $('#timerOFF').click(function(){keepgoing=false});
 */
 sound=false;
- levelstage=1;
+ levelstage=0;
  maxstage=6; 
  maxrows=9;
  clevel=1; 
  rows=3;
  //playerlevel=clevel;
- playerlevel=0;
+ playerlevel=3;
  gtime=6000;//tiempo del juego
  htime=2000;//tiempo de hide
  keepgoing=true;
  puntuacion=0;
  puntos=10;
- vidas=30;
+ vidas=3;
   a=false;
  n=0;//grados en class ->progress
 dificultad='normal';
@@ -400,7 +400,9 @@ default: maxrows=9;
  
 
    $('#btnstart').click(function(){start()});
-	  $('#btnexpresstart').click(function(){levelstage=1;puntos*=10;
+	  $('#btnexpresstart').click(function(){levelstage=1;
+		expres=true;
+		puntos=100;
  maxstage=1; 
   start()});
 	
@@ -607,6 +609,7 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
   x.bind("touchend", function(){ my_media.release();
  playAudio("/android_asset/www/click.mp3");
 $(this).append('<div class="puntos">'+puntos+'</div>');
+ 
  target--; truetarget++;  $('#target').html('<div><span id="ctarget">'+truetarget+'<span>/'+x.size()+' <br>Objetivos</div>');  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=puntos;  $('#puntuacion').text(puntuacion);
  if( x.size()==truetarget ){
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
@@ -639,7 +642,8 @@ y.bind("touchstart",
  function(){ 
  //rows--;
  //levelstage=rows;
-  puntos=1;
+ if(!express){ puntos=1;alert('a');}
+ 
  $('#vidas').text(vidas);
  levelstage=0;
   my_media.release();playAudio("/android_asset/www/leveldown.mp3");
@@ -662,7 +666,7 @@ setTimeout( function(){restart(levelstage)} , 500);
  
  function checkable(e){
 
- 
+
  
  console.log(colorarray);
   var totalarray=new Array();
@@ -755,6 +759,8 @@ console.log(bg);
 				$('#timerbar').attr('data-bar-color',pickedcolor)
 				 ///buscar casillas del color elegido que sean falsas
 				 //contrastamos el color del timerbar
+				 bonus(); 
+				  
 				 if($('#timerbar').attr('data-bar-color')!=pickedcolor){ 
 				  alert('wtf');
 				
@@ -805,9 +811,32 @@ function doscore(){
  $("#myrows").css('width',rows*10+'%');
  window.location="storage.html";
  ////////////////////////
-} 
- 
- 
+}  
+ function bonus(){
+
+if(vidas==1){ 
+if(playerlevel %7== 0){ 
+$("div[data-check='true']").attr('data-check','false');
+ $("div[data-check='true']").css('background','red');}
+
+	}
+	 
+	 
+ }
+ function power(){
+ if(puntos<10000 & vidas<2){
+ // $('#stageprogress').addClass('pulse');
+ $('#vidas').after('<div class="pulse">Pista</div>');
+ puntos-=1000
+ $('#vidas').click(function(){$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
+     
+    opacity: 0.1,
+    
+  }, 2500 );})
+	}
+	
+	
+ }
  
 function dotable(e)
 {
@@ -909,6 +938,7 @@ $("#main").html('');
 	  $('#seguir').click(function(){keepgoing=true;})
 		$('#parar').click(function(){keepgoing=false;})
 			*/
+			power()
 			
 }
 
