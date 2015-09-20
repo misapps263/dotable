@@ -816,7 +816,7 @@ function doscore(){
  function bonus(){
 
   
-if(playerlevel % maxstage+1 == 0){ 
+if(playerlevel % maxstage == 0){ 
 $("div[data-check='true']").attr('data-check','false');
  $("div[data-check='true']").css('background','red');
   
@@ -831,7 +831,7 @@ return isbonus;
  // $('#stageprogress').addClass('pulse');
  $('#pista').html('<div class="pulse">Pista</div>');
  puntos-=1000
- $('#vidas').click(function(){$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
+ $('#pista').click(function(){$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
      
     opacity: 0.1,
     
@@ -981,7 +981,7 @@ $("#main").html('');
   <div id="stageprogress"  class="progress-radial progress-0"  >  
   <div  class="overlay" > 
 	<div id="vidas"></div><div><span id="puntuacion">-</span>Puntos</div>
-	<div id="pista"></div>
+	<div id="pista">-</div>
 	</div>
 	</div>
 	
