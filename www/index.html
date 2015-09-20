@@ -385,8 +385,9 @@ dificultad=localStorage.getItem('dificultad') || 'normal';
 
 switch(dificultad){
 
-case "baby":  maxrows=5; colorarray=colorarray.splice(5,10); break;
+case "baby":  maxrows=5; colorarray=colorarray.splice(0,4); break;
 case 'easy':  maxrows=5;break;
+case 'normal':  maxrows=9;break;
 case 'hard':  maxrows=9; colorarray=colorarray.concat(colorarray2); break;
 case 'extreme':  maxrows=15; colorarray=colorarray.concat(colorarray2); break;
 default: maxrows=9;
@@ -708,6 +709,7 @@ console.log(bg);
 				  //var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
 					
 					var pickedcolor=tablearray[Math.floor((Math.random() * clevel) + 0)];
+					delete tablearray[];
 					/*
 				  var colorusedarray=new Array();
   				 $('td>div').each(function(){
