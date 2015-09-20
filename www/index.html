@@ -354,7 +354,7 @@ sound=false;
  levelstage=1;
  maxstage=6; 
  maxrows=9;
- clevel=1; 
+ clevel=17; 
  rows=3;
  //playerlevel=clevel;
  playerlevel=0;
@@ -674,6 +674,7 @@ for(cl=0;cl<=clevel-1;cl++){
 bg=colorarray[cl];
 console.log(bg);
         /////////////////////
+				
          for(i=0;i<=e*e-1;i++){totalarray[i]=i+1};
          //for(i=0;i<=e-1;i++){var misarray=new Array();misarray[i]=i+1;misarray.splice(i,e);alert(misarray)};
          //alert(totalarray);
@@ -690,27 +691,34 @@ console.log(bg);
 							
         		   $("div[id^='row"+i+(r-1)+"']").css('background',bg);
 							  $("div[id^='row"+i+(r-1)+"']").css('height',$('td').height());
-							  $('#array').append('('+bg+i+(r-1)+')');
-        		  tablearray[i]=bg;
-         }
+							  //$('#array').append('('+bg+i+(r-1)+')');
+        		 // tablearray[i]=bg;
+						
+         } 
+				 tablearray.push(bg);
 				 target=e;
 				 //$("#menu").html('<div style="background:'+tablearray +';">'+tablearray +'</div>');
          ///////////////////////-
 		}//fin for clevel	
 				 
-				 if(clevel>tablearray.length){
+				 if(clevel>=colorarray.length){
 				 //   alert('posible fallo ->clevel'+clevel+'rows:'+rows);
 				// rows=clevel;
 				 //restart();
-				 clevel=tablearray.length;
+				 clevel=colorarray.length-1;
 				 }
 				 
 				 ///linea original
 				  //var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
+				/*
+					//var pickedcolor=tablearray[Math.floor((Math.random() * clevel) + 0)];
+					var picki=Math.floor((Math.random() * clevel) + Math.floor((Math.random() * clevel ) + 1));
+					var pickedcolor=tablearray[picki];
 					
-					var pickedcolor=tablearray[Math.floor((Math.random() * clevel) + 0)];
+					alert('clevel='+clevel+'/coloarray='+colorarray.length+'/indice ramdom='+picki+'/pickedcolor='+pickedcolor+'/tablearray='+tablearray[picki]+'/'+tablearray);
+					tablearray.length=0;
 					delete tablearray;
-					/*
+					*/ 
 				  var colorusedarray=new Array();
   				 $('td>div').each(function(){
 					 if($(this).attr('data-color')!=''){
@@ -726,11 +734,11 @@ console.log(bg);
 					//colorusedarray = $.unique( colorusedarray );
 				//	alert(colorusedarray)
 					 var pickedcolor=colorusedarray[Math.floor((Math.random() * colorusedarray.length) + 0)];
-				 */ 
+				 
 				 
 				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
-				// colorusedarray.length=0;
-				 //delete  colorusedarray[];
+				  colorusedarray.length=0;
+				  delete  colorusedarray;
 				// alert(pickedcolor);
 				 /*
 				  if($("div[data-color='"+$('#timerbar').attr('data-bar-color')+"']").attr('data-check')!='true'){
