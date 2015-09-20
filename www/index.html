@@ -354,12 +354,12 @@ sound=false;
  levelstage=1;
  maxstage=6; 
  maxrows=9;
- clevel=15; 
+ clevel=1; 
  rows=3;
  //playerlevel=clevel;
  playerlevel=0;
  gtime=6000;//tiempo del juego
- htime=22000;//tiempo de hide
+ htime=2000;//tiempo de hide
  keepgoing=true;
  puntuacion=0;
  puntos=10;
@@ -509,7 +509,7 @@ var i=0;
 	 // alert('level '+levelstage+' de '+maxstage);
 	 my_media.release(); playAudio("/android_asset/www/levelup.mp3");
 	  clevel++;
-	 $('#colors').prepend('<div style="background:'+colorarray[clevel-1]+';" class="bigEntrance"> &nbsp </div>');
+	 //$('#colors').prepend('<div style="background:'+colorarray[clevel-1]+';" class="bigEntrance"> &nbsp </div>');
 	  
 	
 	 playerlevel++;
@@ -693,7 +693,7 @@ console.log(bg);
         		  tablearray[i]=bg;
          }
 				 target=e;
-				 $("#menu").html('<div style="background:'+tablearray +';">'+tablearray +'</div>');
+				 //$("#menu").html('<div style="background:'+tablearray +';">'+tablearray +'</div>');
          ///////////////////////-
 		}//fin for clevel	
 				 
@@ -746,7 +746,7 @@ console.log(bg);
 				 ///buscar casillas del color elegido que sean falsas
 				 //contrastamos el color del timerbar
 				 if($('#timerbar').attr('data-bar-color')!=pickedcolor){ 
-				 //alert('wtf');
+				  alert('wtf');
 				
 				
 				 if($("div[data-color='"+pickedcolor+"']").size()>0){
