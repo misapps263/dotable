@@ -354,7 +354,7 @@ sound=false;
  levelstage=1;
  maxstage=6; 
  maxrows=9;
- clevel=1; 
+ clevel=15; 
  rows=3;
  //playerlevel=clevel;
  playerlevel=0;
@@ -693,19 +693,22 @@ console.log(bg);
         		  tablearray[i]=bg;
          }
 				 target=e;
-				//$("#menu").append('<div style="background:'+tablearray +';">'+tablearray +'</div>');
+				 $("#menu").html('<div style="background:'+tablearray +';">'+tablearray +'</div>');
          ///////////////////////-
 		}//fin for clevel	
 				 
-				 if(clevel>rows){
+				 if(clevel>tablearray.length){
 				 //   alert('posible fallo ->clevel'+clevel+'rows:'+rows);
 				// rows=clevel;
 				 //restart();
+				 clevel=tablearray.length;
 				 }
 				 
 				 ///linea original
 				  //var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
-					 
+					
+					var pickedcolor=tablearray[Math.floor((Math.random() * clevel) + 0)];
+					/*
 				  var colorusedarray=new Array();
   				 $('td>div').each(function(){
 					 if($(this).attr('data-color')!=''){
@@ -717,13 +720,14 @@ console.log(bg);
 					
 					 }
 					 });
+					 
 					//colorusedarray = $.unique( colorusedarray );
 				//	alert(colorusedarray)
 					 var pickedcolor=colorusedarray[Math.floor((Math.random() * colorusedarray.length) + 0)];
-				 
+				 */ 
 				 
 				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
-				 colorusedarray.length=0;
+				// colorusedarray.length=0;
 				 //delete  colorusedarray[];
 				// alert(pickedcolor);
 				 /*
