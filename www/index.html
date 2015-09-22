@@ -367,8 +367,9 @@ sound=false;
   a=false;
  n=0;//grados en class ->progress
 dificultad='normal';
-isbonus=true;
-if(isbonus==false){setTimeout(function(){isbonus=true;return isbonus},30000)}
+isbonus=false;
+expres=false;
+if(isbonus==false){setTimeout(function(){isbonus=true;return isbonus},Math.floor((Math.random() * 240000) + 120000))}
 //if(clevel>rows){rows=clevel;}
 //if(rows<2){rows=2;}
 
@@ -405,6 +406,7 @@ default: maxrows=9;
 		expres=true;
 		puntos=100;
  maxstage=1; 
+ 
   start()});
 	
 	//start();
@@ -512,6 +514,8 @@ var i=0;
 	 if(levelstage==maxstage){
 	 // alert('level '+levelstage+' de '+maxstage);
 	 my_media.release(); playAudio("/android_asset/www/levelup.mp3");
+	 if(expres==false){puntos=10}
+	 
 	  clevel++;
 	 //$('#colors').prepend('<div style="background:'+colorarray[clevel-1]+';" class="bigEntrance"> &nbsp </div>');
 	  
@@ -572,7 +576,7 @@ $('#level').text('0');
 	 // x.bind("touchleave",function(){$('#menu').append('leave')});
  x.bind('click',  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');
  
- $(this).remove(); puntuacion+=10; }
+ $(this).remove(); puntuacion+=puntos; }
 );
 
 /*
@@ -637,13 +641,13 @@ $(this).append('<div class="puntos">'+puntos+'</div>');
  ///////////////////////////////
  var y;
  y=$("div[data-check='false']" );
- 
+  y.click(function(){if( expres==false){ puntos=1;}})
 y.bind("touchstart",
 
  function(){ 
  //rows--;
  //levelstage=rows;
- //if(!express){ puntos=1;alert('a');}
+ // if( express==true){ puntos=1;alert('a');}
  
  $('#vidas').text(vidas);
  levelstage=0;
@@ -763,7 +767,7 @@ console.log(bg);
 				if(isbonus==true){ bonus()}; 
 				  
 				 if($('#timerbar').attr('data-bar-color')!=pickedcolor){ 
-				  alert('wtf');
+				 // alert('wtf');
 				
 				
 				 if($("div[data-color='"+pickedcolor+"']").size()>0){
@@ -792,7 +796,7 @@ console.log(bg);
 				 
 				 
 				 if($("div[data-color='"+pickedcolor+"']").size()!=$("div[data-check='true']").size()){ 
-				 alert('algo pasa : casillas del color elegido'+$("div[data-color='"+pickedcolor+"']").size()+'/ casillas true :'+$("div[data-check='true']").size());
+				// alert('algo pasa : casillas del color elegido'+$("div[data-color='"+pickedcolor+"']").size()+'/ casillas true :'+$("div[data-check='true']").size());
 				 ///dar valor true a todas las casillas del color elegido
 				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
 				 }
@@ -816,19 +820,18 @@ function doscore(){
  function bonus(){
 
   
-if(playerlevel % maxstage == 0){ 
+ 
 $("div[data-check='true']").attr('data-check','false');
  $("div[data-check='true']").css('background','red');
-  
+   
 isbonus=false;
 return isbonus;
-	}
 	 
-	 
+	  	 
  }
  function power(){
  if(puntos>1000){
- // $('#stageprogress').addClass('pulse');
+ //$('#stageprogress').addClass('pulse');
  $('#pista').html('<div class="pulse">Pista</div>');
  puntos-=1000
  $('#pista').click(function(){$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
