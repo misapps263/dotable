@@ -641,14 +641,14 @@ $(this).append('<div class="puntos">'+puntos+'</div>');
  ///////////////////////////////
  var y;
  y=$("div[data-check='false']" );
-  y.click(function(){if( expres==false){ puntos=1;}})
+   
 y.bind("touchstart",
 
  function(){ 
  //rows--;
  //levelstage=rows;
  // if( express==true){ puntos=1;alert('a');}
- 
+ if( expres==false){ puntos=1;} 
  $('#vidas').text(vidas);
  levelstage=0;
   my_media.release();playAudio("/android_asset/www/leveldown.mp3");
