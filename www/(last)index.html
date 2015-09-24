@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Untitled</title>
+<title>misapps</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
  
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
@@ -351,7 +351,7 @@ x.ready(inicializarEventos
   $('#timerOFF').click(function(){keepgoing=false});
 */
 sound=false;
- levelstage=1;
+ levelstage=0;
  maxstage=6; 
  maxrows=9;
  clevel=1; 
@@ -366,12 +366,15 @@ sound=false;
  vidas=3;
   a=false;
  n=0;//grados en class ->progress
-
-
+dificultad='normal';
+isbonus=false;
+expres=false;
+if(isbonus==false){setTimeout(function(){isbonus=true;return isbonus},Math.floor((Math.random() * 24000) + 12000))}
 //if(clevel>rows){rows=clevel;}
 //if(rows<2){rows=2;}
 
- colorarray=['#BE6FCF','#3497DB','#31D1B0','#F13c99','red','green','purple','tomato','grey','orange','pink','silver','brown','yellow','black','DarkKhaki','Indigo','SlateBlue','SpringGreen','SeaGreen','Aqua','Maroon','NavajoWhite','YellowGreen'];
+ colorarray=['#BE6FCF','#3497DB','#31D1B0','#F13c99','red','green','purple','DarkGoldenrod','grey','orange','pink','silver','brown','yellow','black'];
+ colorarray2=['DarkKhaki','Indigo','SlateBlue','SpringGreen','SeaGreen','Aqua','Maroon','NavajoWhite','YellowGreen'];
 function exist(variable) {
     return (typeof(window[variable]) != "undefined")? true: false;
 }
@@ -380,7 +383,18 @@ function inicializarEventos()
 ///////setting
 ////theme
 theme=localStorage.getItem('theme');
+dificultad=localStorage.getItem('dificultad') || 'normal';
 
+switch(dificultad){
+
+case "baby":  maxrows=5; colorarray=colorarray.splice(0,4); break;
+case 'easy':  maxrows=5;break;
+case 'normal':  maxrows=9;break;
+case 'hard':  maxrows=9; colorarray=colorarray.concat(colorarray2); break;
+case 'extreme':  maxrows=15; colorarray=colorarray.concat(colorarray2); break;
+default: maxrows=9;
+}
+//alert('dificultad '+dificultad +'rows'+maxrows);
   if(theme=='light'){  $('body,table').removeClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b');}
  
  else{$('body,table').removeClass('ui-mobile-viewport ui-overlay-b');$('body,table').addClass('ui-mobile-viewport ui-overlay-a'); }
@@ -389,7 +403,10 @@ theme=localStorage.getItem('theme');
 
    $('#btnstart').click(function(){start()});
 	  $('#btnexpresstart').click(function(){levelstage=1;
+		expres=true;
+		puntos=100;
  maxstage=1; 
+ 
   start()});
 	
 	//start();
@@ -497,8 +514,10 @@ var i=0;
 	 if(levelstage==maxstage){
 	 // alert('level '+levelstage+' de '+maxstage);
 	 my_media.release(); playAudio("/android_asset/www/levelup.mp3");
+	 if(expres==false){puntos=10}
+	 
 	  clevel++;
-	 $('#colors').prepend('<div style="background:'+colorarray[clevel-1]+';" class="bigEntrance"> &nbsp </div>');
+	 //$('#colors').prepend('<div style="background:'+colorarray[clevel-1]+';" class="bigEntrance"> &nbsp </div>');
 	  
 	
 	 playerlevel++;
@@ -557,7 +576,7 @@ $('#level').text('0');
 	 // x.bind("touchleave",function(){$('#menu').append('leave')});
  x.bind('click',  function(){ target--; truetarget++;  $('#td'+$(this).attr('id')).css('background','#d0d0d0');
  
- $(this).remove(); puntuacion+=10; }
+ $(this).remove(); puntuacion+=puntos; }
 );
 
 /*
@@ -595,13 +614,15 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
   x.bind("touchend", function(){ my_media.release();
  playAudio("/android_asset/www/click.mp3");
 $(this).append('<div class="puntos">'+puntos+'</div>');
+ 
  target--; truetarget++;  $('#target').html('<div><span id="ctarget">'+truetarget+'<span>/'+x.size()+' <br>Objetivos</div>');  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=puntos;  $('#puntuacion').text(puntuacion);
  if( x.size()==truetarget ){
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
 }; //fin if x.size
  
  if(target<=0){rows++;$("#main").html('');
- puntos=10;
+ //puntos=10;
+ if( expres==false){ puntos=10;}else{puntos=100;}
  n+=15;
  if(n>90){n=0;$( "#stageprogress" ).removeClass() }
  $( "#stageprogress" ).addClass('progress-radial') ;
@@ -621,13 +642,14 @@ $(this).append('<div class="puntos">'+puntos+'</div>');
  ///////////////////////////////
  var y;
  y=$("div[data-check='false']" );
- 
+   
 y.bind("touchstart",
 
  function(){ 
  //rows--;
  //levelstage=rows;
-  puntos=1;
+ // if( express==true){ puntos=1;alert('a');}
+ if( expres==false){ puntos=1;} 
  $('#vidas').text(vidas);
  levelstage=0;
   my_media.release();playAudio("/android_asset/www/leveldown.mp3");
@@ -650,7 +672,7 @@ setTimeout( function(){restart(levelstage)} , 500);
  
  function checkable(e){
 
- 
+
  
  console.log(colorarray);
   var totalarray=new Array();
@@ -662,6 +684,7 @@ for(cl=0;cl<=clevel-1;cl++){
 bg=colorarray[cl];
 console.log(bg);
         /////////////////////
+				
          for(i=0;i<=e*e-1;i++){totalarray[i]=i+1};
          //for(i=0;i<=e-1;i++){var misarray=new Array();misarray[i]=i+1;misarray.splice(i,e);alert(misarray)};
          //alert(totalarray);
@@ -678,25 +701,55 @@ console.log(bg);
 							
         		   $("div[id^='row"+i+(r-1)+"']").css('background',bg);
 							  $("div[id^='row"+i+(r-1)+"']").css('height',$('td').height());
-							  $('#array').append('('+bg+i+(r-1)+')');
-        		  tablearray[i]=bg;
-         }
+							  //$('#array').append('('+bg+i+(r-1)+')');
+        		 // tablearray[i]=bg;
+						
+         } 
+				 tablearray.push(bg);
 				 target=e;
-				//$("#menu").append('<div style="background:'+tablearray +';">'+tablearray +'</div>');
+				 //$("#menu").html('<div style="background:'+tablearray +';">'+tablearray +'</div>');
          ///////////////////////-
 		}//fin for clevel	
 				 
-				 if(clevel>rows){
+				 if(clevel>=colorarray.length){
 				 //   alert('posible fallo ->clevel'+clevel+'rows:'+rows);
 				// rows=clevel;
 				 //restart();
+				 clevel=colorarray.length-1;
 				 }
-				  var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
- 				 
-				
+				 
+				 ///linea original
+				  //var pickedcolor=colorarray[Math.floor((Math.random() * clevel) + 0)];
+				/*
+					//var pickedcolor=tablearray[Math.floor((Math.random() * clevel) + 0)];
+					var picki=Math.floor((Math.random() * clevel) + Math.floor((Math.random() * clevel ) + 1));
+					var pickedcolor=tablearray[picki];
+					
+					alert('clevel='+clevel+'/coloarray='+colorarray.length+'/indice ramdom='+picki+'/pickedcolor='+pickedcolor+'/tablearray='+tablearray[picki]+'/'+tablearray);
+					tablearray.length=0;
+					delete tablearray;
+					*/ 
+				  var colorusedarray=new Array();
+  				 $('td>div').each(function(){
+					 if($(this).attr('data-color')!=''){
+					
+             
+							colorusedarray.push($(this).attr('data-color')); 
+                  
+					
+					
+					 }
+					 });
+					 
+					//colorusedarray = $.unique( colorusedarray );
+				//	alert(colorusedarray)
+					 var pickedcolor=colorusedarray[Math.floor((Math.random() * colorusedarray.length) + 0)];
+				 
 				 
 				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
-				 
+				  colorusedarray.length=0;
+				  delete  colorusedarray;
+				// alert(pickedcolor);
 				 /*
 				  if($("div[data-color='"+$('#timerbar').attr('data-bar-color')+"']").attr('data-check')!='true'){
 					//$("div[data-color='"+$('#timerbar').attr('data-bar-color')+"']").attr('data-check')='true';
@@ -712,8 +765,10 @@ console.log(bg);
 				$('#timerbar').attr('data-bar-color',pickedcolor)
 				 ///buscar casillas del color elegido que sean falsas
 				 //contrastamos el color del timerbar
+				if(isbonus==true){ bonus()}; 
+				  
 				 if($('#timerbar').attr('data-bar-color')!=pickedcolor){ 
-				 //alert('wtf');
+				 // alert('wtf');
 				
 				
 				 if($("div[data-color='"+pickedcolor+"']").size()>0){
@@ -742,7 +797,7 @@ console.log(bg);
 				 
 				 
 				 if($("div[data-color='"+pickedcolor+"']").size()!=$("div[data-check='true']").size()){ 
-				 alert('algo pasa : casillas del color elegido'+$("div[data-color='"+pickedcolor+"']").size()+'/ casillas true :'+$("div[data-check='true']").size());
+				// alert('algo pasa : casillas del color elegido'+$("div[data-color='"+pickedcolor+"']").size()+'/ casillas true :'+$("div[data-check='true']").size());
 				 ///dar valor true a todas las casillas del color elegido
 				 $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
 				 }
@@ -762,9 +817,33 @@ function doscore(){
  $("#myrows").css('width',rows*10+'%');
  window.location="storage.html";
  ////////////////////////
-} 
+}  
+ function bonus(){
+
+  
  
- 
+$("div[data-check='true']").attr('data-check','false');
+ $("div[data-check='true']").css('background','red');
+   
+isbonus=false;
+return isbonus;
+	 
+	  	 
+ }
+ function power(){
+ if(puntos>1000){
+ //$('#stageprogress').addClass('pulse');
+ $('#pista').html('<div class="pulse">Pista</div>');
+ puntos-=1000
+ $('#pista').click(function(){$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
+     
+    opacity: 0.1,
+    
+  }, 2500 );})
+	}
+	
+	
+ }
  
 function dotable(e)
 {
@@ -866,6 +945,7 @@ $("#main").html('');
 	  $('#seguir').click(function(){keepgoing=true;})
 		$('#parar').click(function(){keepgoing=false;})
 			*/
+			power()
 			
 }
 
@@ -905,6 +985,7 @@ $("#main").html('');
   <div id="stageprogress"  class="progress-radial progress-0"  >  
   <div  class="overlay" > 
 	<div id="vidas"></div><div><span id="puntuacion">-</span>Puntos</div>
+	<div id="pista">-</div>
 	</div>
 	</div>
 	
@@ -989,7 +1070,7 @@ $("#main").html('');
  <div id="parar">stop</div>
 <div id="seguir">seguuir</div> 
 -->
- Aqui lo anuncios<div>
+ Aqui los anuncios<div>
 	 
  
 
