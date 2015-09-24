@@ -369,7 +369,7 @@ sound=false;
 dificultad='normal';
 isbonus=false;
 expres=false;
-if(isbonus==false){setTimeout(function(){isbonus=true;return isbonus},Math.floor((Math.random() * 240000) + 120000))}
+if(isbonus==false){setTimeout(function(){isbonus=true;return isbonus},Math.floor((Math.random() * 24000) + 12000))}
 //if(clevel>rows){rows=clevel;}
 //if(rows<2){rows=2;}
 
@@ -621,7 +621,8 @@ $(this).append('<div class="puntos">'+puntos+'</div>');
 }; //fin if x.size
  
  if(target<=0){rows++;$("#main").html('');
- puntos=10;
+ //puntos=10;
+ if( expres==false){ puntos=10;}else{puntos=100;}
  n+=15;
  if(n>90){n=0;$( "#stageprogress" ).removeClass() }
  $( "#stageprogress" ).addClass('progress-radial') ;
