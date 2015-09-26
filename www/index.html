@@ -2,23 +2,34 @@
 <head>
 <title>misapps</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
- 		<!--
-<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-<script src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
- 
+ 		<!---->
+
+<!--
+
 
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/ui/1.8.21/jjjquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script><script src="js/jquery.mobile-1.4.5.min.js"></script>
 -->
 <script src="js/jquery-2.1.4.min.js"></script>
-<script src="js/jquery.mobile.custom.js"></script>
-<link rel="stylesheet" type="text/css" href="css/jquery.mobile.custom.theme.min.css" />
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="fastclick.js" type="application/javascript"></script>
+
+
+
+
+ 
+
+
+
+
+
 <link rel="stylesheet" type="text/css" href="css/animations.css" />
 <style type="text/css">
 <!-- 
 /* Disable certain interactions on touch devices */
-	body { -webkit-touch-callout: none; -webkit-text-size-adjust: none; -webkit-user-select: none; -webkit-highlight: none; -webkit-tap-highlight-color: rgba(0,0,0,0); }
+	body { -webkit-touch-callout: none; -webkit-text-size-adjust: none; -webkit-user-select: none; -webkit-highlight: none; -webkit-tap-highlight-color: rgba(0,0,0,0); background:#eee;}
 #contenedor {
 width: 100%;
 }
@@ -366,7 +377,7 @@ sound=false;
  htime=2000;//tiempo de hide
  keepgoing=true;
  puntuacion=0;
- puntos=10;
+puntos=10;
  vidas=3;
   a=false;
  n=0;//grados en class ->progress
@@ -388,7 +399,7 @@ function inicializarEventos()
 ////theme
 theme=localStorage.getItem('theme');
 dificultad=localStorage.getItem('dificultad') || 'normal';
-
+ 
 switch(dificultad){
 
 case "baby":  maxrows=5; colorarray=colorarray.splice(0,4); break;
@@ -399,11 +410,17 @@ case 'extreme':  maxrows=15; colorarray=colorarray.concat(colorarray2); break;
 default: maxrows=9;
 }
 //alert('dificultad '+dificultad +'rows'+maxrows);
-  if(theme=='light'){  $('body,table').removeClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b');}
+ // if(theme=='light'){  $('body,table').removeClass('ui-mobile-viewport ui-overlay-a');$('body').addClass('ui-mobile-viewport ui-overlay-b');}
  
- else{$('body,table').removeClass('ui-mobile-viewport ui-overlay-b');$('body,table').addClass('ui-mobile-viewport ui-overlay-a'); }
+// else{$('body,table').removeClass('ui-mobile-viewport ui-overlay-b');$('body,table').addClass('ui-mobile-viewport ui-overlay-a'); }
    
+	  
+    
+	 
+  if(theme=='dark'){  $('body').css('background','#111'); $('table').css('background','#333');$('body').css('color','#fff');$('body').css('text-shadow','0 1px 0 #111');}
  
+  //else{$('body,table').removeClass('ui-mobile-viewport ui-overlay-b');$('body,table').addClass('ui-mobile-viewport ui-overlay-a'); }
+   
 
    $('#btnstart').click(function(){start()});
 	  $('#btnexpresstart').click(function(){levelstage=1;
@@ -415,6 +432,8 @@ default: maxrows=9;
 	
 	//start();
 	  
+		$('#settings').click(function(){window.location="settings.html"})
+		
 }
 
 function start(){
@@ -834,17 +853,17 @@ return isbonus;
 	 
 	  	 
  }
- function power(){
- if(puntos>1000){
+ function power(e){
+ 
  //$('#stageprogress').addClass('pulse');
- $('#pista').html('<div class="pulse">Pista</div>');
- puntos-=1000
- $('#pista').click(function(){$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
+ $('#pista').html('<div class="pulse">MOSTRAR</div>');
+
+ $('#pista').click(function(){puntos-=1000;$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
      
     opacity: 0.1,
     
   }, 2500 );})
-	}
+	
 	
 	
  }
@@ -882,7 +901,7 @@ $("#main").html('');
 		//ramdom entre 1 y el valor "e"
 		
 		
-		$('#col'+i).append('<td id="tdrow'+i+c+'" ><div id="row'+i+c+'" data-check="false" data-color="" class="dot">  </div></td>');
+		$('#col'+i).append('<td id="tdrow'+i+c+'" ><div id="row'+i+c+'" data-check="false" data-color="" class="dot"> &nbsp </div></td>');
 		}
 	}
 	$('td').css('height',$('td').height());
@@ -949,7 +968,9 @@ $("#main").html('');
 	  $('#seguir').click(function(){keepgoing=true;})
 		$('#parar').click(function(){keepgoing=false;})
 			*/
-			power()
+			 
+			 if(puntuacion>1000){power(1000) }
+			
 			
 }
 
@@ -960,7 +981,7 @@ $("#main").html('');
 </head>
 
 <body class="" id="body">
-<div id="contenedor">
+<div id="contenedor"   >
   
  
   <div id="menu" style="	visibility: hidden;">
@@ -1033,11 +1054,11 @@ $("#main").html('');
 			</div>
 			 
 			 
-			<a href="settings.html" style=" ">
-			<div class="container  button " style="background:#78C4D4;">
+			 
+			<div class="container  button " style="background:#78C4D4;" id="settings">
 			<div class="flotante"> &nbsp </div>
 			<div class=" content"> Configuración  </div>
-			</div></a>
+			</div> 
 			<center>
 			</table>
 			<div class="ssstage" >
@@ -1074,7 +1095,7 @@ $("#main").html('');
  <div id="parar">stop</div>
 <div id="seguir">seguuir</div> 
 -->
- Aqui los anuncios<div>
+<div>
 	 
  
 
