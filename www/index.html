@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>misapps</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
  		<!---->
 
@@ -853,12 +854,12 @@ return isbonus;
 	 
 	  	 
  }
- function power(e){
+ function power(){
  
  //$('#stageprogress').addClass('pulse');
  $('#pista').html('<div class="pulse">MOSTRAR</div>');
 
- $('#pista').click(function(){puntos-=1000;$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
+ $('#pista').click(function(){puntuacion-=1000;$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
      
     opacity: 0.1,
     
@@ -969,7 +970,7 @@ $("#main").html('');
 		$('#parar').click(function(){keepgoing=false;})
 			*/
 			 
-			 if(puntuacion>1000){power(1000) }
+			 if(puntuacion>1000){power() }
 			
 			
 }
