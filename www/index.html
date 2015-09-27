@@ -385,12 +385,14 @@ puntos=10;
 dificultad='normal';
 isbonus=false;
 expres=false;
-if(isbonus==false){setTimeout(function(){isbonus=true;return isbonus},Math.floor((Math.random() * 24000) + 12000))}
+if(isbonus==false){setTimeout(function(){isbonus=true;return isbonus},Math.floor((Math.random() * 120000) + 60000))}
 //if(clevel>rows){rows=clevel;}
 //if(rows<2){rows=2;}
 
- colorarray=['#BE6FCF','#3497DB','#31D1B0','#F13c99','red','green','purple','DarkGoldenrod','grey','orange','pink','silver','brown','yellow','black'];
- colorarray2=['DarkKhaki','Indigo','SlateBlue','SpringGreen','SeaGreen','Aqua','Maroon','NavajoWhite','YellowGreen'];
+ colorarray=['#BE6FCF','#3497DB','#31D1B0','#F13c99','red','green','purple','DarkGoldenrod','grey','orange','pink','#04B404','brown','yellow','black'];
+ 
+ colorarray2=[ 'DarkKhaki','Indigo','SlateBlue','SpringGreen','#FF00BF','Aqua','Maroon','#00FF00','YellowGreen'];
+
 function exist(variable) {
     return (typeof(window[variable]) != "undefined")? true: false;
 }
