@@ -13,7 +13,7 @@
 <script src="http://code.jquery.com/ui/1.8.21/jjjquery-ui.min.js"></script>
 <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script><script src="js/jquery.mobile-1.4.5.min.js"></script>
 -->
-<script src="js/jquery-2.1.4.min.js"></script>
+<script src="js/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
 <script src="fastclick.js" type="application/javascript"></script>
 
@@ -640,7 +640,7 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
   x.bind("touchend", function(){ my_media.release();
  playAudio("/android_asset/www/click.mp3");
 $(this).append('<div class="puntos">'+puntos+'</div>');
- 
+  n+=10;
  target--; truetarget++;  $('#target').html('<div><span id="ctarget">'+truetarget+'<span>/'+x.size()+' <br>Objetivos</div>');  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=puntos;  $('#puntuacion').text(puntuacion);
  if( x.size()==truetarget ){
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
@@ -649,7 +649,7 @@ $(this).append('<div class="puntos">'+puntos+'</div>');
  if(target<=0){rows++;$("#main").html('');
  //puntos=10;
  if( expres==false){ puntos=10;}else{puntos=100;}
- n+=15;
+
  if(n>90){n=0;$( "#stageprogress" ).removeClass() }
  $( "#stageprogress" ).addClass('progress-radial') ;
  $( "#stageprogress" ).addClass('progress-'+n) ;
@@ -1017,7 +1017,7 @@ $("#main").html('');
   <div id="stageprogress"  class="progress-radial progress-0"  >  
   <div  class="overlay" > 
 	<div id="vidas"></div><div><span id="puntuacion">-</span>Puntos</div>
-	<div id="pista">-</div>
+	<div id="pista"> &nbsp </div>
 	</div>
 	</div>
 	
