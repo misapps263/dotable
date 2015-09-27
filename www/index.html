@@ -391,7 +391,7 @@ if(isbonus==false){setTimeout(function(){isbonus=true;return isbonus},Math.floor
 
  colorarray=['#BE6FCF','#3497DB','#31D1B0','#F13c99','red','green','purple','DarkGoldenrod','grey','orange','pink','#04B404','brown','yellow','black'];
  
- colorarray2=[ 'DarkKhaki','Indigo','SlateBlue','SpringGreen','#FF00BF','Aqua','Maroon','#00FF00','YellowGreen'];
+ colorarray2=[ 'DarkKhaki','Indigo','SlateBlue','SpringGreen','#FF00BF','Aqua','#00FF00','YellowGreen'];
 
 function exist(variable) {
     return (typeof(window[variable]) != "undefined")? true: false;
@@ -857,18 +857,22 @@ return isbonus;
 	  	 
  }
  function power(){
- 
+ Vpower=true;
  //$('#stageprogress').addClass('pulse');
  $('#pista').html('<div class="pulse">MOSTRAR</div>');
+if(Vpower==true){
 
- $('#pista').click(function(){puntuacion-=1000;$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
-     
-    opacity: 0.1,
-    
-  }, 2500 );})
-	
-	
-	
+      	if(puntuacion>1000){
+             $('#pista').click(function(){$('#pista').html('');puntuacion=puntuacion-1000;Vpower=false;$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
+                 
+                opacity: 0.1,
+                
+              }, 2500 );})
+								  
+								
+      	}
+	}
+
  }
  
 function dotable(e)
@@ -887,7 +891,7 @@ if(e=='score'){
  ////////////////////////
 }
 else{
-
+  if(puntuacion<0){puntuacion=0}
  //comprobamos que no se hagan manos de 2 rows
  if(e<2){e=2}
  if(e<clevel){e=clevel}
