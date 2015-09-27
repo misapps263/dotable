@@ -639,8 +639,9 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
 // x.bind("touchstart",function(){} );
   x.bind("touchend", function(){ my_media.release();
  playAudio("/android_asset/www/click.mp3");
+
 $(this).append('<div class="puntos">'+puntos+'</div>');
-  n+=10;
+  
  target--; truetarget++;  $('#target').html('<div><span id="ctarget">'+truetarget+'<span>/'+x.size()+' <br>Objetivos</div>');  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=puntos;  $('#puntuacion').text(puntuacion);
  if( x.size()==truetarget ){
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
@@ -649,7 +650,7 @@ $(this).append('<div class="puntos">'+puntos+'</div>');
  if(target<=0){rows++;$("#main").html('');
  //puntos=10;
  if( expres==false){ puntos=10;}else{puntos=100;}
-
+n+=15;
  if(n>90){n=0;$( "#stageprogress" ).removeClass() }
  $( "#stageprogress" ).addClass('progress-radial') ;
  $( "#stageprogress" ).addClass('progress-'+n) ;
@@ -857,27 +858,30 @@ return isbonus;
 	  	 
  }
  function power(){
- Vpower=true;
- //$('#stageprogress').addClass('pulse');
- $('#pista').html('<div class="pulse">MOSTRAR</div>');
-if(Vpower==true){
-
-      	if(puntuacion>1000){
-             $('#pista').click(function(){$('#pista').html('');puntuacion=puntuacion-1000;Vpower=false;$("div[data-check='true']").css('background','orange');$("div[data-check='true']").animate({
-                 
-                opacity: 0.1,
-                
-              }, 2500 );})
-								  
-								
+       Vpower=true;
+       //$('#stageprogress').addClass('pulse');
+       $('#pista').html('<div class="pulse">MOSTRAR</div>');
+      if(Vpower==true){
+            
+                  	if(puntuacion>9){
+                               $('#pista').click(function(){
+															 $('#pista').html('');
+															 puntuacion=parseInt($('#puntuacion').text());
+															 puntuacion-=10;
+															 Vpower=false;
+															 $("div[data-check='true']").css('background','orange');
+															 
+															 })
+            								  
+            								
+                  	}
       	}
-	}
 
  }
  
 function dotable(e)
 {
-
+  if(puntuacion<0){puntuacion=0}
 if(e=='score'){
  ////////////////////////
  //restart(rows);
@@ -891,7 +895,7 @@ if(e=='score'){
  ////////////////////////
 }
 else{
-  if(puntuacion<0){puntuacion=0}
+ 
  //comprobamos que no se hagan manos de 2 rows
  if(e<2){e=2}
  if(e<clevel){e=clevel}
@@ -958,7 +962,8 @@ $("#main").html('');
 		//$('#mylevel').removeClass('pulse');
 	 countdown() ;
 	 //alert('e time '+$("div[data-check='true']" ).size());
-	$('#vidas').text(vidas);
+	 if(isbonus==true){$('#vidas').text('bonus');}else{$('#vidas').text(vidas);}
+	
 		  if($("div[data-check='true']" ).size()<=0){/*alert('1up');*/vidas++;$('#vidas').text('Bonus');}
 	 truetarget=0;
 	 $('#target').html('<div><span id="ctarget">'+truetarget+'<span>/'+target+' <br>Objetivos</div>');
@@ -976,7 +981,7 @@ $("#main").html('');
 		$('#parar').click(function(){keepgoing=false;})
 			*/
 			 
-			 if(puntuacion>1000){power() }
+			 if(puntuacion>9){power() }
 			
 			
 }
@@ -1046,7 +1051,7 @@ $("#main").html('');
  
   <div id="contenido">
     <div id="principal">
-		
+		 
 		  <table id="main" >
 			<center id="index">
 			 
