@@ -243,28 +243,6 @@ body {
 	color:#eee;
 
 }
-
-/*///////////*/
-.timerbar {
-     width:100%;
-    background-color: red;
-    -webkit-animation-name: example; /* Chrome, Safari, Opera */
-    -webkit-animation-duration: 6s; /* Chrome, Safari, Opera */
-    animation-name: timerbar;
-    animation-duration: 6s;
-}
-
- 
-
-/* Standard syntax */
-@keyframes timerbar {
- 
-    to {width: 0px;}
-}
-/*///////////*/
-
-
-
 .button{ border-radius:9px;  font-weight:bolder;color:#555;  padding:33px 13px;margin:15px;text-align:center;vertical-align:middle;} 
 a{text-decoration:none;}
 .puntos{color:#fff;float:right;display: inline-block;width: auto;font-size:150%;}
@@ -516,17 +494,11 @@ set=setInterval(function(){
   restart(clevel);
  //setTimeout(function(){alert('empiezo a restart');restart(clevel)},500);
 console.log('timer='+e)},e); 
-//animacion de timerbar
-/*
 $('#timerbar').animate({
     width:0
   }, e,function(){$('#timerbar').css('width','100%');if(rows<=1){t=2;$('#maintimerbar').text(t);rows=clevel;}});
 
-*/
-	/***********animacin timerbar css**************/
-	 $('#timerbar').addClass('timerbar'); if(rows<=1){t=2;$('#maintimerbar').text(t);rows=clevel; }
-	/**************************/
-	
+
 	
 }
 
@@ -909,8 +881,7 @@ return isbonus;
  
 function dotable(e)
 {
-  if(puntuacion<0){puntuacion=0};
-	$('#timerbar').removeClass('timerbar');
+  if(puntuacion<0){puntuacion=0}
 if(e=='score'){
  ////////////////////////
  //restart(rows);
