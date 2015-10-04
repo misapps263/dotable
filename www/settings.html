@@ -67,27 +67,35 @@ function inicializarEventos()
 </script>
 <style type="text/css">
 <!-- 
+body{background:#333;}
 .setting{padding:33px;}
 .button{background:#eee;border-radius:9px;height:33px;border:none;font-weight:bolder;color:#555;display: inline-block;width: auto;line-height: 1.33333;padding:10px 15px;margin:5px;text-align:center;vertical-align:middle;} 
 .on{color:#fff;background:#3388CC;}
-
+#sonido .on{background:rgb(190, 111, 207);!important}
+ #tema .on{background:rgb(52, 151, 219);!important}
+#volver .on,#nivel .on{background:rgb(49, 209, 176);!important}
+#score .on{background:rgb(241, 60, 153);!important}
 -->
 </style>
 </head>
 <body>
 <div data-role="page"  >
-<div data-role="header" data-position="fixed"> 
-	<h4>Configuración</h4> 
+<div data-role="header" data-position="fixed" style="background:purple;color:#fff;"> 
+	<h4>Settings</h4> 
 </div> 
 <div class="setting">
-
-Sonido:<div id="soundON" class="button">ON </div>
- <div id="soundOFF" class="button"> OFF </div> 
+<div id="sonido">
+Sound:<div id="soundON" class="button">ON </div>
+ <div id="soundOFF" class="button"> OFF </div>
+  </div>
 <hr>
-Tema :
+<div id="tema">
+Theme :
 <div id="themeLight" class="button">Light</div><div id="themeDark" class="button"> Dark </div>
+</div>
 <hr>
-Dificultad :
+<div id="nivel">
+Level :
 <div id="dificultad">
 <div id="baby" class="button">Light</div>
 <div id="easy" class="button"> Easy </div>
@@ -95,13 +103,16 @@ Dificultad :
 <div id="hard" class="button"> Hard </div>
 <div id="extreme" class="button"> Extreme </div>
 </div>
+</div>
 <hr>
-Puntuación:
-<div>
-<div id="clear" class="button on">Borrar puntuación</div>
+<div></div>
+<div id="score">
+Score:
 
-<div data-role="footer" data-position="fixed"> 
-	<h4 id="volver"> Volver </h4> 
+<div id="clear" class="button on">Clear score</div>
+</div>
+<div data-role="footer" data-position="fixed" style="background:purple;color:#fff;"> 
+	<h4 id="volver" class=" "> <div class="button on" >Back</div> </h4> 
 </div> 
 </div>
 </div>

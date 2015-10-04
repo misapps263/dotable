@@ -37,7 +37,7 @@
 <style type="text/css">
 <!-- 
 body{margin:auto;text-align:center;}
- input  {font-size:200%;font-weight:bolder;margin:auto;text-align:center;}
+ .ui-input-text  {font-size:150%;font-weight:bolder;margin:auto;text-align:center; border:none; }
 table{margin:auto;text-align:center;width:50%;height:100%;}
 td{background:#F2F2F2;min-width:55px;}
 table {
@@ -66,6 +66,9 @@ td > div{margin:0px;padding:0px;}
 .newscore{color:purple;font-weight:bolder;font-size:200%;}
 .save{width:auto;height:50px;font-size:150%;font-weight:bolder;}
 #getusername{ }
+.button{background:#eee;border-radius:9px;height:33px;border:none;font-weight:bolder;color:#555;display: inline-block;width: auto;line-height: 1.33333;padding:10px 15px;margin:5px;text-align:center;vertical-align:middle;} 
+
+#volver .on{background:rgb(49, 209, 176);!important}
 -->
 </style>
     <script type="text/javascript">
@@ -144,7 +147,7 @@ $(function() {
 			 $('#topuser1').attr('disabled','disabled');
 			//localStorage.setItem('score', '1013');
 			});
-	 $('#rank1').html('<td><input type="text" name="user1" id="topuser1" value="Tu nombre"/> </td><td class="newscore pulse">'+score+'</td>')
+	 $('#rank1').html('<td><input type="text" name="user1" id="topuser1" value="Your name"/> </td><td class="newscore pulse">'+score+'</td>')
 	 
 	 }
 	 else if(score > userscore2 ){
@@ -160,7 +163,7 @@ $(function() {
 			 $('#topuser2').attr('disabled','disabled');
 			//localStorage.setItem('score', '2023');
 			});
-	 $('#rank2').html('<td><input type="text" name="user2" id="topuser2" value="Tu nombre"/> </td><td class="newscore pulse">'+score+'</td>')
+	 $('#rank2').html('<td><input type="text" name="user2" id="topuser2" value="Your name"/> </td><td class="newscore pulse">'+score+'</td>')
 	 
 	 }else if(score > userscore3 ){
 	 $('.save').attr('id','save3');
@@ -175,7 +178,7 @@ $(function() {
 			 $('#topuser3').attr('disabled','disabled');
 			//localStorage.setItem('score', '3033');
 			});
-	 $('#rank3').html('<td><input type="text" name="user3" id="topuser3" value="Tu nombre"/> </td><td class="newscore pulse">'+score+'</td>')
+	 $('#rank3').html('<td><input type="text" name="user3" id="topuser3" value="Your name"/> </td><td class="newscore pulse">'+score+'</td>')
 	 
 	 }else if(score > userscore4 ){
 	 $('.save').attr('id','save4');
@@ -190,7 +193,7 @@ $(function() {
 			 $('#topuser4').attr('disabled','disabled');
 			//localStorage.setItem('score', '4044');
 			});
-	 $('#rank4').html('<td><input type="text" name="user4" id="topuser4" value="Tu nombre"/> </td><td class="newscore pulse">'+score+'</td>')
+	 $('#rank4').html('<td><input type="text" name="user4" id="topuser4" value="Your name"/> </td><td class="newscore pulse">'+score+'</td>')
 	 
 	 }else if(score > userscore5 ){
 	 $('.save').attr('id','save5');
@@ -205,7 +208,7 @@ $(function() {
 			 $('#topuser5').attr('disabled','disabled');
 			//localStorage.setItem('score', '5053');
 			});
-	 $('#rank5').html('<td><input type="text" name="user5" id="topuser5" value="Tu nombre"/> </td><td class="newscore pulse">'+score+'</td>')
+	 $('#rank5').html('<td><input type="text" name="user5" id="topuser5" value="Your name"/> </td><td class="newscore pulse">'+score+'</td>')
 	 
 	 }
 	 
@@ -221,7 +224,15 @@ $(function() {
 <style type="text/css">
 <!-- 
 input{border:none;color:purple;}
-input:disabled{background:transparent;color:#000;!importantfont-size:200%;font-weight:bolder;} 
+input:disabled{color:#000;!important font-size:200%;font-weight:bolder;} 
+.button{background:#eee;border-radius:9px;height:33px;border:none;font-weight:bolder;color:#555;display: inline-block;width: auto;line-height: 1.33333;padding:10px 15px;margin:5px;text-align:center;vertical-align:middle;} 
+.on{color:#fff;background:#3388CC;}
+.ui-state-disabled{opacity:1.0;|important}
+#rank1 input:disabled{color:rgba(190, 111, 207,1);background:rgba(190, 111, 207,0.4);!important}
+#rank2 input:disabled{color:rgb(52, 151, 219);background:rgba(52, 151, 219,0.4);!important}
+#rank3 input:disabled{color:rgb(49, 209, 176);background:rgba(49, 209, 176,0.4);!important}
+#rank4 input:disabled{color:rgb(241, 60, 153);background:rgba(241, 60, 153,0.4);!important}
+#rank5 input:disabled{color:red;background:rgba(125,0,0,0.5);!important}
 -->
 </style>
   </head>
@@ -229,8 +240,8 @@ input:disabled{background:transparent;color:#000;!importantfont-size:200%;font-w
  
   <div data-role="page"    >
 
-	<div data-role="header">
-		<h1>Marcador</h1>
+	<div data-role="header" style="background:purple;color:#fff;">
+		<h1>Score</h1>
 	</div><!-- /header -->
 
 	<div data-role="content">	
@@ -266,12 +277,14 @@ input:disabled{background:transparent;color:#000;!importantfont-size:200%;font-w
             </tr>
 						
       </table>
- 
-			  <button class="save" >Guardar</button> 
+ <div class="button on" >
+			  <div class="save">Save</div> 
+</div>				
  </p>		
 	</div><!-- /content -->
-<div data-role="footer" data-position="fixed"> 
-	<h4 id="volver"> Volver </h4> 
+<div data-role="footer" data-position="fixed" style="background:purple;color:#fff;"> 
+
+	<h4 id="volver" class=" "> <div class="button on" >Back</div> </h4> 
 </div>
 </div><!-- /page -->
 		 
