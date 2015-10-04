@@ -420,6 +420,7 @@ puntos=10;
  n=0;//grados en class ->progress
 dificultad='normal';
 isbonus=false;
+extrabonus=false;
 expres=false;
 if(isbonus==false){setTimeout(function(){isbonus=true;return isbonus},Math.floor((Math.random() * 120000) + 60000))}
 //if(clevel>rows){rows=clevel;}
@@ -495,7 +496,7 @@ function restart(e){
  
 //$('#main').html('comenzar');
   console.log('vidas '+vidas);
-if(vidas<=0){alert('Tienes '+vidas+' vidas asi que te comes la publicidad');
+if(vidas<=0){/*alert('Tienes '+vidas+' vidas asi que te comes la publicidad');*/
  window.location="storage.html";
  }else{
  if(a){clearTimeout(a)}
@@ -684,7 +685,7 @@ levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");
 
 $(this).append('<div class="puntos">'+puntos+'</div>');
   
- target--; truetarget++;  $('#target').html('<div><span id="ctarget">'+truetarget+'<span>/'+x.size()+' <br>Objetivos</div>');  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=puntos;  $('#puntuacion').text(puntuacion);
+ target--; truetarget++;  $('#target').html('<div><span id="ctarget">'+truetarget+'<span>/'+x.size()+' <br>Target</div>');  $('#td'+$(this).attr('id')).css('background','#d0d0d0');$(this).remove();$(this).append('div>puntos</div>'); puntuacion+=puntos;  $('#puntuacion').text(puntuacion);
  if( x.size()==truetarget ){
 /* alert('subes nivel?'+truetarget+' - '+x.size());*/levelstage++; my_media.release();playAudio("/android_asset/www/stageup.mp3");/*alert(x.size()+'-'+truetarget)*/
 }; //fin if x.size
@@ -841,7 +842,8 @@ console.log(bg);
 				
 				
 				 if($("div[data-color='"+pickedcolor+"']").size()>0){
-				 	$('#vidas').text('Bonus');vidas++;
+				 extrabonus=true;
+				 	vidas++;$('#vidas').text('Bonus');
 					// alert('no true')
       				// $("div[data-color='"+pickedcolor+"']").attr('data-check','true');
       				 }
@@ -854,7 +856,8 @@ console.log(bg);
 				 
 				 //si no hay casillas true
 				 if($("div[data-check='true']" ).size()<=0){
-				 	 $('#vidas').text('Bonus');vidas++;
+				  extrabonus=true;
+				 	 vidas++;$('#vidas').text('Bonus');
 					// alert('no true')
 					$("td>div").attr('data-check','true');
 					$("td>div").css('background','orange');
@@ -1006,6 +1009,7 @@ $("#main").html('');
 	 countdown() ;
 	 //alert('e time '+$("div[data-check='true']" ).size());
 	 if(isbonus==true){$('#vidas').text('bonus');}else{$('#vidas').text(vidas);}
+	 if( extrabonus==true){/*alert('1up');*/vidas++;$('#vidas').text('Bonus'); extrabonus=false;}
 	
 		  if($("div[data-check='true']" ).size()<=0){/*alert('1up');*/vidas++;$('#vidas').text('Bonus');}
 	 truetarget=0;
