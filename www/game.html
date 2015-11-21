@@ -302,8 +302,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 
 //añadimos admob
- 
-  miAdmob();
+///si no funciona admov eliminar linea de index.JS
 //fin admov
  // Fast-click to elliminate the delay of 300ms
     FastClick.attach(document.body);
@@ -934,6 +933,7 @@ return isbonus;
  
 function dotable(e)
 {
+showAd(true);
   if(puntuacion<0){puntuacion=0};
 	$('#timerbar').removeClass('timerbar');
 if(e=='score'){
@@ -1173,6 +1173,7 @@ $("#main").html('');
 
  <div class="pie" id="pie"  > 
  <div>
+ <br><br><br><br>
    <p><button onclick="showAd(true);">Mostrar anuncio</button></p>
    <p><button onclick="showAd(false);">Ocultar anuncio</button></p>
 </div>

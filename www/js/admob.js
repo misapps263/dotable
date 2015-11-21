@@ -1,5 +1,5 @@
 function miAdmob() { 
-     var admob_ios_key = 'ID DEL ANUNCIO DE IOS'; //Si tienes tu id para ios ponlo aquí 
+     var admob_ios_key = 'ca-app-pub-4893236026217731/3839638608'; //Si tienes tu id para ios ponlo aquí 
       var admob_android_key = 'ca-app-pub-4893236026217731/3839638608'; //Si tienes tu id para android ponlo aquí 
       var adId = (navigator.userAgent.indexOf('Android') >=0) ? admob_android_key : admob_ios_key; //Detecta si el móvil es ios o android y pone el id que necesites 
        
