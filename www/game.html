@@ -285,7 +285,7 @@ body{background:#eee;}
 -->
 </style>
 <!---------->
- 
+ <script type="text/javascript" src="js/admob.js"></script>
 <!---------->
 <!-- phonegap audio----> 
 		
@@ -300,6 +300,11 @@ document.addEventListener("deviceready", onDeviceReady, false);
    
  
 function onDeviceReady() {
+
+//añadimos admob
+app.receivedEvent('deviceready');
+  miAdmob();
+//fin admov
  // Fast-click to elliminate the delay of 300ms
     FastClick.attach(document.body);
 playAudio("/android_asset/www/levelup.mp3");// local con PHONEGP 4.2.0-0.23.0
@@ -435,6 +440,9 @@ function exist(variable) {
 }
 function inicializarEventos()
 {
+
+
+
 ///////setting
 ////theme
 theme=localStorage.getItem('theme');
@@ -1077,6 +1085,10 @@ $("#main").html('');
 	<!--	targetlevel<div id="targetlevel" >jjjjj</div>
 		aciertos<div id="shottarget" > </div>-->
 		<div id="colors">
+		<div>
+   <p><button onclick="showAd(true);">Mostrar anuncio</button></p>
+   <p><button onclick="showAd(false);">Ocultar anuncio</button></p>
+</div>
 		<!--<div id="colors1" style="background:#BE6FCF;"class=""> &nbsp </div>
 		<div id="colors2" style="background:#111111;"class=""> &nbsp </div>
 		<div id="colors3" style="background:#222222;"class=""> &nbsp </div>
