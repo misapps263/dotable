@@ -285,7 +285,7 @@ body{background:#eee;}
 -->
 </style>
 <!---------->
-
+ <script type="text/javascript" src="js/admob.js"></script>
 <!---------->
 <!-- phonegap audio----> 
 		
@@ -302,7 +302,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
 
 //añadimos admob
-app.receivedEvent('deviceready');
+ 
   miAdmob();
 //fin admov
  // Fast-click to elliminate the delay of 300ms
@@ -1103,10 +1103,7 @@ $("#main").html('');
 		<div id="colors15" style="background:#eeeeee;"class=""> &nbsp </div>
 		<div id="colors16" style="background:#ffffff;"class=""> &nbsp </div>-->
 		</div>
-		<div>
-   <p><button onclick="showAd(true);">Mostrar anuncio</button></p>
-   <p><button onclick="showAd(false);">Ocultar anuncio</button></p>
-</div>
+		
   </div>
  
   <div id="contenido">
@@ -1175,6 +1172,10 @@ $("#main").html('');
 <div id="array" style="display:none;">--- </div>
 
  <div class="pie" id="pie"  > 
+ <div>
+   <p><button onclick="showAd(true);">Mostrar anuncio</button></p>
+   <p><button onclick="showAd(false);">Ocultar anuncio</button></p>
+</div>
  <!--
  <div id="parar">stop</div>
 <div id="seguir">seguuir</div> 
@@ -1189,4 +1190,3 @@ $("#main").html('');
  
 
 </html>
- <script type="text/javascript" src="js/admob.js"></script>
