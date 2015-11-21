@@ -3,19 +3,13 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.dotable"
+        id        = "com.phonegap.tokio"
         version   = "1.0.0">
 
     <name>Tokio</name>
 
     <description>
-       Diviertete y pon a prueba tu 
-habilidad,
-memoria 
-y reflejos
- con este divertido juego contra-reloj .Encuentra todas las casilas del color correcto antes de que se agote el tiempo,cuantos mas niveles alcances se incrementara la dificultad.
-Juega en el modo normal o escoge la partida express.
-¿Hasta que nivel puedes llegar?
+   Dvertido juego contra-reloj
     </description>
 
     <author href="http://adairfernandez.com" email="support@phonegap.com">
